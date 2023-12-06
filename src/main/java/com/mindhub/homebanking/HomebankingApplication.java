@@ -28,7 +28,7 @@ public class HomebankingApplication {
 			Client melba = new Client("Melba", "Morel", "melba@mindhub.com");
 			clientRepository.save(melba);
 			System.out.println(melba);
-		};
+		}; //clean gradle
 	}
 
 }
