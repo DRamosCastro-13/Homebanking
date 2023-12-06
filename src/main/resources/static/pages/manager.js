@@ -5,7 +5,7 @@ let app = createApp({
         return {
             data : [],
             clients : [],
-            name : "",
+            firstName : "",
             lastName : "",
             email : "", 
         }
@@ -27,7 +27,7 @@ let app = createApp({
         createClient(){
             axios.post('/clients',
             {
-            "name" : this.name,
+            "firstName" : this.firstName,
             "lastName" : this.lastName,
             "email": this.email})
             .then(response => {
