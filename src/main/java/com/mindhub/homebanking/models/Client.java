@@ -1,9 +1,9 @@
 package com.mindhub.homebanking.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Client {
@@ -12,6 +12,9 @@ public class Client {
     private Long id;
 
     private String firstName, lastName, email;
+
+    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
+    private List<Account> accounts = new ArrayList<>();
 
     public Client(){
 
@@ -49,6 +52,15 @@ public class Client {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public List<Account> getAccounts() {
+        return accounts;
+    }
+
+    public void addAccount(Account account){
+        account.setClient(this);
+        this.accounts.add(account);
+    } // Este método lo añade a la lista propiedad List<Account>
 
     @Override
     public String toString() {
