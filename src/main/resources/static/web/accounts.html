@@ -88,7 +88,7 @@
                     <h2 class="font-semibold text-lg text-gray-200">Account Number: {{account.number}}</h2>
                     <div>
                         <h3 class="font-semibold text-lg text-gray-200">Balance:</h3>
-                        <h4 class="font-bold text-4xl text-gray-200">${{account.balance.toLocaleString()}}</h4>
+                        <h4 class="font-bold text-4xl text-gray-200">{{account.balance.toLocaleString("en-US", {style:"currency", currency:"USD"})}}</h4>
                     </div>
                     <h4 class="font-semibold text-lg text-gray-200">Creation Date: {{account.creationDate}}</h4>
                 </div>
