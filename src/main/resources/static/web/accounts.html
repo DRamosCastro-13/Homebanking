@@ -4,24 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../web/asstetsImg/Screenshot_2023-12-09_at_5.18.16_PM-removebg-preview.png" type="image/x-icon">
-    <link rel="stylesheet" href="../web/assetsStyles/style.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" type="text/css" href="../web/assetsStyles/style.css">
     <title>Your Accounts</title>
 </head>
 <body>
     <div id="app">
         <header class="flex flex-col justify-around items-center lg:flex-row lg:justify-between z-10 h-[10rem] lg:h-[4rem] bg-[#004AAD] lg:fixed lg:w-full lg:top-0" id="header">
             <a href="../index.html"><img class="bg-cover justify-start pt-5 lg:pt-0 w-[10rem] sm:w-[15rem] lg:w-[10rem] lg:ml-5" src="../web/asstetsImg/Screenshot 2023-12-09 at 5.19.53 PM.png" alt="logo"></a>
-            <a class="hidden lg:block lg:text-xl lg:font-semibold lg:text-gray-300 lg:hover:text-slate-400 lg:ml-[42rem] xl:ml-[60rem]" href="../index.html">Log Out</a>
-            <div class="flex items-center lg:invisible justify-between w-11/12 lg:w-0">
+            <a class="hidden lg:block lg:text-xl lg:font-semibold lg:text-gray-300 lg:hover:text-slate-400 lg:mr-8" href="../index.html">Log Out</a>
+            <div class="flex items-center lg:hidden justify-between w-11/12 lg:w-0">
                 <h1 class="font-bold text-2xl text-gray-200 sm:text-3xl">Welcome, {{client.firstName}}</h1>
                 <div class="flex">
                     <a class="ml-4 font-semibold text-gray-300 sm:text-lg hover:text-slate-400" href="../index.html">Log Out</a>
                 </div> 
             </div>   
         </header>
-        <div class="hidden lg:flex lg:justify-between lg:px-8 lg:items-center lg:block h-[10rem] mt-9 lg:bg-[#004AAD]">
-            <h1 class="font-bold text-2xl text-gray-200 text-4xl">Welcome, {{client.firstName}}</h1>
+        <div class="hidden lg:flex lg:justify-between lg:px-8 lg:items-center h-[10rem] mt-9 lg:bg-[#004AAD]">
+            <h1 class="font-bold text-2xl text-gray-200 lg:text-4xl">Welcome, {{client.firstName}}</h1>
             <div class="flex items-center justify-around gap-6 h-[4rem] ">
                 <div class="flex flex-col items-center">
                     <a href="#">
@@ -35,24 +35,25 @@
                             
                         </svg>
                     </a>
-                    <p class="text-sm text-amber-200 hover:text-gray-200">Accounts</p>
+                    <p class="text-sm text-amber-100">Accounts</p>
                 </div>
-                <div class="flex flex-col items-center">
-                    <svg width="38px" height="38px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#000000">
-
-                        <g id="SVGRepo_bgCarrier" stroke-width="0"/>
-                        
-                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
-                        
-                        <g id="SVGRepo_iconCarrier"> <path d="M2 12.6101H19" stroke="#687482" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/> <path d="M19 10.28V17.43C18.97 20.28 18.19 21 15.22 21H5.78003C2.76003 21 2 20.2501 2 17.2701V10.28C2 7.58005 2.63 6.71005 5 6.57005C5.24 6.56005 5.50003 6.55005 5.78003 6.55005H15.22C18.24 6.55005 19 7.30005 19 10.28Z" stroke="#687482" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path d="M22 6.73V13.72C22 16.42 21.37 17.29 19 17.43V10.28C19 7.3 18.24 6.55 15.22 6.55H5.78003C5.50003 6.55 5.24 6.56 5 6.57C5.03 3.72 5.81003 3 8.78003 3H18.22C21.24 3 22 3.75 22 6.73Z" stroke="#687482" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path d="M5.25 17.8101H6.96997" stroke="#687482" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/> <path d="M9.10986 17.8101H12.5499" stroke="#687482" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/> </g>
-                        
-                    </svg>
-                    </a>
-                    <p class="text-sm text-gray-500 hover:text-gray-200">Cards</p>
-                </div>
-                <div class="flex flex-col items-center">
+                <div class="group flex flex-col items-center">
                     <a href="#">
-                        <svg width="38px" height="38px" viewBox="0 0 512 512" id="Layer_1" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#687482">
+                        <svg class="group-hover:stroke-white"  width="38px" height="38px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#000000">
+
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+                            
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+                            
+                            <g id="SVGRepo_iconCarrier"> <path class="group-hover:stroke-white" d="M2 12.6101H19" stroke="#687482" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/> <path class="group-hover:stroke-white" d="M19 10.28V17.43C18.97 20.28 18.19 21 15.22 21H5.78003C2.76003 21 2 20.2501 2 17.2701V10.28C2 7.58005 2.63 6.71005 5 6.57005C5.24 6.56005 5.50003 6.55005 5.78003 6.55005H15.22C18.24 6.55005 19 7.30005 19 10.28Z" stroke="#687482" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path class="group-hover:stroke-white" d="M22 6.73V13.72C22 16.42 21.37 17.29 19 17.43V10.28C19 7.3 18.24 6.55 15.22 6.55H5.78003C5.50003 6.55 5.24 6.56 5 6.57C5.03 3.72 5.81003 3 8.78003 3H18.22C21.24 3 22 3.75 22 6.73Z" stroke="#687482" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path d="M5.25 17.8101H6.96997" class="group-hover:stroke-white" stroke="#687482" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/> <path  class="group-hover:stroke-white" d="M9.10986 17.8101H12.5499" stroke="#687482" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/> </g>
+                            
+                        </svg>
+                    </a>
+                    <p class="text-sm text-gray-500 group-hover:text-gray-200">Cards</p>
+                </div>
+                <div class="group flex flex-col items-center">
+                    <a href="#">
+                        <svg width="38px" class="group-hover:fill-white" height="38px" viewBox="0 0 512 512" id="Layer_1" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#687482">
 
                             <g id="SVGRepo_bgCarrier" stroke-width="0"/>
                             
@@ -62,21 +63,21 @@
                             
                         </svg>                    
                     </a>
-                    <p class="text-sm text-gray-500 hover:text-gray-200">Loans</p>
+                    <p class="text-sm text-gray-500 group-hover:text-gray-200">Loans</p>
                 </div>
-                <div class="flex flex-col items-center">
+                <div class="group flex flex-col items-center">
                     <a href="#">
-                        <svg width="38px" height="38px" viewBox="-2 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" fill="#687482">
+                        <svg width="38px" class="group-hover:fill-white" height="38px" viewBox="-2 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" fill="#687482">
 
                             <g id="SVGRepo_bgCarrier" stroke-width="0"/>
                             
                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
                             
-                            <g id="SVGRepo_iconCarrier"> <title>receipt</title> <desc>Created with Sketch Beta.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage"> <g id="Icon-Set" sketch:type="MSLayerGroup" transform="translate(-414.000000, -775.000000)" fill="#687482"> <path d="M435,781 L421,781 C420.447,781 420,781.448 420,782 C420,782.553 420.447,783 421,783 L435,783 C435.553,783 436,782.553 436,782 C436,781.448 435.553,781 435,781 L435,781 Z M435,786.978 L421,786.978 C420.447,786.978 420,787.425 420,787.978 C420,788.529 420.447,788.978 421,788.978 L435,788.978 C435.553,788.978 436,788.529 436,787.978 C436,787.425 435.553,786.978 435,786.978 L435,786.978 Z M435,793 L421,793 C420.447,793 420,793.447 420,794 C420,794.553 420.447,795 421,795 L435,795 C435.553,795 436,794.553 436,794 C436,793.447 435.553,793 435,793 L435,793 Z M440,805.027 L436,802 L432,805.188 L428,802 L424,805.188 L420,802 L416,805.059 L416,779 C416,777.896 416.896,777 418,777 L438,777 C439.104,777 440,777.896 440,779 L440,805.027 L440,805.027 Z M438,775 L418,775 C415.791,775 414,776.791 414,779 L414,807 L415.867,807 L420,804 L424,807 L428,804 L432,807 L436,804 L440.134,807 L442,807 L442,779 C442,776.791 440.209,775 438,775 L438,775 Z" id="receipt" sketch:type="MSShapeGroup"> </path> </g> </g> </g>
+                            <g id="SVGRepo_iconCarrier"> <title>receipt</title> <desc>Created with Sketch Beta.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage"> <g class="group-hover:fill-white" id="Icon-Set" sketch:type="MSLayerGroup" transform="translate(-414.000000, -775.000000)" fill="#687482"> <path d="M435,781 L421,781 C420.447,781 420,781.448 420,782 C420,782.553 420.447,783 421,783 L435,783 C435.553,783 436,782.553 436,782 C436,781.448 435.553,781 435,781 L435,781 Z M435,786.978 L421,786.978 C420.447,786.978 420,787.425 420,787.978 C420,788.529 420.447,788.978 421,788.978 L435,788.978 C435.553,788.978 436,788.529 436,787.978 C436,787.425 435.553,786.978 435,786.978 L435,786.978 Z M435,793 L421,793 C420.447,793 420,793.447 420,794 C420,794.553 420.447,795 421,795 L435,795 C435.553,795 436,794.553 436,794 C436,793.447 435.553,793 435,793 L435,793 Z M440,805.027 L436,802 L432,805.188 L428,802 L424,805.188 L420,802 L416,805.059 L416,779 C416,777.896 416.896,777 418,777 L438,777 C439.104,777 440,777.896 440,779 L440,805.027 L440,805.027 Z M438,775 L418,775 C415.791,775 414,776.791 414,779 L414,807 L415.867,807 L420,804 L424,807 L428,804 L432,807 L436,804 L440.134,807 L442,807 L442,779 C442,776.791 440.209,775 438,775 L438,775 Z" id="receipt" sketch:type="MSShapeGroup"> </path> </g> </g> </g>
                             
                         </svg>
                     </a>
-                    <p class="text-sm text-gray-500 hover:text-gray-200">Transactions</p>
+                    <p class="text-sm text-gray-500 group-hover:text-gray-200">Transactions</p>
                 </div>
             </div>
         </div>
@@ -95,10 +96,10 @@
 
         </main>
         <footer>
-            <div class="hidden lg:block lg:flex lg:items-center lg:justify-center bg-white h-[4rem] border-t border-slate-700">
+            <div class="hidden lg:flex lg:items-center lg:justify-center bg-white h-[4rem] border-t border-slate-700">
                 <p class="text-lg text-gray-500">Assurance National Bank © 2023 - All Rights Reserved</p>
             </div>
-            <div class="block lg:hidden flex items-center justify-around bg-white h-[4rem] border-t border-slate-700 ">
+            <div class="lg:hidden flex items-center justify-around bg-white h-[4rem] border-t border-slate-700 ">
                 <div class="flex flex-col items-center">
                     <a href="#">
                         <svg width="32px" height="32px" viewBox="0 0 32.00 32.00" enable-background="new 0 0 32 32" id="Layer_1" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#1f5084" stroke="#1f5084" stroke-width="0.512">
@@ -161,6 +162,7 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="../web/assetsScripts/accounts.js"></script>
+    <script type="module" src="../web/assetsStyles/tailwind.config.extension.js"></script>
     <script type="module" src="../web/assetsStyles/tailwind.config.js"></script>
 </body>
 </html>
