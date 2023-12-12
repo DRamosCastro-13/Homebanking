@@ -15,7 +15,7 @@
           
     </header>
     <div id="app">
-        <main class="flex flex-col gap-2 items-center lg:flex-row flex-wrap lg:justify-around min-h-fit lg:min-h-[38rem] bg-[#E4F1FF]">
+        <main class="flex flex-col gap-2 items-center lg:flex-row flex-wrap lg:justify-around min-h-fit lg:min-h-[42rem] bg-[#E4F1FF]">
             <div class="flex flex-col items-center gap-3 lg:w-5/12">
                 <div class="flex flex-col flex-wrap gap-3 w-10/12 my-2 border-solid border-b pb-3 border-slate-600"> 
                     <a href="./accounts.html" class="text-blue-900 mb-2 active:text-blue-900 text-md lg:text-lg justify-start"> &lt; Return</a>
@@ -34,14 +34,14 @@
                     </div>
                 </template> 
             </div>
-            <div class="w-10/12 lg:w-5/12 flex flex-col mb-5 gap-2"> 
+            <div class="w-11/12 sm:w-10/12 lg:w-5/12 flex flex-col mb-5 gap-2"> 
                 <h3 class="text-xl mt-2 mb-1 font-bold text-blue-900">Your Transactions</h3> 
                 <table class="border-solid border-b-2  border-gray-400">
                     <tr class="border-solid border-b-2  border-gray-400">
-                        <th class="py-1 px-2 lg:px-3">Type</th>
-                        <th class="py-1 px-2 lg:px-5">Description</th>
-                        <th class="py-1 px-2 lg:px-3">Date</th>
-                        <th class="py-1 px-2 lg:px-3">Amount</th>
+                        <th class="py-1 sm:px-2 lg:px-3 sm:text-left">Type</th>
+                        <th class="py-1 sm:px-2 lg:px-5 sm:text-left">Description</th>
+                        <th class="py-1 sm:px-2 lg:px-3 sm:text-left">Date</th>
+                        <th class="py-1 sm:px-2 lg:px-3 sm:text-left">Amount</th>
                     </tr>
                     <template v-for="transaction in account.transactions">
                         <tr class="border-solid border-b-2  border-gray-400 w-full">
@@ -67,9 +67,9 @@
                                 
                                 </svg>
                             </td>
-                            <td class="py-1 px-2 lg:px-5">{{transaction.description}}</td>
-                            <td class="py-1 px-2 lg:px-3">{{transaction.date}}</td>
-                            <td class="py-1 px-2 lg:px-3">{{transaction.amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}}</td>
+                            <td class="py-1 sm:px-2 lg:px-5">{{transaction.description}}</td>
+                            <td class="py-1 sm:px-2 lg:px-3">{{transaction.date}}</td>
+                            <td class="py-1 sm:px-2 lg:px-3">{{transaction.amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}}</td>
                         </tr>
                     </template>
                 </table>
