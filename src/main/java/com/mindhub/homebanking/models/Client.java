@@ -3,7 +3,9 @@ package com.mindhub.homebanking.models;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Client {
@@ -14,7 +16,7 @@ public class Client {
     private String firstName, lastName, email;
 
     @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
-    private List<Account> accounts = new ArrayList<>();
+    private Set<Account> accounts = new HashSet<>();
 
     public Client(){
 
@@ -53,7 +55,7 @@ public class Client {
         this.email = email;
     }
 
-    public List<Account> getAccounts() {
+    public Set<Account> getAccounts() {
         return accounts;
     }
 
