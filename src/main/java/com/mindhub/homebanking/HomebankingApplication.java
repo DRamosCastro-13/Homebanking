@@ -2,8 +2,11 @@ package com.mindhub.homebanking;
 
 import com.mindhub.homebanking.models.Account;
 import com.mindhub.homebanking.models.Client;
+import com.mindhub.homebanking.models.Transaction;
+import com.mindhub.homebanking.models.TransactionType;
 import com.mindhub.homebanking.repositories.AccountRepository;
 import com.mindhub.homebanking.repositories.ClientRepository;
+import com.mindhub.homebanking.repositories.TransactionRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,7 +25,7 @@ public class HomebankingApplication {
 	}
 
 	@Bean
-	public CommandLineRunner initData(ClientRepository clientRepository, AccountRepository accountRepository){
+	public CommandLineRunner initData(ClientRepository clientRepository, AccountRepository accountRepository, TransactionRepository transactionRepository){
 		return args -> {
 
 			Client melba = new Client("Melba", "Morel", "melba@mindhub.com");
@@ -44,8 +47,25 @@ public class HomebankingApplication {
 			accountRepository.save(account002); //Guarda las cuentas en la base de datos
 			//accountRepository.save(account003);
 
+			Transaction transaction1 = new Transaction(TransactionType.DEBIT, "Pizza-Hut",-20.0,LocalDate.now());
+			Transaction transaction2 = new Transaction(TransactionType.DEBIT, "Sephora Inc.", -150.0,LocalDate.now());
+			Transaction transaction3 = new Transaction(TransactionType.CREDIT, "PayPal", 200.0, LocalDate.now());
+			Transaction transaction4 = new Transaction(TransactionType.DEBIT, "Chick-fil-A", -40.39, LocalDate.now());
+			Transaction transaction5 = new Transaction(TransactionType.CREDIT, "Bank Wire Transfer", 320.0, LocalDate.now());
 
-			System.out.println(account002);
+			account001.addTransaction(transaction1);
+			account001.addTransaction(transaction2);
+			account001.addTransaction(transaction3);
+			account002.addTransaction(transaction4);
+			account002.addTransaction(transaction5);
+
+			transactionRepository.save(transaction1);
+			transactionRepository.save(transaction2);
+			transactionRepository.save(transaction3);
+			transactionRepository.save(transaction4);
+			transactionRepository.save(transaction5);
+
+			System.out.println(transaction1);
 		}; //clean gradle
 	}
 

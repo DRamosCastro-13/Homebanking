@@ -84,14 +84,14 @@
         <main class="flex flex-col lg:flex-row flex-wrap items-center min-h-[28rem] lg:min-h-[30rem] bg-[#E4F1FF]">
             <h2 class="font-bold text-3xl text-slate-900 mt-3 lg:w-full lg:text-center lg:text-5xl">Your Products</h2>
             <template v-for="account in accounts">
-                <div class="flex flex-col items-center p-2 w-11/12 lg:w-5/12 my-3 gap-3 mx-auto bg-[url('../web/asstetsImg/card-bg.jpeg')] bg-cover bg-center rounded-lg">
+                <a :href="'../web/account.html?id=' + account.id" class="flex flex-col items-center p-2 w-11/12 lg:hover:scale-110 lg:w-5/12 my-3 gap-3 mx-auto bg-[url('../web/asstetsImg/card-bg.jpeg')] bg-cover bg-center rounded-lg">
                     <h2 class="font-semibold text-lg text-gray-200">Account Number: {{account.number}}</h2>
                     <div>
                         <h3 class="font-semibold text-lg text-gray-200">Balance:</h3>
                         <h4 class="font-bold text-4xl text-gray-200">{{account.balance.toLocaleString("en-US", {style:"currency", currency:"USD"})}}</h4>
                     </div>
                     <h4 class="font-semibold text-lg text-gray-200">Creation Date: {{account.creationDate}}</h4>
-                </div>
+                </a>
             </template>
 
         </main>

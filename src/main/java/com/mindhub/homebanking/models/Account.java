@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Entity
 public class Account {
@@ -21,6 +23,8 @@ public class Account {
 
     @ManyToOne
     private Client client;
+    @OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
+    private List<Transaction> transactions = new ArrayList<>();
 
     public Account() {
 
@@ -62,6 +66,10 @@ public class Account {
         this.balance = balance;
     }
 
+    public List<Transaction> getTransactions() {
+        return transactions;
+    }
+
     @JsonIgnore
     public Client getClient() {
         return client;
@@ -69,6 +77,10 @@ public class Account {
 
     public void setClient(Client client) {
         this.client = client;
+    }
+    public void addTransaction(Transaction transaction){
+        transaction.setAccount(this);
+        this.transactions.add(transaction);
     }
 
     @Override
@@ -79,6 +91,7 @@ public class Account {
                 ", creationDate=" + creationDate +
                 ", balance=" + balance +
                 ", client=" + client +
+
                 '}';
     }
 }
