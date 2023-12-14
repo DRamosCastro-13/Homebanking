@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
@@ -18,11 +19,11 @@ public class AccountController {
     private AccountRepository accountRepository;
 
     @RequestMapping("/all")
-    public List<AccountDTO> getAllAccounts(){
+    public Set<AccountDTO> getAllAccounts(){
         return accountRepository.findAll()
                 .stream()
                 .map(account -> new AccountDTO(account))
-                .collect(Collectors.toList());
+                .collect(Collectors.toSet());
     }
 
     @RequestMapping("/{id}")
