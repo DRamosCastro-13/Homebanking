@@ -1,10 +1,7 @@
 package com.mindhub.homebanking;
 
 import com.mindhub.homebanking.models.*;
-import com.mindhub.homebanking.repositories.AccountRepository;
-import com.mindhub.homebanking.repositories.ClientRepository;
-import com.mindhub.homebanking.repositories.LoanRepository;
-import com.mindhub.homebanking.repositories.TransactionRepository;
+import com.mindhub.homebanking.repositories.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -24,7 +21,8 @@ public class HomebankingApplication {
 	}
 
 	@Bean
-	public CommandLineRunner initData(ClientRepository clientRepository, AccountRepository accountRepository, TransactionRepository transactionRepository, LoanRepository loanRepository){
+	public CommandLineRunner initData(ClientRepository clientRepository, AccountRepository accountRepository, TransactionRepository transactionRepository, LoanRepository loanRepository,
+									  ClientLoanRepository clientLoanRepository){
 		return args -> {
 
 			Client melba = new Client("Melba", "Morel", "melba@mindhub.com");
@@ -64,15 +62,28 @@ public class HomebankingApplication {
 			transactionRepository.save(transaction4);
 			transactionRepository.save(transaction5);
 
-			Loan mortgage = new Loan("Mortgage Loan",500000.0, List.of("12","24","36","48","60"));
-			Loan personal = new Loan("Personal Loan",100000.0,List.of("6","12","24"));
-			Loan auto = new Loan("Auto Loan", 300000.0,List.of("6","12","24","36"));
+			Loan mortgage = new Loan("Mortgage Loan",500000.0, List.of(12,24,36,48,60));
+			Loan personal = new Loan("Personal Loan",100000.0,List.of(6,12,24));
+			Loan auto = new Loan("Auto Finance", 300000.0,List.of(6,12,24,36));
 
 			loanRepository.save(mortgage);
 			loanRepository.save(personal);
 			loanRepository.save(auto);
 
-			System.out.println(transaction1);
+			ClientLoan mortgageMelba = new ClientLoan(400000.0, 60);
+			ClientLoan personalMelba = new ClientLoan(50000.0,12);
+
+			melba.addClientLoan(mortgageMelba);
+			mortgage.addClientLoan(mortgageMelba);
+
+			melba.addClientLoan(personalMelba);
+			personal.addClientLoan(personalMelba);
+
+
+			clientLoanRepository.save(mortgageMelba);
+			clientLoanRepository.save(personalMelba);
+
+
 		}; //clean gradle
 	}
 

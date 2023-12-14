@@ -9,6 +9,7 @@ let app = createApp({
             lastName : "",
             email : "",
             accounts : [],
+            loans : [],
         }
     },
     created(){
@@ -23,7 +24,8 @@ let app = createApp({
                 this.data = response,
                 this.client = response.data,
                 this.accounts = response.data.accounts,
-                console.log(this.accounts)
+                this.loans = response.data.loans,
+                console.log(this.loans)
             })
             .catch(error => console.log(error))
         }

@@ -18,6 +18,9 @@ public class Client {
     @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
     private Set<Account> accounts = new HashSet<>();
 
+    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
+    private Set<ClientLoan> clientLoans = new HashSet<>();
+
     public Client(){
 
     }
@@ -63,6 +66,15 @@ public class Client {
         account.setClient(this);
         this.accounts.add(account);
     } // Este método lo añade a la lista propiedad List<Account>
+
+    public Set<ClientLoan> getClientLoans() {
+        return clientLoans;
+    }
+
+    public void addClientLoan(ClientLoan clientLoan){
+        clientLoan.setClient(this);
+        clientLoans.add(clientLoan);
+    }
 
     @Override
     public String toString() {
