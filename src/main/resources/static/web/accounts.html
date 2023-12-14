@@ -34,7 +34,7 @@
                     </svg>
                 <p class=" lg:text-xl font-semibold text-gray-300 group-hover:text-white lg:mr-8" href="../index.html">Log Out</p>
             </a>
-            <div class="flex items-center lg:hidden justify-between w-11/12 lg:w-0">
+            <div class="flex items-center lg:hidden justify-between w-11/12">
                 <h1 class="font-bold text-2xl text-gray-200 sm:text-3xl">Welcome, {{client.firstName}}</h1>
                 <div class="flex">
                     <a href="../index.html" class="group flex gap-2 items-center">
@@ -62,7 +62,7 @@
                 </div> 
             </div>   
         </header>
-        <div class="hidden lg:flex lg:justify-between lg:px-8 lg:items-center h-[10rem] mt-9 lg:bg-[#004AAD]">
+        <div class="hidden lg:flex lg:justify-between lg:px-8 lg:items-center lg:mt-6 lg:h-[14rem] lg:bg-[#004AAD]">
             <h1 class="font-bold text-2xl text-gray-200 lg:text-4xl">Welcome, {{client.firstName}}</h1>
             <div class="flex items-center justify-around gap-10 h-[4rem] ">
                 <div class="flex flex-col items-center">
@@ -140,7 +140,7 @@
                 <a href="#" class="font-bold text-3xl text-slate-900 mt-3 lg:w-full lg:text-center lg:text-5xl">Would you like to apply for a loan?</a>
             </template>
             <template v-else>
-                <h2 class="font-semibold text-3xl lg:text-3xl text-blue-900 mt-3 lg:w-11/12 lg:text-left">Your Loans</h2>
+                <h2 class="font-semibold text-3xl lg:text-3xl text-blue-900 mt-3 lg:w-11/12 lg:text-left">Loans</h2>
                 <div class="flex flex-wrap gap-2 md:gap-4 w-full md:w-7/12 lg:justify-self-start lg:mb-6">
                     <template v-for="loan in loans">
                         <div class="flex flex-col items-center p-2 w-11/12 lg:hover:scale-110 lg:w-5/12 lg:py-4 my-3 gap-3 mx-auto bg-[#F5E8C7] shadow-md shadow-slate-400 rounded-lg">
