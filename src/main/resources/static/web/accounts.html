@@ -127,7 +127,7 @@
             <h2 class="font-bold text-3xl text-blue-900 mt-3 lg:mt-14 lg:w-full lg:text-center lg:text-6xl">Your Products</h2>
             <h3 class="font-semibold text-3xl lg:text-3xl text-blue-900 mt-5 lg:w-11/12 lg:text-left ">Accounts</h3>
             <template v-for="account in accounts">
-                <a :href="'../web/account.html?id=' + account.id" class="flex flex-col items-center lg:items-start lg:px-10 p-2 w-11/12 lg:hover:scale-110 lg:w-5/12 my-3 gap-3 lg:-mt-1 mx-auto shadow-md shadow-slate-400 bg-gradient-to-r from-teal-200 to-lime-200 bg-cover bg-center rounded-lg">
+                <a :href="'../web/account.html?id=' + account.id" class="flex flex-col items-center lg:py-4 lg:items-start lg:px-10 p-2 w-11/12 lg:hover:scale-110 lg:w-5/12 my-3 gap-3 lg:-mt-1 mx-auto shadow-md shadow-slate-400 bg-gradient-to-r from-teal-200 to-lime-200 bg-cover bg-center rounded-lg">
                     <h2 class="font-medium text-lg text-slate-800">Account Number: <span class="text-blue-950 font-bold text-xl">{{account.number}}</span></h2>
                     <div>
                         <h3 class="font-semibold text-lg text-slate-800">Balance:</h3>
@@ -137,11 +137,11 @@
                 </a>
             </template>
             <template v-if="loans.length == 0">
-                <a href="#" class="font-bold text-3xl text-slate-900 mt-3 lg:w-full lg:text-center lg:text-5xl">Would you like to apply for a loan?</a>
+                <a href="#" class="font-bold text-3xl text-slate-900 mt-3 lg:w-full lg:text-center lg:text-4xl">Would you like to apply for a loan?</a>
             </template>
             <template v-else>
                 <h2 class="font-semibold text-3xl lg:text-3xl text-blue-900 mt-3 lg:w-11/12 lg:text-left">Loans</h2>
-                <div class="flex flex-wrap justify-center lg:justify-start lg:mx-10 xl:mx-12 gap-2 lg:gap-10 w-full lg:mb-6">
+                <div class="flex flex-wrap justify-center lg:justify-start lg:mx-10 xl:mx-12 lg:gap-10 w-full lg:mb-6">
                     <template v-for="loan in loans">
                         <div class="flex flex-col items-center p-2 w-11/12 lg:hover:scale-110 lg:w-[18rem] lg:py-4 my-3 lg:-mt-1 gap-3 bg-gradient-to-l from-orange-200 to-rose-200 shadow-md shadow-slate-400 rounded-lg">
                             <h4 class="font-semibold text-2xl text-zinc-950">{{loan.name}}</h4>

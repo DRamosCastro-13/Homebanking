@@ -22,7 +22,7 @@ public class HomebankingApplication {
 
 	@Bean
 	public CommandLineRunner initData(ClientRepository clientRepository, AccountRepository accountRepository, TransactionRepository transactionRepository, LoanRepository loanRepository,
-									  ClientLoanRepository clientLoanRepository){
+									  ClientLoanRepository clientLoanRepository, CardRepository cardRepository){
 		return args -> {
 
 			Client melba = new Client("Melba", "Morel", "melba@mindhub.com");
@@ -83,7 +83,14 @@ public class HomebankingApplication {
 			clientLoanRepository.save(mortgageMelba);
 			clientLoanRepository.save(personalMelba);
 
+			Card goldMelba =  new Card(melba.getFirstName() + " "+ melba.getLastName(),CardType.DEBIT,CardColor.GOLD, "4544-5900-0223-7173","741",LocalDate.now().plusYears(5),LocalDate.now());
+			Card titaniumMelba = new Card(melba.getFirstName() + " "+ melba.getLastName(), CardType.CREDIT,CardColor.TITANIUM, "5548-9373-0029-1275", "420",LocalDate.now().plusYears(5),LocalDate.now());
 
+			melba.addCard(goldMelba);
+			melba.addCard(titaniumMelba);
+
+			cardRepository.save(goldMelba);
+			cardRepository.save(titaniumMelba);
 		}; //clean gradle
 	}
 
