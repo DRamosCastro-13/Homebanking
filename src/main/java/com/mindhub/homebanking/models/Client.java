@@ -10,7 +10,7 @@ import java.util.Set;
 @Entity
 public class Client {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //Espera un valor generado por la columna ID en la base de datos. Es decir que son auto-incrementables
     private Long id;
 
     private String firstName, lastName, email;
