@@ -7,7 +7,7 @@ tailwind.config = {
                 
             },
             fontFamily: {
-               
+                'orbitron' : ['Orbitron', 'sans-serif']
             }
         }
     }
