@@ -89,8 +89,10 @@ public class HomebankingApplication {
 			melba.addCard(goldMelba);
 			melba.addCard(titaniumMelba);
 
+
 			cardRepository.save(goldMelba);
 			cardRepository.save(titaniumMelba);
+
 		}; //clean gradle
 	}
 

@@ -2,10 +2,82 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta firstName="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../web/asstetsImg/Screenshot_2023-12-09_at_5.18.16_PM-removebg-preview.png" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" type="text/css" href="./web/assetsStyles/index.css">
+    <title>Home | ANB</title>
 </head>
 <body>
-    <h1>Home</h1>
+    <header>
+        <nav class="flex flex-row justify-around items-center px-[24px] lg:flex-row lg:justify-between z-10 h-[4rem] lg:h-[5rem] bg-[#004AAD] lg:fixed lg:w-full lg:top-0">
+            <a href="./web/login.html" class="group">
+                <svg width="28px" height="28px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" fill="#ffffff" stroke="#ffffff">
+
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+                    
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+                    
+                    <g id="SVGRepo_iconCarrier">
+                    
+                    <path fill="#ffffff" d="M628.736 528.896A416 416 0 0 1 928 928H96a415.872 415.872 0 0 1 299.264-399.104L512 704l116.736-175.104zM720 304a208 208 0 1 1-416 0 208 208 0 0 1 416 0z"/>
+                    
+                    </g>
+                    
+                </svg>
+                <p class="text-white text-[10px] pt-1 group-hover:text-neutral-300">Login</p>
+            </a>
+            <a href="../index.html">
+                <img class="bg-cover justify-start lg:pt-0 w-[8rem] md:w-[15rem] lg:w-[10rem] lg:ml-5" src="../web/asstetsImg/Screenshot 2023-12-09 at 5.19.53 PM.png" alt="logo">
+            </a>
+            <ul class="nav-menu">
+                <li class="nav-item border-t-2 border-t-[#A5D6FF]">
+                    <a href="#" class="nav-link">Login/Register</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Find a Branch/ATM</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Mobile Banking App</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Contact Us</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Security Information</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Joing Our Community</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Login/Register</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">FAQ</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Help</a>
+                </li>
+            </ul>
+            <div>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+                <p class="text-white text-[10px] pt-1">Menu</p>
+            </div>
+        </nav>
+    </header>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./web/assetsScripts/index.js"></script>
+    <script type="module" src="../web/assetsStyles/tailwind.config.extension.js"></script>
+    <script type="module" src="../web/assetsStyles/tailwind.config.js"></script>
 </body>
 </html>
