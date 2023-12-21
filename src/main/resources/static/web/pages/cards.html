@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../web/asstetsImg/Screenshot_2023-12-09_at_5.18.16_PM-removebg-preview.png" type="image/x-icon">
+    <link rel="icon" href="../assets/asstetsImg/Screenshot_2023-12-09_at_5.18.16_PM-removebg-preview.png" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" type="text/css" href="./assetsStyles/styleCards.css">
+    <link rel="stylesheet" type="text/css" href="../assets/assetsStyles/styleCards.css">
     <title>Your Cards | ANB</title>
 </head>
 <body>
     <header class="flex flex-col justify-around items-center lg:flex-row lg:justify-between z-10 h-[10rem] lg:h-[4rem] bg-[#004AAD] lg:fixed lg:w-full lg:top-0" id="header">
-        <a href="../index.html"><img class="bg-cover justify-start pt-5 lg:pt-0 w-[10rem] sm:w-[15rem] lg:w-[10rem] lg:ml-5" src="../web/asstetsImg/Screenshot 2023-12-09 at 5.19.53 PM.png" alt="logo"></a>
+        <a href="../../index.html"><img class="bg-cover justify-start pt-5 lg:pt-0 w-[10rem] sm:w-[15rem] lg:w-[10rem] lg:ml-5" src="../assets/asstetsImg/Screenshot%202023-12-09%20at%205.19.53%E2%80%AFPM.png" alt="logo"></a>
         <div class="flex flex-wrap items-center lg:w-[14rem] lg:justify-around">
             <a href="#" class="hidden lg:flex">
                 <svg fill="#ffffff" width="32px" height="32px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" stroke-width="16.384">
@@ -29,7 +29,7 @@
                     
                 </svg>
             </a>
-            <a href="../index.html" class="group flex gap-2 items-center">
+            <a href="../../index.html" class="group flex gap-2 items-center">
                 <svg width="38px" height="38px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" fill="#687482" stroke="#687482">
 
                     <g id="SVGRepo_bgCarrier" stroke-width="0"/>
@@ -57,7 +57,7 @@
         <main  class="flex flex-col items-center align-middle lg:flex-row flex-wrap lg:justify-around min-h-screen lg:min-h-[45rem] bg-[#E4F1FF]">
             <div class="flex flex-col gap-3 w-11/12 sm:7/12 my-2 lg:2/12 lg:mt-12"> 
                 <div class="flex justify-start w-3/12 lg:ml-7 xl:ml-20">
-                    <a href="./accounts.html" class="text-blue-900 mb-2 active:text-blue-900 text-md lg:text-lg justify-start border-solid border-b-2 border-blue-900"> &lt; Return</a>
+                    <a href="accounts.html" class="text-blue-900 mb-2 active:text-blue-900 text-md lg:text-lg justify-start border-solid border-b-2 border-blue-900"> &lt; Return</a>
                 </div>
                 <h1 class="font-bold text-3xl text-blue-900 lg:mt-7 w-full text-center lg:text-5xl">Cards</h1>
             </div>
@@ -71,7 +71,7 @@
                                <svg class="z-20 absolute top-[30px] right-[25px]" width="40" height="40" viewbox="0 0 17.5 16.2">
                                     <path d="M3.2 0l5.4 5.6L14.3 0l3.2 3v9L13 16.2V7.8l-4.4 4.1L4.5 8v8.2L0 12V3l3.2-3z" fill="white"></path>
                                </svg>
-                                <img src="./asstetsImg/chip.png" alt="chip" class="absolute z-40 w-100 h-[45px] top-[80px] left-[24px]"> 
+                                <img src="../assets/asstetsImg/chip.png" alt="chip" class="absolute z-40 w-100 h-[45px] top-[80px] left-[24px]">
                                  <svg class="z-40 absolute top-[83px] left-[100px]" viewBox="0 3.71 26.959 38.787" width="26.959" height="38.787" fill="white">
                                     <path d="M19.709 3.719c.266.043.5.187.656.406 4.125 5.207 6.594 11.781 6.594 18.938 0 7.156-2.469 13.73-6.594 18.937-.195.336-.57.531-.957.492a.9946.9946 0 0 1-.851-.66c-.129-.367-.035-.777.246-1.051 3.855-4.867 6.156-11.023 6.156-17.718 0-6.696-2.301-12.852-6.156-17.719-.262-.317-.301-.762-.102-1.121.204-.36.602-.559 1.008-.504z"></path>
                                     <path d="M13.74 7.563c.231.039.442.164.594.343 3.508 4.059 5.625 9.371 5.625 15.157 0 5.785-2.113 11.097-5.625 15.156-.363.422-1 .472-1.422.109-.422-.363-.472-1-.109-1.422 3.211-3.711 5.156-8.551 5.156-13.843 0-5.293-1.949-10.133-5.156-13.844-.27-.309-.324-.75-.141-1.114.188-.367.578-.582.985-.542h.093z"></path>
@@ -86,10 +86,10 @@
                                   <h4 id="number" class="text-slate-300 text-[10px] absolute z-40 top-[175px] left-[24px]">GOOD TRHU: <span id="number" class="text-white text-base">{{card.thruDate.substring(5, 7)}}/{{card.thruDate.substring(2, 4)}}</span></h4>  
                                   <h5 id="number" class="text-white text-base uppercase absolute z-40 top-[205px] left-[24px]">{{card.cardholder}}</h5>
                                   <div v-if="card.type=='DEBIT'">
-                                        <img src="./asstetsImg/mc_symbol_opt_45_2x.png" alt="mastercard" class="absolute z-40 top-[195px] right-[25px] h-10">
+                                        <img src="../assets/asstetsImg/mc_symbol_opt_45_2x.png" alt="mastercard" class="absolute z-40 top-[195px] right-[25px] h-10">
                                   </div>
                                   <div v-else="card.type=='CREDIT'">
-                                        <img src="./asstetsImg/Visa_Brandmark_White_RGB_2021.png" alt="visa" class="absolute z-40 top-[205px] right-[25px] h-5">
+                                        <img src="../assets/asstetsImg/Visa_Brandmark_White_RGB_2021.png" alt="visa" class="absolute z-40 top-[205px] right-[25px] h-5">
                                    </div>
                                 </div>
                             </div>
@@ -116,7 +116,7 @@
                                <svg class="z-20 absolute top-[30px] right-[25px]" width="40" height="40" viewbox="0 0 17.5 16.2">
                                     <path d="M3.2 0l5.4 5.6L14.3 0l3.2 3v9L13 16.2V7.8l-4.4 4.1L4.5 8v8.2L0 12V3l3.2-3z" fill="white"></path>
                                </svg>
-                                <img src="./asstetsImg/chip.png" alt="chip" class="absolute z-40 w-100 h-[45px] top-[80px] left-[24px]"> 
+                                <img src="../assets/asstetsImg/chip.png" alt="chip" class="absolute z-40 w-100 h-[45px] top-[80px] left-[24px]">
                                  <svg class="z-40 absolute top-[83px] left-[100px]" viewBox="0 3.71 26.959 38.787" width="26.959" height="38.787" fill="white">
                                     <path d="M19.709 3.719c.266.043.5.187.656.406 4.125 5.207 6.594 11.781 6.594 18.938 0 7.156-2.469 13.73-6.594 18.937-.195.336-.57.531-.957.492a.9946.9946 0 0 1-.851-.66c-.129-.367-.035-.777.246-1.051 3.855-4.867 6.156-11.023 6.156-17.718 0-6.696-2.301-12.852-6.156-17.719-.262-.317-.301-.762-.102-1.121.204-.36.602-.559 1.008-.504z"></path>
                                     <path d="M13.74 7.563c.231.039.442.164.594.343 3.508 4.059 5.625 9.371 5.625 15.157 0 5.785-2.113 11.097-5.625 15.156-.363.422-1 .472-1.422.109-.422-.363-.472-1-.109-1.422 3.211-3.711 5.156-8.551 5.156-13.843 0-5.293-1.949-10.133-5.156-13.844-.27-.309-.324-.75-.141-1.114.188-.367.578-.582.985-.542h.093z"></path>
@@ -131,10 +131,10 @@
                                   <h4 id="number" class="text-slate-300 text-[10px] absolute z-40 top-[175px] left-[24px]">GOOD TRHU: <span id="number" class="text-white text-base">{{card.thruDate.substring(5, 7)}}/{{card.thruDate.substring(2, 4)}}</span></h4>  
                                   <h5 id="number" class="text-white text-base uppercase absolute z-40 top-[205px] left-[24px]">{{card.cardholder}}</h5>
                                   <div v-if="card.type=='DEBIT'">
-                                        <img src="./asstetsImg/mc_symbol_opt_45_2x.png" alt="mastercard" class="absolute z-40 top-[195px] right-[25px] h-10">
+                                        <img src="../assets/asstetsImg/mc_symbol_opt_45_2x.png" alt="mastercard" class="absolute z-40 top-[195px] right-[25px] h-10">
                                   </div>
                                   <div v-else="card.type=='CREDIT'">
-                                        <img src="./asstetsImg/Visa_Brandmark_White_RGB_2021.png" alt="visa" class="absolute z-40 top-[205px] right-[25px] h-5">
+                                        <img src="../assets/asstetsImg/Visa_Brandmark_White_RGB_2021.png" alt="visa" class="absolute z-40 top-[205px] right-[25px] h-5">
                                    </div>
                                 </div>
                             </div>
@@ -161,7 +161,7 @@
                                <svg class="z-20 absolute top-[30px] right-[25px]" width="40" height="40" viewbox="0 0 17.5 16.2">
                                     <path d="M3.2 0l5.4 5.6L14.3 0l3.2 3v9L13 16.2V7.8l-4.4 4.1L4.5 8v8.2L0 12V3l3.2-3z" fill="white"></path>
                                </svg>
-                                <img src="./asstetsImg/chip.png" alt="chip" class="absolute z-40 w-100 h-[45px] top-[80px] left-[24px]"> 
+                                <img src="../assets/asstetsImg/chip.png" alt="chip" class="absolute z-40 w-100 h-[45px] top-[80px] left-[24px]">
                                  <svg class="z-40 absolute top-[83px] left-[100px]" viewBox="0 3.71 26.959 38.787" width="26.959" height="38.787" fill="white">
                                     <path d="M19.709 3.719c.266.043.5.187.656.406 4.125 5.207 6.594 11.781 6.594 18.938 0 7.156-2.469 13.73-6.594 18.937-.195.336-.57.531-.957.492a.9946.9946 0 0 1-.851-.66c-.129-.367-.035-.777.246-1.051 3.855-4.867 6.156-11.023 6.156-17.718 0-6.696-2.301-12.852-6.156-17.719-.262-.317-.301-.762-.102-1.121.204-.36.602-.559 1.008-.504z"></path>
                                     <path d="M13.74 7.563c.231.039.442.164.594.343 3.508 4.059 5.625 9.371 5.625 15.157 0 5.785-2.113 11.097-5.625 15.156-.363.422-1 .472-1.422.109-.422-.363-.472-1-.109-1.422 3.211-3.711 5.156-8.551 5.156-13.843 0-5.293-1.949-10.133-5.156-13.844-.27-.309-.324-.75-.141-1.114.188-.367.578-.582.985-.542h.093z"></path>
@@ -176,10 +176,10 @@
                                   <h4 id="number" class="text-slate-300 text-[10px] absolute z-40 top-[175px] left-[24px]">GOOD TRHU: <span id="number" class="text-white text-base">{{card.thruDate.substring(5, 7)}}/{{card.thruDate.substring(2, 4)}}</span></h4>  
                                   <h5 id="number" class="text-white text-base uppercase absolute z-40 top-[205px] left-[24px]">{{card.cardholder}}</h5>
                                   <div v-if="card.type=='DEBIT'">
-                                        <img src="./asstetsImg/mc_symbol_opt_45_2x.png" alt="mastercard" class="absolute z-40 top-[195px] right-[25px] h-10">
+                                        <img src="../assets/asstetsImg/mc_symbol_opt_45_2x.png" alt="mastercard" class="absolute z-40 top-[195px] right-[25px] h-10">
                                   </div>
                                   <div v-else="card.type=='CREDIT'">
-                                        <img src="./asstetsImg/Visa_Brandmark_White_RGB_2021.png" alt="visa" class="absolute z-40 top-[205px] right-[25px] h-5">
+                                        <img src="../assets/asstetsImg/Visa_Brandmark_White_RGB_2021.png" alt="visa" class="absolute z-40 top-[205px] right-[25px] h-5">
                                    </div>
                                 </div>
                             </div>
@@ -206,7 +206,7 @@
             </div>
             <div class="lg:hidden flex items-center justify-around bg-white h-[4rem] border-t border-slate-700 ">
                 <div class="flex flex-col items-center">
-                    <a href="./accounts.html">
+                    <a href="accounts.html">
                         <svg width="32px" height="32px" viewBox="0 0 32 32" enable-background="new 0 0 32 32" id="Layer_1" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#263238" stroke="#263238" stroke-width="0.44800000000000006">
 
                             <g id="SVGRepo_bgCarrier" stroke-width="0"/>
@@ -266,8 +266,8 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="./assetsScripts/cards.js"></script>
-    <script type="module" src="../web/assetsStyles/tailwind.config.extension.js"></script>
-    <script type="module" src="../web/assetsStyles/tailwind.config.js"></script>
+    <script src="../assets/assetsScripts/cards.js"></script>
+    <script type="module" src="../assets/assetsStyles/tailwind.config.extension.js"></script>
+    <script type="module" src="../assets/assetsStyles/tailwind.config.js"></script>
 </body>
 </html>
