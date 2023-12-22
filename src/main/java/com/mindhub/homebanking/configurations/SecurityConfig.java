@@ -25,7 +25,7 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/api/login").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/clients").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/clients/current", "/api/accounts/*", "/web/pages/*").hasAuthority("CLIENT")
-                .requestMatchers(HttpMethod.GET, "/api/clients", "/h2-console/**", "/web/**").hasAuthority("ADMIN")
+                .requestMatchers(HttpMethod.GET, "/api/clients", "/h2-console/**", "/web/**", "/rest/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated() // cualquier petición de alguien autenticado
         );
 
@@ -77,6 +77,6 @@ public class SecurityConfig {
 
     }
     //Si hay fallas al iniciar la sesión serán guardadas en el navegador, este método borra esas
-    //fallas una vez el inicio de sesión sea exitoso (línea 41)
+    //fallas una vez el inicio de sesión sea exitoso (línea 45)
 
 }
