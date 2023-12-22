@@ -20,7 +20,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         //se configuran los filtros para definir quién tiene acceso a qué
         http.authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/index.html", "/web/assets/**").permitAll()
+                .requestMatchers("/index.html", "/web/assets/**", "/web/pages/login.html", "/web/assets/assetsScripts/login.js" ).permitAll()
                 .requestMatchers("/login").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/login").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/clients").permitAll()
@@ -37,7 +37,7 @@ public class SecurityConfig {
         //Permite el acceso a recursos de APIs externas, en este caso H2-Console
 
         http.formLogin( formLogin ->
-                formLogin.loginPage("/index.html")//La página donde se hace el login
+                formLogin.loginPage("/web/pages/login.html")//La página donde se hace el login
                         .loginProcessingUrl("/api/login")//Endpoint donde se envía la petición
                         .usernameParameter("email")//Parámetros que se enviarán a la petición
                         .passwordParameter("password")

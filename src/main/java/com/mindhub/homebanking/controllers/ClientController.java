@@ -4,9 +4,11 @@ import com.mindhub.homebanking.dto.ClientDTO;
 import com.mindhub.homebanking.models.Client;
 import com.mindhub.homebanking.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Set;
@@ -18,6 +20,58 @@ public class ClientController {
 
     @Autowired //Para evitar crear un constructor, similar a generar una instancia. Crea una inyección de dependdencia ya que las interfaces no se pueden instanciar
     private ClientRepository clientRepository;
+
+    @Autowired //public?
+    public PasswordEncoder passwordEncoder;
+
+    @PostMapping("")//Mapea métodos POST todo lo que esté después de @RequestParam va a ser una query param (?...) en la ruta a la que se hace la petición de tipo POST
+    public ResponseEntity<String> createClient(
+            @RequestParam String firstName,
+            @RequestParam String lastName,
+            @RequestParam String email,
+            @RequestParam String password)
+    {
+
+        if(firstName.isBlank()){
+            return new ResponseEntity<>("Missing data", HttpStatus.FORBIDDEN);
+        } //Verifica que el formulario enviado no esté vacío o con un espacio en blanco
+
+        if(lastName.isBlank()){
+            return new ResponseEntity<>("Missing data", HttpStatus.FORBIDDEN);
+        } //Se hace por cada parámetro para tener más control
+
+        if(email.isBlank()){
+            return new ResponseEntity<>("Missing data", HttpStatus.FORBIDDEN);
+        }
+
+        if(password.isBlank()){
+            return new ResponseEntity<>("Missing data", HttpStatus.FORBIDDEN);
+        }
+        //Estos errores van a llegar al catch dentro del axios para ser capturados
+
+//        if(clientRepository.findByEmail(email) != null){
+//            return new ResponseEntity<>("Email already in use", HttpStatus.FORBIDDEN);
+//        } // este método traería TODA la info del client, todo el objeto,
+//         para hacer la verificación por esto es mejor usar un booleano definido en el clientRepository
+
+        if(clientRepository.existsByEmail(email)){
+            return new ResponseEntity<>("Email already in use", HttpStatus.FORBIDDEN);
+        }
+
+        Client client = new Client(firstName, lastName, email, passwordEncoder.encode(password));
+
+        clientRepository.save(client);
+
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @GetMapping("/current") //El authentication tiene la cookie que contiene la info de la sesión
+    public ResponseEntity<Client> getOneClient(Authentication authentication){
+
+        Client client = clientRepository.findByEmail(authentication.getName()); //Obtiene el mail con el cual el client está loggeado, solo que para spring security es el nomrbe de usuario de la sesión
+
+        return new ResponseEntity<>(client,HttpStatus.OK);
+    }
 
     @RequestMapping("/all") //Escucha un get
     public Set<ClientDTO> getAllClients(){
