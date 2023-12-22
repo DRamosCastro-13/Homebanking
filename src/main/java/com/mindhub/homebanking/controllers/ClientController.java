@@ -33,19 +33,19 @@ public class ClientController {
     {
 
         if(firstName.isBlank()){
-            return new ResponseEntity<>("Missing data", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("You must fill your First Name", HttpStatus.FORBIDDEN);
         } //Verifica que el formulario enviado no esté vacío o con un espacio en blanco
 
         if(lastName.isBlank()){
-            return new ResponseEntity<>("Missing data", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("You must fill your Last Name", HttpStatus.FORBIDDEN);
         } //Se hace por cada parámetro para tener más control
 
         if(email.isBlank()){
-            return new ResponseEntity<>("Missing data", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("You must fill your Email", HttpStatus.FORBIDDEN);
         }
 
         if(password.isBlank()){
-            return new ResponseEntity<>("Missing data", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("You must fill the password", HttpStatus.FORBIDDEN);
         }
         //Estos errores van a llegar al catch dentro del axios para ser capturados
 
