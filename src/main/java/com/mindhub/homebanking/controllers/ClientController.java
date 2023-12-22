@@ -24,7 +24,7 @@ public class ClientController {
     @Autowired //public?
     public PasswordEncoder passwordEncoder;
 
-    @PostMapping("")//Mapea métodos POST todo lo que esté después de @RequestParam va a ser una query param (?...) en la ruta a la que se hace la petición de tipo POST
+    @PostMapping//Mapea métodos POST lo que esté después de @RequestParam va a ser una query param (?...) en la ruta a la que se hace la petición de tipo POST
     public ResponseEntity<?> createClient(
             @RequestParam String firstName,
             @RequestParam String lastName,
@@ -51,7 +51,7 @@ public class ClientController {
 
 //        if(clientRepository.findByEmail(email) != null){
 //            return new ResponseEntity<>("Email already in use", HttpStatus.FORBIDDEN);
-//        } // este método traería TODA la info del client, todo el objeto,
+//        } // este método traería TODA la info del client, el objeto completo,
 //         para hacer la verificación por esto es mejor usar un booleano definido en el clientRepository
 
         if(clientRepository.existsByEmail(email)){
