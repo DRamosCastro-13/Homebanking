@@ -21,7 +21,7 @@ let app = createApp({
             axios.post("/api/login?email=" + this.email + "&password=" + this.password)
             .then(response => {
                 console.log(response)
-                this.clearData()
+                window.location.href = "/web/pages/accounts.html"
             })
             .catch(error => console.log(error))
         },

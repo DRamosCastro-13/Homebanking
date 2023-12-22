@@ -25,7 +25,7 @@ public class ClientController {
     public PasswordEncoder passwordEncoder;
 
     @PostMapping("")//Mapea métodos POST todo lo que esté después de @RequestParam va a ser una query param (?...) en la ruta a la que se hace la petición de tipo POST
-    public ResponseEntity<String> createClient(
+    public ResponseEntity<?> createClient(
             @RequestParam String firstName,
             @RequestParam String lastName,
             @RequestParam String email,

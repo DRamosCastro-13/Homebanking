@@ -11,7 +11,7 @@
 <body>
     <div id="app">
         <header>
-            <nav class="flex flex-row justify-around items-center px-[24px] lg:flex-row z-10 h-[4rem] lg:h-[5rem] bg-[#004AAD] lg:fixed lg:w-full lg:top-0">
+            <nav class="flex flex-row justify-around items-center px-[24px] lg:flex-row z-10 h-[4rem] lg:h-[5rem] bg-[#004481] lg:fixed lg:w-full lg:top-0">
                 <a href="./web/pages/login.html" class="group flex flex-col lg:hidden">
                     <svg width="28px" height="28px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" fill="#ffffff" stroke="#ffffff">
 
@@ -29,50 +29,59 @@
                     <p class="text-white text-[10px] pt-1 group-hover:text-neutral-300">Login</p>
                 </a>
                 <a href="../index.html">
-                    <img class="bg-cover justify-start lg:pt-0 w-[8rem] md:w-[10rem]" src="../web/assets/asstetsImg/Screenshot 2023-12-09 at 5.19.53 PM.png" alt="logo">
+                    <img class="bg-cover justify-start lg:pt-0 w-[8rem] md:w-[10rem] lg:w-[11rem]" src="./web/assets/asstetsImg/Logo with bg.png" alt="logo">
                 </a>
-                <ul class="nav-menu">
-                    <li class="nav-item border-t-2 border-t-[#A5D6FF]">
-                        <a href="./web/pages/login.html" class="nav-link">Login/Register</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">About Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">Find a Branch/ATM</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">Mobile Banking App</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">Contact Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">Security Information</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">Joing Our Community</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">Login/Register</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">FAQ</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">Help</a>
-                    </li>
-                </ul>
-                <div>
-                    <div class="hamburger" @click="showMenu = !showMenu">
-                        <span class="bar"></span>
-                        <span class="bar"></span>
-                        <span class="bar"></span>
+                <div class="lg:flex lg:gap-10">
+                    <a href="./web/pages/login.html" class="hidden group lg:flex flex-col lg:justify-center lg:bg-teal-600 lg:px-4  lg:text-white">Access</a>
+                    <ul class="nav-menu">
+                        <li class="nav-item border-t-2 border-t-[#A5D6FF]">
+                            <a href="./web/pages/login.html" class="nav-link">Login/Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Find a Branch/ATM</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Mobile Banking App</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Contact Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Security Information</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Joing Our Community</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Login/Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">FAQ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Help</a>
+                        </li>
+                    </ul>
+                    <div>
+                        <div class="hamburger" @click="showMenu = !showMenu">
+                            <span class="bar"></span>
+                            <span class="bar"></span>
+                            <span class="bar"></span>
+                        </div>
+                        <p class="text-white text-[10px] lg:text-[12px] pt-1">Menu</p>
                     </div>
-                    <p class="text-white text-[10px] lg:text-[12px] pt-1">Menu</p>
                 </div>
             </nav>
         </header>
+        <main>
+            <section class="bg-white h-[40dvh]"></section>
+            <section class="bg-[#c4e0ff] h-[40dvh]"></section>
+            <section class="bg-white h-[40dvh]"></section>
+            <section class="bg-[#004481] h-[40dvh]"></section>
+        </main>
 
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
