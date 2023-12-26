@@ -34,6 +34,9 @@ public class AccountController {
     ){
         Client client = clientRepository.findByEmail(authentication.getName());
 
+        if(client.getAccounts().size()>=3){
+            return new ResponseEntity<>("Max accounts reached", HttpStatus.FORBIDDEN);
+        }
 
         String number;
 
@@ -41,15 +44,11 @@ public class AccountController {
             number = "VIN-" + getRandomNumber(100000, 99999999);
         } while (accountRepository.existsByNumber(number));
 
-        Account account = new Account(number, LocalDate.now(), 00.00);
+        Account account = new Account(number, LocalDate.now(), 0.0);
         client.addAccount(account);
         accountRepository.save(account);
 
         return new ResponseEntity<>("Account created for " + client.getLastName() + ", "  + client.getFirstName(), HttpStatus.CREATED);
-    }
-
-    public int getRandomNumber(int min, int max) {
-        return (int) ((Math.random() * (max - min)) + min);
     }
 
     @RequestMapping("/all")
@@ -63,5 +62,10 @@ public class AccountController {
     @RequestMapping("/{id}")
     public AccountDTO getOneAccount(@PathVariable Long id){
         return new AccountDTO(accountRepository.findById(id).orElse(null));
+    }
+
+
+    public int getRandomNumber(int min, int max) {
+        return (int) ((Math.random() * (max - min)) + min);
     }
 }

@@ -1,7 +1,9 @@
 package com.mindhub.homebanking.controllers;
 
 import com.mindhub.homebanking.dto.ClientDTO;
+import com.mindhub.homebanking.models.Account;
 import com.mindhub.homebanking.models.Client;
+import com.mindhub.homebanking.repositories.AccountRepository;
 import com.mindhub.homebanking.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -22,6 +25,9 @@ public class ClientController {
     @Autowired //Para evitar crear un constructor, similar a generar una instancia. Crea una inyección de dependdencia ya que las interfaces no se pueden instanciar
     private ClientRepository clientRepository;
 
+    @Autowired
+    private AccountController accountController;
+
     @Autowired //public?
     public PasswordEncoder passwordEncoder;
 
@@ -30,7 +36,8 @@ public class ClientController {
             @RequestParam String firstName,
             @RequestParam String lastName,
             @RequestParam String email,
-            @RequestParam String password)
+            @RequestParam String password,
+            @RequestParam Set<Account> accounts)
     {
 
         if(firstName.isBlank() && lastName.isBlank() && email.isBlank() && password.isBlank()){
@@ -63,7 +70,9 @@ public class ClientController {
             return new ResponseEntity<>("Email already in use", HttpStatus.FORBIDDEN);
         }
 
-        Client client = new Client(firstName, lastName, email, passwordEncoder.encode(password));
+        Client client = new Client(firstName.substring(0,1).toUpperCase() + firstName.substring(1).toLowerCase(),
+                lastName.substring(0,1).toUpperCase() + lastName.substring(1).toLowerCase(),
+                email, passwordEncoder.encode(password));
 
         clientRepository.save(client);
 
@@ -77,11 +86,6 @@ public class ClientController {
 
         return new ResponseEntity<>(new ClientDTO(client),HttpStatus.OK);
     }
-
-//    @GetMapping("/current")
-//    public Client getCurrent(Authentication authentication){
-//        return clientRepository.findByEmail(authentication.getName());
-//    }
 
     @RequestMapping("/all") //Escucha un get
     public Set<ClientDTO> getAllClients(){
