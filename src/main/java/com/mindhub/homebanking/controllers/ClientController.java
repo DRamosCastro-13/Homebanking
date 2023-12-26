@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,6 +32,10 @@ public class ClientController {
             @RequestParam String email,
             @RequestParam String password)
     {
+
+        if(firstName.isBlank() && lastName.isBlank() && email.isBlank() && password.isBlank()){
+            return new ResponseEntity<>("You must fill out the form", HttpStatus.FORBIDDEN);
+        }
 
         if(firstName.isBlank()){
             return new ResponseEntity<>("You must fill your First Name", HttpStatus.FORBIDDEN);
@@ -66,12 +71,17 @@ public class ClientController {
     }
 
     @GetMapping("/current") //El authentication tiene la cookie que contiene la info de la sesión
-    public ResponseEntity<Client> getOneClient(Authentication authentication){
+    public ResponseEntity<?> getOneClient(Authentication authentication){
 
         Client client = clientRepository.findByEmail(authentication.getName()); //Obtiene el mail con el cual el client está loggeado, solo que para spring security es el nomrbe de usuario de la sesión
 
         return new ResponseEntity<>(client,HttpStatus.OK);
     }
+
+//    @GetMapping("/current")
+//    public Client getCurrent(Authentication authentication){
+//        return clientRepository.findByEmail(authentication.getName());
+//    }
 
     @RequestMapping("/all") //Escucha un get
     public Set<ClientDTO> getAllClients(){
@@ -85,5 +95,6 @@ public class ClientController {
     public ClientDTO getOneClient(@PathVariable Long id){
         return new ClientDTO(clientRepository.findById(id).orElse(null));
     }
+
 
 }

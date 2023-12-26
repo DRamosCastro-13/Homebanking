@@ -1,5 +1,6 @@
 package com.mindhub.homebanking.configurations;
 
+import com.mindhub.homebanking.models.RoleType;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.context.annotation.Bean;
@@ -8,6 +9,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
@@ -24,16 +26,16 @@ public class SecurityConfig {
                 .requestMatchers("/login").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/login").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/clients").permitAll()
-                .requestMatchers(HttpMethod.GET, "/api/clients/current", "/api/accounts/*", "/web/pages/*").hasAuthority("CLIENT")
-                .requestMatchers(HttpMethod.GET, "/api/clients", "/h2-console/**", "/web/**", "/rest/**").hasAuthority("ADMIN")
-                .anyRequest().authenticated() // cualquier petición de alguien autenticado
+                .requestMatchers("/api/clients/current", "/api/accounts/*", "/web/pages/*").hasAuthority("CLIENT")
+                .requestMatchers("/api/clients", "/h2-console/**", "/web/**", "/rest/**").hasAuthority("ADMIN")
+                .anyRequest().denyAll() // cualquier petición de alguien autenticado
         );
 
         http.csrf(httpSecurityCsrfConfigurer -> httpSecurityCsrfConfigurer.disable());
         //se desactiva el filtro csrf porque estamos trabajando con una API Rest que será
         //accedida mediante peticiones HTTP y no enviando formularios
 
-        http.headers(httpSecurityHeadersConfigurer -> httpSecurityHeadersConfigurer.frameOptions(frameOptionsConfig -> frameOptionsConfig.disable()));
+        http.headers(httpSecurityHeadersConfigurer -> httpSecurityHeadersConfigurer.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable));
         //Permite el acceso a recursos de APIs externas, en este caso H2-Console
 
         http.formLogin( formLogin ->
@@ -41,7 +43,7 @@ public class SecurityConfig {
                         .loginProcessingUrl("/api/login")//Endpoint donde se envía la petición
                         .usernameParameter("email")//Parámetros que se enviarán a la petición
                         .passwordParameter("password")
-                        .failureHandler((request, response, exception) -> response.sendError(401))//Manejo para inicios de sesión fallidos por datos incorrectos
+                        .failureHandler((request, response, exception) -> response.sendError(403))//Manejo para inicios de sesión fallidos por datos incorrectos
                         .successHandler((request, response, authentication) -> clearAuthenticationAttributes(request))//Manejor para inicio de sesión exitoso
                         .permitAll()
         );
