@@ -4,10 +4,11 @@ let app = createApp({
     data(){
         return {
             email : "",
+            emailReg : "",
             firstName : "",
             lastName : "",
+            passwordReg : "",
             password : "",
-            registered : false,
             error : "",
         }
     },
@@ -26,7 +27,7 @@ let app = createApp({
             .catch(error => console.log(error))
         },
         register(){
-            axios.post("/api/clients?firstName=" + this.firstName + "&lastName=" + this.lastName + "&email=" + this.email + "&password=" + this.password)
+            axios.post("/api/clients?firstName=" + this.firstName + "&lastName=" + this.lastName + "&email=" + this.emailReg + "&password=" + this.passwordReg)
             .then(response => {
                 console.log(response)
                 this.clearData()

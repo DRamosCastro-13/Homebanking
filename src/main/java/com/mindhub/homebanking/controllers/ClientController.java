@@ -32,20 +32,24 @@ public class ClientController {
             @RequestParam String password)
     {
 
+        if(firstName.isBlank() && lastName.isBlank() && email.isBlank() && password.isBlank()){
+            return new ResponseEntity<>("You must fill out the form to proceed", HttpStatus.FORBIDDEN);
+        }
+
         if(firstName.isBlank()){
-            return new ResponseEntity<>("You must fill your First Name", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("You must fill out your First Name", HttpStatus.FORBIDDEN);
         } //Verifica que el formulario enviado no esté vacío o con un espacio en blanco
 
         if(lastName.isBlank()){
-            return new ResponseEntity<>("You must fill your Last Name", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("You must fill out your Last Name", HttpStatus.FORBIDDEN);
         } //Se hace por cada parámetro para tener más control
 
         if(email.isBlank()){
-            return new ResponseEntity<>("You must fill your Email", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("You must fill out your Email", HttpStatus.FORBIDDEN);
         }
 
         if(password.isBlank()){
-            return new ResponseEntity<>("You must fill the password", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("You must fill out the password", HttpStatus.FORBIDDEN);
         }
         //Estos errores van a llegar al catch dentro del axios para ser capturados
 
@@ -55,7 +59,7 @@ public class ClientController {
 //         para hacer la verificación por esto es mejor usar un booleano definido en el clientRepository
 
         if(clientRepository.existsByEmail(email)){
-            return new ResponseEntity<>("Email already in use", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Email already in use, please login or set up your account with a different email", HttpStatus.FORBIDDEN);
         }
 
         Client client = new Client(firstName, lastName, email, passwordEncoder.encode(password));
