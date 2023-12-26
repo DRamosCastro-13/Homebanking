@@ -71,11 +71,11 @@ public class ClientController {
     }
 
     @GetMapping("/current") //El authentication tiene la cookie que contiene la info de la sesión
-    public ResponseEntity<?> getOneClient(Authentication authentication){
+    public ResponseEntity<ClientDTO> getOneClient(Authentication authentication){
 
         Client client = clientRepository.findByEmail(authentication.getName()); //Obtiene el mail con el cual el client está loggeado, solo que para spring security es el nomrbe de usuario de la sesión
 
-        return new ResponseEntity<>(client,HttpStatus.OK);
+        return new ResponseEntity<>(new ClientDTO(client),HttpStatus.OK);
     }
 
 //    @GetMapping("/current")
