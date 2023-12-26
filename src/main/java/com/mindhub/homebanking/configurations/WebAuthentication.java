@@ -26,7 +26,7 @@ public class WebAuthentication extends GlobalAuthenticationConfigurerAdapter {
             Client client = clientRepository.findByEmail(inputName);
 
             if(client != null){
-                return new User(client.getEmail(), client.getPassword(), //Al momento de generar la sesión del usuario envía una respuesta con el Token X-CSRF
+                return new User(client.getEmail(), client.getPassword(), //Se genera una nueva sesión
                         AuthorityUtils.createAuthorityList(client.getRole().toString()));
             }else{
                 throw new UsernameNotFoundException("Unknown user: " + inputName);
