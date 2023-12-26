@@ -21,7 +21,6 @@ public class SecurityConfig {
         //se configuran los filtros para definir quién tiene acceso a qué
         http.authorizeHttpRequests(authorize -> authorize
                 .requestMatchers("/index.html", "/web/assets/**", "/web/pages/login.html", "/web/assets/assetsScripts/login.js" ).permitAll()
-                .requestMatchers("/login").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/login").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/clients").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/clients/current", "/api/accounts/*", "/web/pages/*").hasAuthority("CLIENT")
