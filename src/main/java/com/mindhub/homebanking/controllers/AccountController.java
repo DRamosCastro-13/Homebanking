@@ -32,10 +32,10 @@ public class AccountController {
             @RequestParam Double balance,
             Authentication authentication
     ){
-        Client client = clientRepository.findByEmail(authentication.getName());
+        Client client = clientRepository.findByEmail(authentication.getName()); //Encontrar al dueño
 
         if(client.getAccounts().size()>=3){
-            return new ResponseEntity<>("Max accounts reached", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Maximum accounts per client reached", HttpStatus.FORBIDDEN);
         }
 
         String number;

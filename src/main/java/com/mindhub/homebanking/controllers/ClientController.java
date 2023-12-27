@@ -28,6 +28,9 @@ public class ClientController {
     @Autowired
     private AccountController accountController;
 
+    @Autowired
+    private AccountRepository accountRepository;
+
     @Autowired //public?
     public PasswordEncoder passwordEncoder;
 
@@ -36,8 +39,7 @@ public class ClientController {
             @RequestParam String firstName,
             @RequestParam String lastName,
             @RequestParam String email,
-            @RequestParam String password,
-            @RequestParam Set<Account> accounts)
+            @RequestParam String password)
     {
 
         if(firstName.isBlank() && lastName.isBlank() && email.isBlank() && password.isBlank()){
@@ -76,13 +78,26 @@ public class ClientController {
 
         clientRepository.save(client);
 
+        if(client.getAccounts().isEmpty()){
+
+            String number;
+
+            do {
+                number = "VIN-" + getRandomNumber(100000, 99999999);
+            } while (accountRepository.existsByNumber(number));
+
+            Account account = new Account(number, LocalDate.now(), 0.0);
+            client.addAccount(account);
+            accountRepository.save(account);
+        }
+
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @GetMapping("/current") //El authentication tiene la cookie que contiene la info de la sesión
     public ResponseEntity<ClientDTO> getOneClient(Authentication authentication){
 
-        Client client = clientRepository.findByEmail(authentication.getName()); //Obtiene el mail con el cual el client está loggeado, solo que para spring security es el nomrbe de usuario de la sesión
+        Client client = clientRepository.findByEmail(authentication.getName()); //Obtiene el mail con el cual el client está loggeado, solo que para spring security es el nombre de usuario de la sesión
 
         return new ResponseEntity<>(new ClientDTO(client),HttpStatus.OK);
     }
@@ -98,6 +113,11 @@ public class ClientController {
     @RequestMapping("/{id}")
     public ClientDTO getOneClient(@PathVariable Long id){
         return new ClientDTO(clientRepository.findById(id).orElse(null));
+    }
+
+
+    public int getRandomNumber(int min, int max) {
+        return (int) ((Math.random() * (max - min)) + min);
     }
 
 
