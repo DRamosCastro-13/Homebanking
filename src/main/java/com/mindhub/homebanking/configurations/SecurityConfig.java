@@ -25,8 +25,9 @@ public class SecurityConfig {
                 .requestMatchers("/index.html", "/web/assets/**", "/web/pages/login.html", "/web/assets/assetsScripts/login.js" ).permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/login").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/clients").permitAll()
-                .requestMatchers("/api/clients/current", "/api/accounts/*", "/web/pages/*").hasAuthority("CLIENT")
+                .requestMatchers("/api/clients/current", "/api/accounts/*", "/web/pages/*", "/api/cards").hasAuthority("CLIENT")
                 .requestMatchers(HttpMethod.POST, "/api/accounts").hasAuthority("CLIENT")
+                .requestMatchers(HttpMethod.POST, "/api/cards").hasAuthority("CLIENT")
                 .requestMatchers("/api/clients", "/h2-console/**", "/web/**", "/rest/**").hasAuthority("ADMIN")
                 .anyRequest().denyAll() // cualquier petición de alguien autenticado
         );
