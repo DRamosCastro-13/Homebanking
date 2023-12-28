@@ -28,21 +28,20 @@ let app = createApp({
                 console.log(this.loans)
             })
             .catch(error => console.log(error))
+        },
+        logOut(){
+            axios('/api/logout')
+            .then(
+                window.location.href = "../index.html"
+            )
+        },
+        createAccount(){
+            axios.post('/api/accounts/clients/current?')
+            .then(response => {
+                console.log(response)
+                window.location.href="../pages/accounts.html"
+            })
         }
     }
 }).mount('#app')
 
-
-// createClient(){
-        //     axios.post('/api/cilents/1',
-        //     {
-        //     "firstName" : this.firstName,
-        //     "lastName" : this.lastName,
-        //     "email": this.email,
-        //     "accounts": this.accounts})
-        //     .then(response => {
-        //         console.log(response)
-        //         this.loadData()
-        //     })
-        //     .catch(error => console.log(error))
-        // }

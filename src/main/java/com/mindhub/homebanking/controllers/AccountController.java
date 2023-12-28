@@ -26,10 +26,8 @@ public class AccountController {
     @Autowired
     private ClientRepository clientRepository;
 
-    @PostMapping
+    @PostMapping("/clients/current")
     public ResponseEntity<String> createAccount(
-            @RequestParam String creationDate,
-            @RequestParam Double balance,
             Authentication authentication
     ){
         Client client = clientRepository.findByEmail(authentication.getName()); //Encontrar al dueño
@@ -50,6 +48,7 @@ public class AccountController {
 
         return new ResponseEntity<>("Account created for " + client.getLastName() + ", "  + client.getFirstName(), HttpStatus.CREATED);
     }
+
 
     @RequestMapping("/all")
     public Set<AccountDTO> getAllAccounts(){

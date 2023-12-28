@@ -28,7 +28,7 @@ public class CardController {
     @Autowired
     CardRepository cardRepository;
 
-    @PostMapping
+    @PostMapping("/clients/current")
     public ResponseEntity<String> createCard(
             @RequestParam CardType type,
             @RequestParam CardColor color,
@@ -75,7 +75,7 @@ public class CardController {
 
 
         Card card = new Card(client.getFirstName().toUpperCase() + " " +
-                client.getLastName().toUpperCase(), CardType.valueOf(String.valueOf(type)), CardColor.valueOf(String.valueOf(color)),
+                client.getLastName().toUpperCase(), type, color,
                 cardNumber1 + "-" + cardNumber2 + "-" + cardNumber3 + "-" + cardNumber4,
                 cvv, LocalDate.now().plusYears(5), LocalDate.now());
 
