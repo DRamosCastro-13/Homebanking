@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../assets/asstetsImg/Screenshot_2023-12-09_at_5.18.16_PM-removebg-preview.png" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" type="text/css" href="../assets/assetsStyles/styleCards.css">
     <title>New Card | ANB</title>
 </head>
@@ -53,30 +54,33 @@
     </div>
 </header>
 <div id="app">
-    <main  class="flex flex-col items-center lg:flex-row flex-wrap lg:justify-around min-h-screen lg:min-h-[45rem] bg-[#E4F1FF]">
-        <div class="flex flex-col items-start gap-3 w-11/12 sm:7/12 my-2 lg:2/12 lg:-mt-40"> 
+    <main  class="flex flex-col items-center lg:flex-row flex-wrap lg:justify-around min-h-screen lg:min-h-[45rem] bg-[#E4F1FF] space-y-2">
+        <div class="flex flex-col items-start gap-3 w-11/12 sm:7/12 my-2 lg:2/12 "> 
             <div class="flex justify-start w-3/12 lg:ml-7 xl:ml-20">
                 <a href="./cards.html" class="text-[#004481] mb-2 active:text-[#004481] text-md lg:text-lg justify-start border-solid border-b-2 border-[#004481]"> &lt; Return</a>
             </div>
             <h1 class="font-bold text-3xl text-[#004481] lg:mt-7 w-full text-center lg:text-5xl">Your New Card</h1>
         </div>
-        <form @submit.prevent="createCard()" class="w-10/12 flex flex-col gap-3">
-            <div class="w-full text-center md:text-start">
-                <label class="text-[#004481] font-semibold text-center">Select a card type</label>
+        <form @submit.prevent="createCard()" class="w-10/12 flex flex-col gap-3 lg:w-4/12">
+            <div class="w-full text-center md:text-start mt-5">
+                <label class="text-[#004481] font-semibold text-2xl text-center">Select a card type</label>
             </div>
-                <select class="w-full rounded-md py-1" name="type" id="type" v-model="type">
+                <select class="w-full rounded-md py-1 px-3" name="type" id="type" v-model="type">
                     <option value="DEBIT">Debit</option>
                     <option value="CREDIT">Credit</option>
                 </select>
-            <div class="w-full text-center md:text-start">
-                <label class="text-[#004481] font-semibold text-center">Select a color</label>
+            <div class="w-full text-center md:text-start mt-3 md:mt-10">
+                <label class="text-[#004481] font-semibold text-2xl text-center">Select a color</label>
             </div>
-                <select class="w-full rounded-md py-1" name="color" id="color" v-model="color">
+                <select class="w-full rounded-md py-1 px-3" name="color" id="color" v-model="color">
                     <option value="GOLD">Gold</option>
                     <option value="SILVER">Silver</option>
                     <option value="TITANIUM">Titanium</option>
                 </select>
-            <button type="submit" class="bg-[#004481] hover:bg-[#004481] text-white font-bold py-2 px-4 rounded" @click="createCard()">Create</button>
+            <button type="submit" class="bg-[#004481] hover:bg-[#004481] text-white font-bold py-2 px-4 rounded w-5/12 mt-5 md:mt-8">Create</button>
+            <div v-if="error">
+                <p class="text-red-500 text-center text-md">*{{error}}</p>
+            </div>
         </form>
     </main>
     <footer>

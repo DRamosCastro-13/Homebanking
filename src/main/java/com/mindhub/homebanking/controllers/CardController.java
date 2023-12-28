@@ -37,6 +37,18 @@ public class CardController {
     ){
         Client client = clientRepository.findByEmail(authentication.getName());
 
+        if(type.toString().isBlank() && color.toString().isBlank()){
+            return new ResponseEntity<>("You must select an option to create the card", HttpStatus.FORBIDDEN);
+        }
+
+        if(type.toString().isBlank()){
+            return new ResponseEntity<>("Please select the type of card you would like to choose", HttpStatus.FORBIDDEN);
+        }
+
+        if(color.toString().isBlank()){
+            return new ResponseEntity<>("Please select the color of the card you would like to choose", HttpStatus.FORBIDDEN);
+        }
+
         if(client.getCards().stream().anyMatch(card -> card.getType().equals(type) && card.getColor().equals(color))){
             return new ResponseEntity<>("You have reached the maximum number of " +
                     color + " " + type + " cards.", HttpStatus.FORBIDDEN);

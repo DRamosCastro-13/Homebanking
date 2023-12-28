@@ -11,6 +11,7 @@ let app = createApp({
             cards : [],
             type : '',
             color : '',
+            error : ""
         }
     },
     created(){
@@ -30,11 +31,21 @@ let app = createApp({
             .catch(error => console.log(error))
         },
         createCard(){
-            axios.post('/api/cards/clients/current?=type' + this.type + '&color=' + this.color)
+            axios.post('/api/cards/clients/current?type=' + this.type + '&color=' + this.color)
             .then(response => {
-                console.log(response)
+                Swal.fire({
+                    icon: "success",
+                    title: "Card created successfully",
+                    showConfirmButton: false,
+                    timer: 4000
+                }),
+                console.log(response),
+                window.location.href="../pages/cards.html"
             })
-            .catch(error => console.log(error))
+            .catch(error => {
+                console.log(error)
+                this.error = error.response.data}
+            )
         },
         logOut(){
             axios('/api/logout')

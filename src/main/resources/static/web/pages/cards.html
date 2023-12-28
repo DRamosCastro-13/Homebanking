@@ -9,7 +9,7 @@
     <title>Your Cards | ANB</title>
 </head>
 <body>
-    <header class="flex flex-col justify-around items-center lg:flex-row lg:justify-between z-10 h-[10rem] lg:h-[4rem] bg-[#004481] lg:fixed lg:w-full lg:top-0" id="header">
+    <header class="flex flex-col justify-around items-center lg:flex-row lg:justify-between z-40 h-[10rem] lg:h-[4rem] bg-[#004481] lg:fixed lg:w-full lg:top-0" id="header">
         <a href="../../index.html"><img class="bg-cover justify-start pt-5 lg:pt-0 w-[10rem] sm:w-[15rem] lg:w-[10rem] lg:ml-5" src="../assets/asstetsImg/Logo with bg.png" alt="logo"></a>
         <div class="flex flex-wrap items-center lg:w-[14rem] lg:justify-around">
             <a href="#" class="hidden lg:flex">
@@ -55,12 +55,22 @@
     </header>
     <div id="app">
         <main  class="flex flex-col items-center lg:flex-row flex-wrap lg:justify-around min-h-screen lg:min-h-[45rem] bg-[#E4F1FF]">
-            <div class="flex flex-col items-start gap-3 w-11/12 sm:7/12 my-2 lg:2/12 lg:-mt-40"> 
+            <div v-if="cards.length==0" class="flex flex-col items-start gap-3 w-11/12 sm:7/12 my-2 lg:2/12 lg:-mt-40"> 
                 <div class="flex justify-start w-3/12 lg:ml-7 xl:ml-20">
                     <a href="./accounts.html" class="text-[#004481] mb-2 active:text-[#004481] text-md lg:text-lg justify-start border-solid border-b-2 border-[#004481]"> &lt; Return</a>
                 </div>
                 <h1 class="font-bold text-3xl text-[#004481] lg:mt-7 w-full text-center lg:text-5xl">Cards</h1>
                 <div class="flex justify-center mt-4 md:justify-start w-full">
+                    <button class="lg:ml-7 xl:ml-20 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" @click="createCard()">Create New Card</button>
+                </div>
+                <p class="text-center text-gray-500 text-xl w-full mt-8">It looks like you don't have any cards yet...</p>
+            </div>
+            <div v-if="cards.length > 0" class="flex flex-col items-start gap-3 w-11/12 sm:7/12 my-2 lg:2/12 mt-16 pt-4"> 
+                <div class="flex justify-start w-3/12 lg:ml-7 xl:ml-20">
+                    <a href="./accounts.html" class="text-[#004481] mb-2 active:text-[#004481] text-md lg:text-lg justify-start border-solid border-b-2 border-[#004481]"> &lt; Return</a>
+                </div>
+                <h1 class="font-bold text-3xl text-[#004481] lg:mt-7 w-full text-center lg:text-5xl">Cards</h1>
+                <div class="flex justify-center mt-4 md:justify-start w-full mb-8">
                     <button class="lg:ml-7 xl:ml-20 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" @click="createCard()">Create New Card</button>
                 </div>
             </div>

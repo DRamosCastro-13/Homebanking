@@ -25,12 +25,14 @@ let app = createApp({
                 window.location.href = "/web/pages/accounts.html"
                 this.clearData()
             })
-            .catch(Swal.fire({
+            .catch(error => {
+                Swal.fire({
                 icon: "error",
                 title: "Invalid email or password",
                 text: "Please try again",
               }),
-              error => console.log(error))
+            console.log(error)
+            })
         },
         loginEvent(){
             this.login(this.email, this.password)
@@ -49,7 +51,8 @@ let app = createApp({
                     icon: "success",
                     title: "Registered successfully",
                     showConfirmButton: false,
-                    timer: 4000})
+                    timer: 4000
+                }),
                 console.log(response)
                 this.login(this.emailReg, this.passwordReg)
                 this.clearData()
@@ -58,6 +61,11 @@ let app = createApp({
                 error => {
                 console.log(error)
                 this.error = error.response.data
+                Swal.fire({
+                    icon: "error",
+                    title: error.response.data,
+                    text: "Please try again",
+                })
             })
         },
         clearData(){
