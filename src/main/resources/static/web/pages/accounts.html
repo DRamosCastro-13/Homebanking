@@ -76,7 +76,7 @@
                             </g>
                             
                             </svg>
-                        <p class=" lg:text-xl font-semibold text-gray-300 group-hover:text-white lg:mr-8" href="../index.html">Log Out</p>
+                        <p class=" lg:text-xl font-semibold text-gray-300 group-hover:text-white lg:mr-8" @click="logout()">Log Out</p>
                     </a>
                 </div> 
             </div>   
@@ -155,12 +155,15 @@
                     <h4 class="font-medium text-lg text-slate-800">Creation Date: <span class="text-blue-950 font-bold">{{account.creationDate}}</span></h4>
                 </a>
             </template>
-            <button v-show="accounts.length < 3" @click="createAccount()" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">Create Account</button>
+            <div class="w-full flex justify-center mt-3">
+                <button v-show="accounts.length < 3" @click="createAccount()" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">Create Account</button>
+            </div>
             <template v-if="loans.length == 0">
-                <a href="#" class="font-bold pt-10 lg:pb-20 text-3xl text-slate-900 mt-3 lg:w-full lg:text-center lg:text-4xl">Would you like to apply for a loan?</a>
+                <h2 class="font-semibold text-3xl text-center lg:text-3xl text-[#004481] mt-6 lg:w-11/12 lg:text-left">Loans</h2>
+                <a href="#" class="w-10/12 text-center font-bold pb-8 lg:pb-20 text-2xl text-slate-900 mt-3 lg:w-full lg:text-center lg:text-4xl">Would you like to apply for a loan?</a>
             </template>
             <template v-else>
-                <h2 class="font-semibold text-3xl lg:text-3xl text-[#004481] mt-3 lg:w-11/12 lg:text-left">Loans</h2>
+                <h2 class="font-semibold text-3xl mt-6 text-center lg:text-3xl text-[#004481] lg:w-11/12 lg:text-left">Loans</h2>
                 <div class="flex flex-wrap justify-center lg:justify-start lg:mx-10 xl:mx-12 lg:gap-10 w-full lg:mb-6">
                     <template v-for="loan in loans">
                         <div class="flex flex-col items-center p-2 w-11/12 lg:hover:scale-110 lg:w-[18rem] lg:py-4 my-3 lg:-mt-1 gap-3 bg-gradient-to-l from-orange-200 to-rose-200 shadow-md shadow-slate-400 rounded-lg">

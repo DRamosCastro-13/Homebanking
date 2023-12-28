@@ -24,6 +24,12 @@ let app = createApp({
                 console.log(this.account)
             })
             .catch(error => console.log(error))
+        },
+        logOut(){
+            axios('/api/logout')
+            .then(
+                window.location.href = "../index.html"
+            )
         }
     }
 }).mount('#app')

@@ -9,7 +9,8 @@ let app = createApp({
             lastName : "",
             email : "",
             cards : [],
-           
+            type : '',
+            color : '',
         }
     },
     created(){
@@ -28,14 +29,18 @@ let app = createApp({
             })
             .catch(error => console.log(error))
         },
+        createCard(){
+            axios.post('/api/cards/clients/current?=type' + this.type + '&color=' + this.color)
+            .then(response => {
+                console.log(response)
+            })
+            .catch(error => console.log(error))
+        },
         logOut(){
             axios('/api/logout')
             .then(
                 window.location.href = "../index.html"
             )
-        },
-        createCard(){
-            window.location.href="../pages/createCards.html"
         }
     }
 }).mount('#app')
