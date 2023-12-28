@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../assets/asstetsImg/Screenshot_2023-12-09_at_5.18.16_PM-removebg-preview.png" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" type="text/css" href="../assets/assetsStyles/styleCards.css">
+    <title>Your Cards | ANB</title>
+</head>
+<body>
+    <header class="flex flex-col justify-around items-center lg:flex-row lg:justify-between z-10 h-[10rem] lg:h-[4rem] bg-[#004481] lg:fixed lg:w-full lg:top-0" id="header">
+        <a href="../../index.html"><img class="bg-cover justify-start pt-5 lg:pt-0 w-[10rem] sm:w-[15rem] lg:w-[10rem] lg:ml-5" src="../assets/asstetsImg/Logo with bg.png" alt="logo"></a>
+        <div class="flex flex-wrap items-center lg:w-[14rem] lg:justify-around">
+            <a href="#" class="hidden lg:flex">
+                <svg fill="#ffffff" width="32px" height="32px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" stroke-width="16.384">
+
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+                    
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+                    
+                    <g id="SVGRepo_iconCarrier">
+                    
+                    <path d="M512 277.333c-58.974 0-106.667 47.693-106.667 106.667 0 11.782-9.551 21.333-21.333 21.333s-21.333-9.551-21.333-21.333c0-82.538 66.795-149.333 149.333-149.333S661.333 301.463 661.333 384c0 75.294-55.586 137.489-128 147.823V640c0 11.78-9.553 21.333-21.333 21.333S490.667 651.78 490.667 640V512c0-11.78 9.553-21.333 21.333-21.333 58.974 0 106.667-47.693 106.667-106.667S570.974 277.333 512 277.333zm0 506.454c23.565 0 42.667-19.102 42.667-42.667S535.565 698.453 512 698.453s-42.667 19.102-42.667 42.667 19.102 42.667 42.667 42.667z"/>
+                    
+                    <path d="M512 85.333C276.358 85.333 85.333 276.358 85.333 512c0 235.639 191.025 426.667 426.667 426.667 235.639 0 426.667-191.027 426.667-426.667C938.667 276.358 747.64 85.333 512 85.333zM128 512c0-212.077 171.923-384 384-384 212.079 0 384 171.923 384 384 0 212.079-171.921 384-384 384-212.077 0-384-171.921-384-384z"/>
+                    
+                    </g>
+                    
+                </svg>
+            </a>
+            <a href="../../index.html" class="group flex gap-2 items-center">
+                <svg width="38px" height="38px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" fill="#687482" stroke="#687482">
+
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+                    
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+                    
+                    <g id="SVGRepo_iconCarrier">
+                    
+                    <title>ionicons-v5-o</title>
+                    
+                    <path d="M304,336v40a40,40,0,0,1-40,40H104a40,40,0,0,1-40-40V136a40,40,0,0,1,40-40H256c22.09,0,48,17.91,48,40v40" style="fill:none;stroke:#ffffff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/>
+                    
+                    <polyline points="368 336 448 256 368 176" style="fill:none;stroke:#ffffff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/>
+                    
+                    <line x1="176" y1="256" x2="432" y2="256" style="fill:none;stroke:#ffffff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/>
+                    
+                    </g>
+                    
+                    </svg>
+                <p class=" lg:text-xl font-semibold text-gray-300 group-hover:text-white lg:mr-8" href="../index.html">Log Out</p>
+            </a>
+        </div>
+    </header>
+    <div id="app">
+        <main  class="flex flex-col items-center align-middle lg:flex-row flex-wrap lg:justify-around min-h-screen lg:min-h-[45rem] bg-[#E4F1FF]">
+            <div class="flex flex-col gap-3 w-11/12 sm:7/12 my-2 lg:2/12 lg:mt-12"> 
+                <div class="flex justify-start w-3/12 lg:ml-7 xl:ml-20">
+                    <a href="accounts.html" class="text-[#004481] mb-2 active:text-[#004481] text-md lg:text-lg justify-start border-solid border-b-2 border-[#004481]"> &lt; Return</a>
+                </div>
+                <h1 class="font-bold text-3xl text-[#004481] lg:mt-7 w-full text-center lg:text-5xl">Cards</h1>
+            </div>
+            <template v-for="card in cards">    
+                <div v-if="card.color=='GOLD'">
+                    <div class="group my-4 h-80 sm:h-85 lg:h-96 w-8/12">
+                        <div class="relative z-10 md:my-4 h-[250px] w-[315px] rounded-xl shadow-xl transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] sm:h-[250px] sm:w-[400px]">
+                          <div class="absolute inset-0 rounded-xl [backface-visibility:hidden]">
+                            <div class="h-full w-full rounded-xl object-cover shadow-xl bg-gradient-to-l from-orange-500 via-stone-700 to-zinc-900 [backface-visibility:hidden]">
+                               <h3 class="text-white uppercase top-[30px] left-[25px] relative w-5">{{card.type}}</h3>
+                               <svg class="z-20 absolute top-[30px] right-[25px]" width="40" height="40" viewbox="0 0 17.5 16.2">
+                                    <path d="M3.2 0l5.4 5.6L14.3 0l3.2 3v9L13 16.2V7.8l-4.4 4.1L4.5 8v8.2L0 12V3l3.2-3z" fill="white"></path>
+                               </svg>
+                                <img src="../assets/asstetsImg/chip.png" alt="chip" class="absolute z-40 w-100 h-[45px] top-[80px] left-[24px]">
+                                 <svg class="z-40 absolute top-[83px] left-[100px]" viewBox="0 3.71 26.959 38.787" width="26.959" height="38.787" fill="white">
+                                    <path d="M19.709 3.719c.266.043.5.187.656.406 4.125 5.207 6.594 11.781 6.594 18.938 0 7.156-2.469 13.73-6.594 18.937-.195.336-.57.531-.957.492a.9946.9946 0 0 1-.851-.66c-.129-.367-.035-.777.246-1.051 3.855-4.867 6.156-11.023 6.156-17.718 0-6.696-2.301-12.852-6.156-17.719-.262-.317-.301-.762-.102-1.121.204-.36.602-.559 1.008-.504z"></path>
+                                    <path d="M13.74 7.563c.231.039.442.164.594.343 3.508 4.059 5.625 9.371 5.625 15.157 0 5.785-2.113 11.097-5.625 15.156-.363.422-1 .472-1.422.109-.422-.363-.472-1-.109-1.422 3.211-3.711 5.156-8.551 5.156-13.843 0-5.293-1.949-10.133-5.156-13.844-.27-.309-.324-.75-.141-1.114.188-.367.578-.582.985-.542h.093z"></path>
+                                    <path d="M7.584 11.438c.227.031.438.144.594.312 2.953 2.863 4.781 6.875 4.781 11.313 0 4.433-1.828 8.449-4.781 11.312-.398.387-1.035.383-1.422-.016-.387-.398-.383-1.035.016-1.421 2.582-2.504 4.187-5.993 4.187-9.875 0-3.883-1.605-7.372-4.187-9.875-.321-.282-.426-.739-.266-1.133.164-.395.559-.641.984-.617h.094zM1.178 15.531c.121.02.238.063.344.125 2.633 1.414 4.437 4.215 4.437 7.407 0 3.195-1.797 5.996-4.437 7.406-.492.258-1.102.07-1.36-.422-.257-.492-.07-1.102.422-1.359 2.012-1.075 3.375-3.176 3.375-5.625 0-2.446-1.371-4.551-3.375-5.625-.441-.204-.676-.692-.551-1.165.122-.468.567-.785 1.051-.742h.094z"></path>
+                                  </svg>
+                                  <div id="number" class="flex flex-row text-xl sm:text-2xl gap-2 sm:gap-6 text-white z-40 absolute top-[140px] left-[24px]">
+                                        <p>{{card.number.substring(0, 4)}}</p>
+                                        <p>{{card.number.substring(5, 9)}}</p>
+                                        <p>{{card.number.substring(10, 14)}}</p> 
+                                        <p>{{card.number.substring(15, 19)}}</p>
+                                  </div>
+                                  <h4 id="number" class="text-slate-300 text-[10px] absolute z-40 top-[175px] left-[24px]">GOOD TRHU: <span id="number" class="text-white text-base">{{card.thruDate.substring(5, 7)}}/{{card.thruDate.substring(2, 4)}}</span></h4>  
+                                  <h5 id="number" class="text-white text-base uppercase absolute z-40 top-[205px] left-[24px]">{{card.cardholder}}</h5>
+                                  <div v-if="card.type=='DEBIT'">
+                                        <img src="../assets/asstetsImg/mc_symbol_opt_45_2x.png" alt="mastercard" class="absolute z-40 top-[195px] right-[25px] h-10">
+                                  </div>
+                                  <div v-else="card.type=='CREDIT'">
+                                        <img src="../assets/asstetsImg/Visa_Brandmark_White_RGB_2021.png" alt="visa" class="absolute z-40 top-[205px] right-[25px] h-5">
+                                   </div>
+                                </div>
+                            </div>
+                            <div class="absolute inset-0 h-full w-full rounded-xl flex-col items-center justify-center bg-zinc-400 text-center text-slate-200 [transform:rotateY(180deg)] [backface-visibility:hidden]">
+                                <div class="absolute top-[30px] w-[100%] h-[50px] bg-black"></div>
+                                <h4 class="absolute text-slate-50 top-[80px] text-right w-[94%] px-2">cvv</h4>
+                                <div class="absolute top-[110px] left-[20px] h-[36px] w-[90%] px-3 m-0 items-center rounded-md justify-end bg-white">
+                                    <p class="text-black text-right pt-1">{{card.cvv}}</p>
+                                </div>
+                                <div class="absolute bottom-[30px] left-[18px] text-[10px] w-[94%] pl-3 pr-6"> 
+                                    <p>This card is property of Assurance National Bank, Wonderland. Misuse is criminal offence. If found, please return to the nearest Assurance National Bank.</p>
+                                    <p>Use of this card is subject to the credit card agreement.</p>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                </div>
+                <div v-else-if="card.color=='TITANIUM'">
+                    <div class="group my-4 h-80 sm:h-85 lg:h-96 w-8/12">
+                        <div class="relative z-10 md:my-4 h-[250px] w-[315px] rounded-xl shadow-xl transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] sm:h-[250px] sm:w-[400px]">
+                          <div class="absolute inset-0 rounded-xl [backface-visibility:hidden]">
+                            <div class="h-full w-full rounded-xl object-cover shadow-xl bg-gradient-to-l from-sky-300 via-stone-600 to-black [backface-visibility:hidden]">
+                               <h3 class="text-white uppercase top-[30px] left-[25px] relative w-5">{{card.type}}</h3>
+                               <svg class="z-20 absolute top-[30px] right-[25px]" width="40" height="40" viewbox="0 0 17.5 16.2">
+                                    <path d="M3.2 0l5.4 5.6L14.3 0l3.2 3v9L13 16.2V7.8l-4.4 4.1L4.5 8v8.2L0 12V3l3.2-3z" fill="white"></path>
+                               </svg>
+                                <img src="../assets/asstetsImg/chip.png" alt="chip" class="absolute z-40 w-100 h-[45px] top-[80px] left-[24px]">
+                                 <svg class="z-40 absolute top-[83px] left-[100px]" viewBox="0 3.71 26.959 38.787" width="26.959" height="38.787" fill="white">
+                                    <path d="M19.709 3.719c.266.043.5.187.656.406 4.125 5.207 6.594 11.781 6.594 18.938 0 7.156-2.469 13.73-6.594 18.937-.195.336-.57.531-.957.492a.9946.9946 0 0 1-.851-.66c-.129-.367-.035-.777.246-1.051 3.855-4.867 6.156-11.023 6.156-17.718 0-6.696-2.301-12.852-6.156-17.719-.262-.317-.301-.762-.102-1.121.204-.36.602-.559 1.008-.504z"></path>
+                                    <path d="M13.74 7.563c.231.039.442.164.594.343 3.508 4.059 5.625 9.371 5.625 15.157 0 5.785-2.113 11.097-5.625 15.156-.363.422-1 .472-1.422.109-.422-.363-.472-1-.109-1.422 3.211-3.711 5.156-8.551 5.156-13.843 0-5.293-1.949-10.133-5.156-13.844-.27-.309-.324-.75-.141-1.114.188-.367.578-.582.985-.542h.093z"></path>
+                                    <path d="M7.584 11.438c.227.031.438.144.594.312 2.953 2.863 4.781 6.875 4.781 11.313 0 4.433-1.828 8.449-4.781 11.312-.398.387-1.035.383-1.422-.016-.387-.398-.383-1.035.016-1.421 2.582-2.504 4.187-5.993 4.187-9.875 0-3.883-1.605-7.372-4.187-9.875-.321-.282-.426-.739-.266-1.133.164-.395.559-.641.984-.617h.094zM1.178 15.531c.121.02.238.063.344.125 2.633 1.414 4.437 4.215 4.437 7.407 0 3.195-1.797 5.996-4.437 7.406-.492.258-1.102.07-1.36-.422-.257-.492-.07-1.102.422-1.359 2.012-1.075 3.375-3.176 3.375-5.625 0-2.446-1.371-4.551-3.375-5.625-.441-.204-.676-.692-.551-1.165.122-.468.567-.785 1.051-.742h.094z"></path>
+                                  </svg>
+                                  <div id="number" class="flex flex-row text-xl sm:text-2xl gap-2 sm:gap-6 text-white z-40 absolute top-[140px] left-[24px]">
+                                        <p>{{card.number.substring(0, 4)}}</p>
+                                        <p>{{card.number.substring(5, 9)}}</p>
+                                        <p>{{card.number.substring(10, 14)}}</p> 
+                                        <p>{{card.number.substring(15, 19)}}</p>
+                                  </div>
+                                  <h4 id="number" class="text-slate-300 text-[10px] absolute z-40 top-[175px] left-[24px]">GOOD TRHU: <span id="number" class="text-white text-base">{{card.thruDate.substring(5, 7)}}/{{card.thruDate.substring(2, 4)}}</span></h4>  
+                                  <h5 id="number" class="text-white text-base uppercase absolute z-40 top-[205px] left-[24px]">{{card.cardholder}}</h5>
+                                  <div v-if="card.type=='DEBIT'">
+                                        <img src="../assets/asstetsImg/mc_symbol_opt_45_2x.png" alt="mastercard" class="absolute z-40 top-[195px] right-[25px] h-10">
+                                  </div>
+                                  <div v-else="card.type=='CREDIT'">
+                                        <img src="../assets/asstetsImg/Visa_Brandmark_White_RGB_2021.png" alt="visa" class="absolute z-40 top-[205px] right-[25px] h-5">
+                                   </div>
+                                </div>
+                            </div>
+                            <div class="absolute inset-0 h-full w-full rounded-xl flex-col items-center justify-center bg-zinc-400 text-center text-slate-200 [transform:rotateY(180deg)] [backface-visibility:hidden]">
+                                <div class="absolute top-[30px] w-[100%] h-[50px] bg-black"></div>
+                                <h4 class="absolute text-slate-50 top-[80px] text-right w-[94%] px-2">cvv</h4>
+                                <div class="absolute top-[110px] left-[20px] h-[36px] w-[90%] px-3 m-0 items-center rounded-md justify-end bg-white">
+                                    <p class="text-black text-right pt-1">{{card.cvv}}</p>
+                                </div>
+                                <div class="absolute bottom-[30px] left-[18px] text-[10px] w-[94%] pl-3 pr-6"> 
+                                    <p>This card is property of Assurance National Bank, Wonderland. Misuse is criminal offence. If found, please return to the nearest Assurance National Bank.</p>
+                                    <p>Use of this card is subject to the credit card agreement.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div v-else-if="card.color=='SILVER'">
+                    <div class="group my-4 h-80 sm:h-85 lg:h-96 w-8/12">
+                        <div class="relative z-10 md:my-4 h-[250px] w-[315px] rounded-xl shadow-xl transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] sm:h-[250px] sm:w-[400px]">
+                          <div class="absolute inset-0 rounded-xl [backface-visibility:hidden]">
+                            <div class="h-full w-full rounded-xl object-cover shadow-xl bg-gradient-to-l from-zinc-400 via-stone-600 to-black [backface-visibility:hidden]">
+                               <h3 class="text-white uppercase top-[30px] left-[25px] relative w-5">{{card.type}}</h3>
+                               <svg class="z-20 absolute top-[30px] right-[25px]" width="40" height="40" viewbox="0 0 17.5 16.2">
+                                    <path d="M3.2 0l5.4 5.6L14.3 0l3.2 3v9L13 16.2V7.8l-4.4 4.1L4.5 8v8.2L0 12V3l3.2-3z" fill="white"></path>
+                               </svg>
+                                <img src="../assets/asstetsImg/chip.png" alt="chip" class="absolute z-40 w-100 h-[45px] top-[80px] left-[24px]">
+                                 <svg class="z-40 absolute top-[83px] left-[100px]" viewBox="0 3.71 26.959 38.787" width="26.959" height="38.787" fill="white">
+                                    <path d="M19.709 3.719c.266.043.5.187.656.406 4.125 5.207 6.594 11.781 6.594 18.938 0 7.156-2.469 13.73-6.594 18.937-.195.336-.57.531-.957.492a.9946.9946 0 0 1-.851-.66c-.129-.367-.035-.777.246-1.051 3.855-4.867 6.156-11.023 6.156-17.718 0-6.696-2.301-12.852-6.156-17.719-.262-.317-.301-.762-.102-1.121.204-.36.602-.559 1.008-.504z"></path>
+                                    <path d="M13.74 7.563c.231.039.442.164.594.343 3.508 4.059 5.625 9.371 5.625 15.157 0 5.785-2.113 11.097-5.625 15.156-.363.422-1 .472-1.422.109-.422-.363-.472-1-.109-1.422 3.211-3.711 5.156-8.551 5.156-13.843 0-5.293-1.949-10.133-5.156-13.844-.27-.309-.324-.75-.141-1.114.188-.367.578-.582.985-.542h.093z"></path>
+                                    <path d="M7.584 11.438c.227.031.438.144.594.312 2.953 2.863 4.781 6.875 4.781 11.313 0 4.433-1.828 8.449-4.781 11.312-.398.387-1.035.383-1.422-.016-.387-.398-.383-1.035.016-1.421 2.582-2.504 4.187-5.993 4.187-9.875 0-3.883-1.605-7.372-4.187-9.875-.321-.282-.426-.739-.266-1.133.164-.395.559-.641.984-.617h.094zM1.178 15.531c.121.02.238.063.344.125 2.633 1.414 4.437 4.215 4.437 7.407 0 3.195-1.797 5.996-4.437 7.406-.492.258-1.102.07-1.36-.422-.257-.492-.07-1.102.422-1.359 2.012-1.075 3.375-3.176 3.375-5.625 0-2.446-1.371-4.551-3.375-5.625-.441-.204-.676-.692-.551-1.165.122-.468.567-.785 1.051-.742h.094z"></path>
+                                  </svg>
+                                  <div id="number" class="flex flex-row text-xl sm:text-2xl gap-2 sm:gap-6 text-white z-40 absolute top-[140px] left-[24px]">
+                                        <p>{{card.number.substring(0, 4)}}</p>
+                                        <p>{{card.number.substring(5, 9)}}</p>
+                                        <p>{{card.number.substring(10, 14)}}</p> 
+                                        <p>{{card.number.substring(15, 19)}}</p>
+                                  </div>
+                                  <h4 id="number" class="text-slate-300 text-[10px] absolute z-40 top-[175px] left-[24px]">GOOD TRHU: <span id="number" class="text-white text-base">{{card.thruDate.substring(5, 7)}}/{{card.thruDate.substring(2, 4)}}</span></h4>  
+                                  <h5 id="number" class="text-white text-base uppercase absolute z-40 top-[205px] left-[24px]">{{card.cardholder}}</h5>
+                                  <div v-if="card.type=='DEBIT'">
+                                        <img src="../assets/asstetsImg/mc_symbol_opt_45_2x.png" alt="mastercard" class="absolute z-40 top-[195px] right-[25px] h-10">
+                                  </div>
+                                  <div v-else="card.type=='CREDIT'">
+                                        <img src="../assets/asstetsImg/Visa_Brandmark_White_RGB_2021.png" alt="visa" class="absolute z-40 top-[205px] right-[25px] h-5">
+                                   </div>
+                                </div>
+                            </div>
+                            <div class="absolute inset-0 h-full w-full rounded-xl flex-col items-center justify-center bg-zinc-400 text-center text-slate-200 [transform:rotateY(180deg)] [backface-visibility:hidden]">
+                                <div class="absolute top-[30px] w-[100%] h-[50px] bg-black"></div>
+                                <h4 class="absolute text-slate-50 top-[80px] text-right w-[94%] px-2">cvv</h4>
+                                <div class="absolute top-[110px] left-[20px] h-[36px] w-[90%] px-3 m-0 items-center rounded-md justify-end bg-white">
+                                    <p class="text-black text-right pt-1">{{card.cvv}}</p>
+                                </div>
+                                <div class="absolute bottom-[30px] left-[18px] text-[10px] w-[94%] pl-3 pr-6"> 
+                                    <p>This card is property of Assurance National Bank, Wonderland. Misuse is criminal offence. If found, please return to the nearest Assurance National Bank.</p>
+                                    <p>Use of this card is subject to the credit card agreement.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                        
+            </template>    
+        </main>
+        <footer>
+            <div class="hidden lg:flex lg:items-center lg:justify-center bg-white h-[4rem] border-t border-slate-700">
+                <p class="text-lg text-gray-500">Assurance National Bank © 2023 - All Rights Reserved</p>
+            </div>
+            <div class="lg:hidden flex items-center justify-around bg-white h-[4rem] border-t border-slate-700 ">
+                <div class="flex flex-col items-center">
+                    <a href="accounts.html">
+                        <svg width="32px" height="32px" viewBox="0 0 32 32" enable-background="new 0 0 32 32" id="Layer_1" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#263238" stroke="#263238" stroke-width="0.44800000000000006">
+
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+                            
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+                            
+                            <g id="SVGRepo_iconCarrier"> <g id="profile_x2C__person"> <g> <g> <g> <path d="M16,31C7.729,31,1,24.271,1,16S7.729,1,16,1s15,6.729,15,15S24.271,31,16,31z M16,2C8.28,2,2,8.28,2,16 s6.28,14,14,14s14-6.28,14-14S23.72,2,16,2z" fill="#263238"/> </g> </g> </g> <g> <g id="team_3_"> <g> <g> <g> <g> <path d="M23.64,20.713l-4.762-1.652l-0.323-2.584c-0.215,0.307-0.523,0.546-0.924,0.671l0.293,2.345 c0.023,0.189,0.152,0.349,0.332,0.41l5.055,1.756c0.9,0.314,1.689,1.427,1.689,2.381v-0.007c0,0.276,0.224,0.5,0.5,0.5 c0.275,0,0.499-0.223,0.5-0.498C25.997,22.656,24.94,21.168,23.64,20.713z" fill="#263238"/> </g> </g> </g> </g> <g> <g> <g> <g> <path d="M6.5,24.532c-0.276,0-0.5-0.224-0.5-0.5v0.007c0-1.379,1.059-2.871,2.359-3.326l4.762-1.641 l0.012-0.28c0.034-0.274,0.289-0.465,0.559-0.434c0.273,0.034,0.468,0.284,0.434,0.559l-0.051,0.589 c-0.023,0.189-0.153,0.348-0.333,0.41l-5.054,1.742C7.789,21.973,7,23.086,7,24.039v-0.007C7,24.309,6.776,24.532,6.5,24.532 z" fill="#263238"/> </g> </g> </g> </g> <g> <g> <g> <g> <g> <path d="M16,18.039c-2.779,0-4.192-1.844-4.201-6.469c-0.002-1.174,0.123-2.363,1.227-3.469 C13.729,7.396,14.729,7.039,16,7.039s2.271,0.357,2.975,1.063c1.104,1.105,1.229,2.295,1.227,3.469 C20.192,16.195,18.779,18.039,16,18.039z M16,8.039c-1.009,0-1.75,0.252-2.267,0.769c-0.632,0.633-0.938,1.2-0.935,2.761 c0.008,4.018,1.055,5.471,3.201,5.471s3.193-1.453,3.201-5.471c0.003-1.561-0.303-2.128-0.935-2.761 C17.75,8.291,17.009,8.039,16,8.039z" fill="#263238"/> </g> </g> </g> </g> </g> </g> </g> </g> </g>
+                            
+                        </svg>
+                    </a>
+                    <p class="text-xs">Accounts</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <a href="#">
+                        <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#1500b3">
+
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+                            
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+                            
+                            <g id="SVGRepo_iconCarrier"> <path d="M2 12.6101H19" stroke="#1500b3" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/> <path d="M19 10.28V17.43C18.97 20.28 18.19 21 15.22 21H5.78003C2.76003 21 2 20.2501 2 17.2701V10.28C2 7.58005 2.63 6.71005 5 6.57005C5.24 6.56005 5.50003 6.55005 5.78003 6.55005H15.22C18.24 6.55005 19 7.30005 19 10.28Z" stroke="#1500b3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path d="M22 6.73V13.72C22 16.42 21.37 17.29 19 17.43V10.28C19 7.3 18.24 6.55 15.22 6.55H5.78003C5.50003 6.55 5.24 6.56 5 6.57C5.03 3.72 5.81003 3 8.78003 3H18.22C21.24 3 22 3.75 22 6.73Z" stroke="#1500b3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path d="M5.25 17.8101H6.96997" stroke="#1500b3" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/> <path d="M9.10986 17.8101H12.5499" stroke="#1500b3" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/> </g>
+                            
+                        </svg>
+                    </a>
+                    <p class="text-xs text-blue-900">Cards</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <a href="#">
+                        <svg width="32px" height="32px" viewBox="0 0 512 512" id="Layer_1" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000">
+
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+                            
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+                            
+                            <g id="SVGRepo_iconCarrier"> <style type="text/css"> .st0{fill:#333333;} </style> <g> <path class="st0" d="M90,126.3c4.8,0,9.5-1.3,13.7-3.6c4.1,2.4,8.8,3.6,13.7,3.6c15.1,0,27.4-12.3,27.4-27.4s-12.3-27.4-27.4-27.4 c-4.8,0-9.5,1.3-13.7,3.6c-4.1-2.4-8.8-3.6-13.7-3.6c-15.1,0-27.4,12.3-27.4,27.4S74.9,126.3,90,126.3z M90,85.5 c3.3,0,6.5,1.2,9,3.5c2.7,2.4,6.7,2.4,9.4,0c2.5-2.2,5.6-3.4,9-3.4c7.4,0,13.4,6,13.4,13.4s-6,13.4-13.4,13.4c-3.3,0-6.5-1.2-9-3.4 c-1.3-1.2-3-1.8-4.7-1.8c-1.7,0-3.4,0.6-4.7,1.8c-2.5,2.2-5.7,3.5-9,3.5c-7.4,0-13.4-6-13.4-13.4S82.6,85.5,90,85.5z"/> <path class="st0" d="M193.2,105.9h21c3.9,0,7-3.1,7-7s-3.1-7-7-7h-21c-3.9,0-7,3.1-7,7S189.4,105.9,193.2,105.9z"/> <path class="st0" d="M241.7,105.9h21c3.9,0,7-3.1,7-7s-3.1-7-7-7h-21c-3.9,0-7,3.1-7,7S237.8,105.9,241.7,105.9z"/> <path class="st0" d="M290.1,105.9h21c3.9,0,7-3.1,7-7s-3.1-7-7-7h-21c-3.9,0-7,3.1-7,7S286.2,105.9,290.1,105.9z"/> <path class="st0" d="M487.9,459.3V338.8v-55.3c0-37.8-14-74-39.3-101.9c-23.8-26.2-55.7-43.2-90.4-48.2V78.4 c0-18.1-14.7-32.8-32.8-32.8H56.9c-18.1,0-32.8,14.7-32.8,32.8v76.4v28.4v55.3c0,38.6,14.5,75.5,40.9,103.7 c24.8,26.5,57.7,43,93.5,47.1v23.3c0,0.5,0.1,0.9,0.2,1.4v45.4c0,3.9,3.1,7,7,7h315.4C484.8,466.3,487.9,463.2,487.9,459.3z M473.9,283.5V320c0-0.1,0-0.2-0.1-0.3c-0.3-1.2-0.6-2.3-1-3.5c-0.1-0.3-0.2-0.6-0.3-1c-0.4-1.2-0.8-2.5-1.2-3.7 c0-0.1-0.1-0.2-0.1-0.3c-0.4-1.1-0.8-2.3-1.2-3.4c-0.1-0.3-0.2-0.6-0.3-1c-0.4-1.2-0.9-2.4-1.4-3.6c0-0.1-0.1-0.2-0.1-0.3 c-0.5-1.1-0.9-2.3-1.4-3.4c-0.1-0.3-0.3-0.6-0.4-1c-0.5-1.2-1-2.4-1.6-3.6c0-0.1-0.1-0.1-0.1-0.2c-0.5-1.1-1.1-2.3-1.6-3.4 c-0.2-0.3-0.3-0.6-0.5-0.9c-0.6-1.2-1.2-2.3-1.8-3.4c0,0,0,0,0-0.1c-22.5-41.8-63.9-70.9-110.5-78c-0.9-0.2-1.9-0.3-2.8-0.4 c-0.3,0-0.6-0.1-0.9-0.1c0,0-0.1,0-0.1,0c-0.1,0-0.2,0-0.4,0c-0.1,0-0.2,0-0.2,0c-0.2,0-0.4,0-0.7,0.1c-0.1,0-0.1,0-0.2,0 c-0.2,0-0.3,0.1-0.5,0.1c-0.1,0-0.2,0.1-0.3,0.1c-0.1,0-0.3,0.1-0.4,0.1c-0.1,0-0.2,0.1-0.3,0.1c-0.1,0.1-0.3,0.1-0.4,0.2 c-0.1,0-0.2,0.1-0.2,0.1c-0.1,0.1-0.3,0.2-0.4,0.2c-0.1,0-0.1,0.1-0.2,0.1c-0.2,0.1-0.4,0.3-0.6,0.4c-1.5,1.3-2.4,3.3-2.4,5.3v14.3 l-5.4-4.1c0,0,0,0,0,0l-64.3-49l21.4-16.3c0,0,0,0,0,0l48.4-36.8v15.5c0,3.7,2.8,6.7,6.5,7c1.6,0.1,3,0.2,4.4,0.4 C420.9,153.8,473.9,212.7,473.9,283.5z M239.9,326h171.8c0.2,4.4,1.3,8.7,3.3,12.7c5.1,10.3,15.3,16.8,26.7,17.2v37.9 c-16.2,0.7-29.3,13.7-29.9,29.9H234.9c-0.7-16.2-13.7-29.3-29.9-29.9v-2.5l26.7-20.3c-0.2,1.3-0.4,2.6-0.4,3.9 c0,7.8,4.3,14.8,11.2,18.4c2.9,1.5,6.2,2.3,9.5,2.3c7.3,0,14.1-3.9,17.8-10.1c0.1-0.1,0.1-0.2,0.2-0.3c1.8-3.1,2.8-6.7,2.8-10.4 c0-10.9-8.4-19.8-19.1-20.7l4.4-3.3c1.7-1.3,2.8-3.4,2.8-5.6c0-2.2-1-4.2-2.8-5.6L239.9,326z M252,368.1c3.7,0,6.7,3,6.7,6.7 c0,1.1-0.3,2.2-0.8,3.2c0,0.1-0.1,0.1-0.1,0.2c-1.2,2.1-3.4,3.4-5.8,3.4c-1.1,0-2.1-0.3-3.1-0.8c-2.2-1.2-3.6-3.4-3.6-6 C245.2,371.2,248.3,368.1,252,368.1z M169.7,272.5c-2.1-1.6-5-1.9-7.3-0.7c-2.4,1.2-3.9,3.6-3.9,6.3v20.2c-1.2-0.2-2.4-0.5-3.6-0.7 c-0.4-0.1-0.8-0.2-1.2-0.3c-0.8-0.2-1.6-0.4-2.4-0.6c-0.5-0.1-0.9-0.2-1.4-0.4c-0.7-0.2-1.4-0.4-2.1-0.6c-0.5-0.1-1-0.3-1.5-0.4 c-0.7-0.2-1.4-0.4-2-0.6c-0.5-0.2-1-0.3-1.5-0.5c-0.7-0.2-1.3-0.4-2-0.7c-0.5-0.2-1-0.3-1.5-0.5c-0.7-0.2-1.3-0.5-2-0.7 c-0.5-0.2-1-0.4-1.4-0.5c-0.7-0.3-1.3-0.5-2-0.8c-0.5-0.2-0.9-0.4-1.4-0.5c-0.7-0.3-1.4-0.6-2.1-0.9c-0.4-0.2-0.8-0.3-1.2-0.5 c-0.9-0.4-1.7-0.8-2.6-1.2c-0.2-0.1-0.5-0.2-0.7-0.3c-1.1-0.5-2.2-1-3.2-1.6c-0.3-0.2-0.7-0.4-1-0.5c-0.7-0.4-1.4-0.7-2.2-1.1 c-0.4-0.2-0.8-0.5-1.3-0.7c-0.6-0.3-1.3-0.7-1.9-1.1c-0.4-0.3-0.9-0.5-1.3-0.8c-0.6-0.3-1.2-0.7-1.8-1.1c-0.5-0.3-0.9-0.6-1.4-0.8 c-0.6-0.4-1.1-0.7-1.7-1.1c-0.5-0.3-0.9-0.6-1.4-0.9c-0.6-0.4-1.1-0.7-1.7-1.1c-0.4-0.3-0.9-0.6-1.3-0.9c-0.6-0.4-1.1-0.8-1.7-1.2 c-0.4-0.3-0.8-0.6-1.3-0.9c-0.6-0.4-1.1-0.9-1.7-1.3c-0.4-0.3-0.8-0.6-1.2-0.9c-0.6-0.5-1.3-1-1.9-1.5c-0.3-0.2-0.6-0.5-0.9-0.7 c-0.9-0.8-1.8-1.5-2.7-2.3c-0.3-0.2-0.6-0.5-0.8-0.7c-0.6-0.6-1.2-1.1-1.9-1.7c-0.4-0.3-0.7-0.7-1.1-1c-0.5-0.5-1-1-1.6-1.5 c-0.4-0.4-0.7-0.7-1.1-1.1c-0.5-0.5-1-1-1.5-1.5c-0.4-0.4-0.8-0.8-1.1-1.2c-0.5-0.5-0.9-1-1.4-1.5c-0.4-0.4-0.7-0.8-1.1-1.2 c-0.5-0.5-0.9-1-1.4-1.5c-0.4-0.4-0.7-0.8-1.1-1.2c-0.5-0.5-0.9-1.1-1.3-1.6c-0.3-0.4-0.7-0.8-1-1.2c-0.5-0.6-0.9-1.1-1.4-1.7 c-0.3-0.4-0.6-0.8-0.9-1.2c-0.5-0.6-1-1.3-1.5-1.9c-0.2-0.3-0.5-0.6-0.7-1c-0.7-1-1.4-2-2.1-3c-0.1-0.2-0.2-0.3-0.3-0.5 c-0.5-0.8-1.1-1.6-1.6-2.4h255.8c0.8,0,1.5,0,2.3-0.1c0.1,0,0.1,0,0.2,0l14.4,10.9c2.1,1.6,5,1.9,7.3,0.7c2.4-1.2,3.9-3.6,3.9-6.3 v-20.1c1.2,0.2,2.4,0.5,3.6,0.7c0.4,0.1,0.8,0.2,1.2,0.3c0.8,0.2,1.6,0.4,2.4,0.6c0.5,0.1,0.9,0.2,1.4,0.4c0.7,0.2,1.4,0.4,2.1,0.6 c0.5,0.1,1,0.3,1.5,0.4c0.7,0.2,1.4,0.4,2.1,0.6c0.5,0.2,1,0.3,1.5,0.5c0.7,0.2,1.3,0.4,2,0.7c0.5,0.2,1,0.3,1.5,0.5 c0.7,0.2,1.3,0.5,2,0.7c0.5,0.2,0.9,0.3,1.4,0.5c0.7,0.3,1.4,0.5,2.1,0.8c0.4,0.2,0.9,0.3,1.3,0.5c0.7,0.3,1.5,0.6,2.2,0.9 c0.4,0.2,0.7,0.3,1.1,0.5c1,0.4,1.9,0.9,2.9,1.3c0.1,0.1,0.2,0.1,0.4,0.2c1.1,0.5,2.2,1.1,3.3,1.6c0.3,0.1,0.6,0.3,0.9,0.4 c0.8,0.4,1.6,0.8,2.3,1.2c0.4,0.2,0.8,0.4,1.1,0.6c0.7,0.4,1.4,0.8,2,1.1c0.4,0.2,0.8,0.5,1.2,0.7c0.6,0.4,1.3,0.8,1.9,1.1 c0.4,0.3,0.8,0.5,1.2,0.8c0.6,0.4,1.2,0.8,1.9,1.2c0.4,0.3,0.8,0.5,1.2,0.8c0.6,0.4,1.2,0.8,1.8,1.2c0.4,0.3,0.8,0.5,1.2,0.8 c0.6,0.4,1.2,0.9,1.9,1.3c0.4,0.3,0.7,0.5,1.1,0.8c0.7,0.5,1.3,1,2,1.5c0.3,0.2,0.6,0.5,0.9,0.7c0.8,0.6,1.6,1.3,2.4,1.9 c0.2,0.1,0.3,0.2,0.5,0.4c0.9,0.8,1.9,1.6,2.8,2.4c0.2,0.1,0.3,0.3,0.4,0.4c0.8,0.7,1.5,1.3,2.3,2c0.3,0.3,0.6,0.5,0.8,0.8 c0.6,0.6,1.2,1.1,1.8,1.7c0.3,0.3,0.6,0.6,1,0.9c0.5,0.5,1.1,1.1,1.6,1.6c0.3,0.3,0.7,0.7,1,1c0.5,0.5,1,1.1,1.5,1.6 c0.3,0.4,0.7,0.7,1,1.1c0.5,0.5,1,1.1,1.5,1.7c0.3,0.4,0.6,0.7,0.9,1.1c0.5,0.6,1,1.2,1.5,1.7c0.3,0.4,0.6,0.7,0.9,1.1 c0.5,0.6,1,1.2,1.5,1.9c0.3,0.3,0.5,0.7,0.8,1c0.6,0.7,1.1,1.5,1.7,2.2c0.2,0.2,0.4,0.5,0.5,0.7c0.7,1,1.4,2,2.1,3 c0.1,0.1,0.2,0.2,0.2,0.4c0.6,0.8,1.1,1.6,1.6,2.4H183.9L169.7,272.5z M38.1,161.9h228.1l-12.2,9.3c-1.7,1.3-2.8,3.4-2.8,5.6 c0,2.2,1,4.2,2.8,5.6l5.2,4H49c-0.2-1.3-0.4-2.7-0.6-4c-0.5-3.5-3.4-6-6.9-6h-3.3V161.9z M61.5,224.7c-0.1-0.1-0.1-0.2-0.2-0.4 c-0.3-0.5-0.5-1-0.8-1.6c-0.4-0.9-0.8-1.8-1.3-2.6c-0.3-0.6-0.5-1.2-0.8-1.7c-0.4-0.8-0.7-1.7-1.1-2.5c-0.2-0.6-0.5-1.2-0.7-1.8 c-0.3-0.8-0.7-1.7-1-2.5c-0.2-0.6-0.5-1.2-0.7-1.8c-0.3-0.9-0.6-1.7-0.9-2.6c-0.2-0.6-0.4-1.2-0.6-1.8c-0.3-0.9-0.6-1.8-0.8-2.7 c-0.2-0.6-0.4-1.2-0.5-1.7c0-0.2-0.1-0.4-0.1-0.5h225.5l32,24.4H61.5z M56.9,59.7h268.6c10.4,0,18.8,8.4,18.8,18.8v24.4 c0,0-0.1,0-0.1,0c-0.2,0.1-0.4,0.2-0.6,0.3c-0.1,0-0.2,0.1-0.3,0.1c-0.3,0.2-0.6,0.4-0.9,0.6l-57.8,44H38.1V78.4 C38.1,68.1,46.5,59.7,56.9,59.7z M38.1,238.5V202c0.2,0.7,0.4,1.3,0.6,2c0.2,0.5,0.3,1.1,0.5,1.6c0.4,1.3,0.8,2.6,1.2,3.9 c0.1,0.3,0.2,0.6,0.3,0.8c0.5,1.6,1.1,3.1,1.6,4.7c0.2,0.4,0.3,0.9,0.5,1.3c0.4,1.1,0.8,2.2,1.3,3.3c0.2,0.6,0.5,1.1,0.7,1.7 c0.4,1,0.8,2,1.3,3c0.2,0.6,0.5,1.1,0.7,1.7c0.5,1,1,2.1,1.5,3.1c0.2,0.5,0.5,0.9,0.7,1.4c0.7,1.5,1.5,3,2.3,4.4 c23.1,42.7,65.4,72,113.4,78.4c0.3,0,0.6,0.1,0.8,0.1c0,0,0.1,0,0.1,0c0.2,0,0.3,0,0.5,0c0,0,0.1,0,0.1,0c0.2,0,0.5-0.1,0.7-0.1 c0,0,0.1,0,0.1,0c0.2,0,0.4-0.1,0.6-0.1c0.1,0,0.1,0,0.2-0.1c0.1,0,0.3-0.1,0.4-0.2c0.1,0,0.2-0.1,0.2-0.1c0.1-0.1,0.3-0.1,0.4-0.2 c0.1,0,0.1-0.1,0.2-0.1c0.1-0.1,0.3-0.2,0.4-0.3c0.1,0,0.1-0.1,0.2-0.1c0.2-0.1,0.4-0.3,0.6-0.4c1.5-1.3,2.4-3.2,2.4-5.3v-14.3 l4.9,3.7c0,0,0,0,0,0l0,0l64.9,49.4l-48.5,36.9c0,0,0,0,0,0l-21.2,16.2v-15.5c0-3.7-2.8-6.7-6.5-7 C94.2,370.9,38.1,310.5,38.1,238.5z M473.9,452.3H172.6v-36.4l18.4-14c0.5,3.3,3.4,5.9,6.9,5.9h5.7c9.5,0,17.3,7.7,17.3,17.3v5.7 c0,3.9,3.1,7,7,7h190.7c3.9,0,7-3.1,7-7V425c0-9.5,7.7-17.3,17.3-17.3h5.7c3.9,0,7-3.1,7-7v-51.9c0-3.9-3.1-7-7-7h-5.7 c-6.6,0-12.5-3.7-15.4-9.5c-1.2-2.4-1.8-5-1.8-7.7V319c0-3.9-3.1-7-7-7H227.9c-1.7,0-3.2,0.6-4.4,1.5l-21.2-16.1h248.1 c0.1,0.1,0.1,0.3,0.2,0.4c0.7,1.5,1.4,3,2.1,4.4c0.1,0.2,0.2,0.4,0.2,0.5c0.7,1.6,1.4,3.2,2,4.7c0,0,0,0,0,0.1 c0.6,1.6,1.2,3.2,1.8,4.8c0.1,0.2,0.1,0.3,0.2,0.5c0.6,1.6,1.1,3.1,1.6,4.7c0.1,0.2,0.2,0.5,0.2,0.7c0.5,1.5,0.9,3.1,1.3,4.6 c0.1,0.3,0.1,0.5,0.2,0.8c0.4,1.6,0.8,3.1,1.2,4.7c0.1,0.2,0.1,0.5,0.2,0.7c0.4,1.6,0.7,3.2,1,4.9c0,0.2,0.1,0.4,0.1,0.5 c0.3,1.7,0.6,3.4,0.8,5.2c0.4,2.6,2.1,4.7,4.4,5.6c0.8,0.3,1.6,0.5,2.5,0.5h3.3V452.3z"/> <path class="st0" d="M399.6,396.3c11.8,0,21.5-9.6,21.5-21.5s-9.6-21.5-21.5-21.5s-21.5,9.6-21.5,21.5S387.8,396.3,399.6,396.3z M399.6,367.4c4.1,0,7.5,3.4,7.5,7.5s-3.4,7.5-7.5,7.5s-7.5-3.4-7.5-7.5S395.5,367.4,399.6,367.4z"/> <path class="st0" d="M302.4,396.7c5.3,3.7,11.3,6.1,17.9,6.8v5.4c0,2.1,1.7,3.7,3.8,3.7s3.8-1.7,3.8-3.7v-5.2 c11.1-1,18.6-7.4,18.6-17c0-9.3-5.7-14.6-18.9-18V352c3,0.7,5.9,2,9,3.8c0.9,0.5,1.7,0.8,2.6,0.8c2.7,0,4.9-2.1,4.9-4.8 c0-2.1-1.2-3.4-2.6-4.2c-4-2.5-8.4-4.2-13.5-4.8v-1.9c0-2.1-1.7-3.7-3.8-3.7s-3.8,1.7-3.8,3.7v1.8c-10.9,0.9-18.3,7.3-18.3,16.6 c0,4,1,7.2,3,9.7c2.9,3.8,8.1,6.3,15.7,8.2v17.2c-4.8-0.9-8.8-2.9-12.9-5.8c-0.8-0.6-1.8-1-2.9-1c-2.7,0-4.8,2.1-4.8,4.8 C300.1,394.3,301,395.7,302.4,396.7z M327.5,379c6.7,2.1,8.6,4.4,8.6,8.3c0,4.2-3,7-8.6,7.6V379z M317.2,365.5 C317.2,365.5,317.2,365.5,317.2,365.5c-3.8-1.8-4.9-3.8-4.9-6.8c0-3.8,2.8-6.8,8.4-7.3v15.4C319.3,366.4,318.1,366,317.2,365.5z"/> </g> </g>
+                            
+                        </svg>
+                    </a>
+                    <p class="text-xs">Loans</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <a href="#">
+                        <svg width="32px" height="32px" viewBox="-2 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" fill="#000000">
+
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+                            
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+                            
+                            <g id="SVGRepo_iconCarrier"> <title>receipt</title> <desc>Created with Sketch Beta.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage"> <g id="Icon-Set" sketch:type="MSLayerGroup" transform="translate(-414.000000, -775.000000)" fill="#000000"> <path d="M435,781 L421,781 C420.447,781 420,781.448 420,782 C420,782.553 420.447,783 421,783 L435,783 C435.553,783 436,782.553 436,782 C436,781.448 435.553,781 435,781 L435,781 Z M435,786.978 L421,786.978 C420.447,786.978 420,787.425 420,787.978 C420,788.529 420.447,788.978 421,788.978 L435,788.978 C435.553,788.978 436,788.529 436,787.978 C436,787.425 435.553,786.978 435,786.978 L435,786.978 Z M435,793 L421,793 C420.447,793 420,793.447 420,794 C420,794.553 420.447,795 421,795 L435,795 C435.553,795 436,794.553 436,794 C436,793.447 435.553,793 435,793 L435,793 Z M440,805.027 L436,802 L432,805.188 L428,802 L424,805.188 L420,802 L416,805.059 L416,779 C416,777.896 416.896,777 418,777 L438,777 C439.104,777 440,777.896 440,779 L440,805.027 L440,805.027 Z M438,775 L418,775 C415.791,775 414,776.791 414,779 L414,807 L415.867,807 L420,804 L424,807 L428,804 L432,807 L436,804 L440.134,807 L442,807 L442,779 C442,776.791 440.209,775 438,775 L438,775 Z" id="receipt" sketch:type="MSShapeGroup"> </path> </g> </g> </g>
+                            
+                        </svg>
+                    </a>
+                    <p class="text-xs">Transactions</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="../assets/assetsScripts/cards.js"></script>
+    <script type="module" src="../assets/assetsStyles/tailwind.config.extension.js"></script>
+    <script type="module" src="../assets/assetsStyles/tailwind.config.js"></script>
+</body>
+</html>
