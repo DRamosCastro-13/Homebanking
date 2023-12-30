@@ -25,8 +25,9 @@ public class SecurityConfig {
                 .requestMatchers("/index.html", "/web/assets/**", "/web/pages/login.html", "/web/assets/assetsScripts/login.js" ).permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/login").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/clients").permitAll()
-                .requestMatchers("/api/clients/current", "/api/accounts/*", "/web/pages/*").hasAuthority("CLIENT")
+                .requestMatchers("/api/clients/current", "/api/accounts/*", "/web/pages/*", "/api/transactions/clients/current").hasAuthority("CLIENT")
                 .requestMatchers(HttpMethod.POST, "/api/accounts/clients/current").hasAuthority("CLIENT")
+                .requestMatchers(HttpMethod.POST, "/api/transactions/client/current").hasAuthority("CLIENT")
                 .requestMatchers(HttpMethod.POST, "api/cards/clients/current").hasAuthority("CLIENT")
                 .requestMatchers("/api/clients", "/h2-console/**", "/web/**", "/rest/**").hasAuthority("ADMIN")
                 .anyRequest().denyAll() // cualquier petición de alguien autenticado
@@ -50,7 +51,7 @@ public class SecurityConfig {
         );
 
         http.exceptionHandling(exceptionHandlingConfigurer -> exceptionHandlingConfigurer
-                .authenticationEntryPoint((request, response, authException) -> response.sendError(403)));
+                .authenticationEntryPoint((request, response, authException) -> response.sendRedirect("/index.html")));
         //Respuesta si un usuario intenta acceder sin haberse autenticado (no tiene autorización)
         //o intenta acceder a un recurso al cual no tiene autorización
 
