@@ -33,7 +33,17 @@ public class HomebankingApplication {
 			Client admin = new Client("Daniela","Ramos","daniela@mindhub.com", passwordEncoder.encode("098765"));
 			admin.setRole(RoleType.ADMIN);
 
+			Client renata = new Client("Renata","Castillo", "hola@mindhub.com", passwordEncoder.encode("10205"));
+			renata.setRole(RoleType.CLIENT);
+
+
+			clientRepository.save(renata);
 			clientRepository.save(admin);
+
+			Account account1 = new Account("VIN-42114463", LocalDate.now(), 2000.0);
+			renata.addAccount(account1);
+
+			accountRepository.save(account1);
 
 		}; //clean gradle
 	}
