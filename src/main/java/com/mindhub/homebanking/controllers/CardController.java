@@ -23,10 +23,10 @@ import java.time.LocalDate;
 public class CardController {
 
     @Autowired
-    ClientRepository clientRepository;
+    private ClientRepository clientRepository;
 
     @Autowired
-    CardRepository cardRepository;
+    private CardRepository cardRepository;
 
     @PostMapping("/clients/current")
     public ResponseEntity<String> createCard(

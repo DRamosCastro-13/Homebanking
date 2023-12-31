@@ -23,13 +23,13 @@ import java.time.LocalDate;
 public class TransactionController {
 
     @Autowired
-    AccountRepository accountRepository;
+    private AccountRepository accountRepository;
 
     @Autowired
-    ClientRepository clientRepository;
+    private ClientRepository clientRepository;
 
     @Autowired
-    TransactionRepository transactionRepository;
+    private TransactionRepository transactionRepository;
 
     @Transactional //Indica que el servlet está bajo ACID
     @PostMapping("/clients/current")
