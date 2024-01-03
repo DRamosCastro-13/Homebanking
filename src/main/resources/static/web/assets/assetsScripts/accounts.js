@@ -23,7 +23,7 @@ let app = createApp({
             .then(response =>{ 
                 this.data = response,
                 this.client = response.data,
-                this.accounts = response.data.accounts,
+                this.accounts = response.data.accounts.sort((a,b) => a.id - b.id),
                 this.loans = response.data.loans,
                 console.log(this.loans)
             })

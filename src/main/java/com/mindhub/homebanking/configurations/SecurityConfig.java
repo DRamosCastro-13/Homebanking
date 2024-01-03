@@ -25,7 +25,7 @@ public class SecurityConfig {
                 .requestMatchers("/index.html", "/web/assets/**", "/web/pages/login.html", "/web/assets/assetsScripts/login.js" ).permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/login").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/clients").permitAll()
-                .requestMatchers("/api/clients/current", "/api/accounts/clients/current", "/web/pages/*").hasAuthority("CLIENT")
+                .requestMatchers("/api/clients/current", "/api/accounts/clients/current", "/web/pages/*", "/api/accounts/{id}").hasAuthority("CLIENT")
                 .requestMatchers(HttpMethod.POST, "/api/accounts/clients/current").hasAuthority("CLIENT")
                 .requestMatchers(HttpMethod.POST, "/api/transactions").hasAuthority("CLIENT")
                 .requestMatchers(HttpMethod.POST, "api/cards/clients/current").hasAuthority("CLIENT")

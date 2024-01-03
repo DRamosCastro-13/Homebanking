@@ -17,7 +17,7 @@ let app = createApp({
     methods: {
         loadData(){
             const url = new URLSearchParams(window.location.search)
-            axios('/api/accounts/' + url.get('id'))
+            axios('/api/accounts/id=' + url.get('id'))
             .then(response =>{ 
                 this.account = response.data,
                 

@@ -40,7 +40,6 @@ public class TransactionController {
             @RequestParam String targetAccount,
             Authentication authentication
     ){
-        System.out.println("hola");
         Client client = clientRepository.findByEmail(authentication.getName());
 
         if(String.valueOf(amount).isBlank() && description.isBlank() && originAccount.isBlank() && targetAccount.isBlank()){
