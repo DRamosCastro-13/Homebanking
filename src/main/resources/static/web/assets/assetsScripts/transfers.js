@@ -44,15 +44,28 @@ let app = createApp({
         sentTransaction(){
             axios.post('/api/transactions?amount=' + this.amount + '&description=' + this.description + '&originAccount=' + this.originAccount + '&targetAccount=' + this.targetAccount)
             .then(response => {
-                
-                console.log(response),
-                window.location.href = "../pages/accounts.html"
+                Swal.fire({
+                  title: "Complete transaction?",
+                  text: "You won't be able to revert this!",
+                  icon: "warning",
+                  showCancelButton: true,
+                  confirmButtonColor: "#3085d6",
+                  cancelButtonColor: "#d33",
+                  confirmButtonText: "Proceed"
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    Swal.fire({
+                      title: "Success",
+                      text: "Transaction Completed",
+                      icon: "success"
+                    });
+                  } 
+                }, this.clearData()
+                )
+                console.log(response)
             })
             .catch(error => {
-                
-                this.error = error.response.data,
-                window.location.href = "../pages/transfers.html"}
-
+                this.error = error.response.data}
             )
         },
         logOut(){
@@ -60,6 +73,13 @@ let app = createApp({
             .then(
                 window.location.href = "../index.html"
             )
+        },
+        clearData(){
+            this.amount = '',
+            this.description = '',
+            this.originAccount = '',
+            this.targetAccount = '',
+            this.error = ''
         }
     }
 }).mount('#app')

@@ -59,7 +59,10 @@ public class AccountController {
     }
 
     @RequestMapping("/{id}")
-    public AccountDTO getOneAccount(@PathVariable Long id){
+    public AccountDTO getOneAccount(@PathVariable Long id,
+                                    Authentication authentication){
+        Client client = clientRepository.findByEmail(authentication.getName());
+
         return new AccountDTO(accountRepository.findById(id).orElse(null));
     }
 
