@@ -9,7 +9,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
-//Esta clase implementa los métodos de la interfaz ClientService
+//Esta clase implementa los métodos de la interfaz ClientService. Con esto se puede hacer el @Autowired
+//en el controlador ya que se le está indicando a Spring que está en su contexto
 @Service
 public class ClientServiceImpl implements ClientService {
     @Autowired

@@ -98,7 +98,7 @@ public class ClientController {
         return new ResponseEntity<>(clientService.getOneClientDTO(authentication.getName()),HttpStatus.OK);
     }
 
-    @RequestMapping("/all") //Escucha un get
+    @GetMapping("/all") //Escucha un get
     public List<ClientDTO> getAllClients(){
         return clientService.getAllClientDTO();
     }
