@@ -5,6 +5,7 @@ import com.mindhub.homebanking.models.Account;
 import com.mindhub.homebanking.models.Client;
 import com.mindhub.homebanking.repositories.AccountRepository;
 import com.mindhub.homebanking.repositories.ClientRepository;
+import com.mindhub.homebanking.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,13 +24,10 @@ import java.util.stream.Collectors;
 public class ClientController {
 
     @Autowired //Para evitar crear un constructor, similar a generar una instancia. Crea una inyección de dependdencia ya que las interfaces no se pueden instanciar
-    private ClientRepository clientRepository;
-
-    @Autowired
-    private AccountController accountController;
-
-    @Autowired
     private AccountRepository accountRepository;
+
+    @Autowired
+    private ClientService clientService;
 
     @Autowired //public?
     public PasswordEncoder passwordEncoder;
@@ -97,22 +95,17 @@ public class ClientController {
     @GetMapping("/current") //El authentication tiene la cookie que contiene la info de la sesión
     public ResponseEntity<ClientDTO> getOneClient(Authentication authentication){
 
-        Client client = clientRepository.findByEmail(authentication.getName()); //Obtiene el mail con el cual el client está loggeado, solo que para spring security es el nombre de usuario de la sesión
-
-        return new ResponseEntity<>(new ClientDTO(client),HttpStatus.OK);
+        return new ResponseEntity<>(clientService.getOneClientDTO(authentication.getName()),HttpStatus.OK);
     }
 
     @RequestMapping("/all") //Escucha un get
-    public Set<ClientDTO> getAllClients(){
-        return clientRepository.findAll()
-                .stream()
-                .map(client -> new ClientDTO(client))
-                .collect(Collectors.toSet());
+    public List<ClientDTO> getAllClients(){
+        return clientService.getAllClientDTO();
     }
 
-    @RequestMapping("/{id}")
-    public ClientDTO getOneClient(@PathVariable Long id){
-        return new ClientDTO(clientRepository.findById(id).orElse(null));
+    @RequestMapping("{id}")
+    public ClientDTO getOneClientById(@PathVariable Long id){
+        return clientService.getOneClientDTOById(id);
     }
 
 
