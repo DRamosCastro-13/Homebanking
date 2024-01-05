@@ -59,11 +59,18 @@ public class AccountController {
     }
 
     @RequestMapping("/{id}")
-    public AccountDTO getOneAccount(@PathVariable Long id,
+    public ResponseEntity<Object> getOneAccount(@PathVariable Long id,
                                     Authentication authentication){
         Client client = clientRepository.findByEmail(authentication.getName());
 
-        return new AccountDTO(accountRepository.findById(id).orElse(null));
+        Account account = accountRepository.findByClientAndId(client, id);
+
+        if(account != null){
+            return new ResponseEntity<>(new AccountDTO(account), HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>("Account not found", HttpStatus.BAD_REQUEST);
+        }
+
     }
 
 
