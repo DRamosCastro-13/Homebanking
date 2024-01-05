@@ -66,15 +66,15 @@ public class ClientController {
 //        } // este método traería TODA la info del client, el objeto completo,
 //         para hacer la verificación por esto es mejor usar un booleano definido en el clientRepository
 
-        if(clientRepository.existsByEmail(email)){
-            return new ResponseEntity<>("Email already in use", HttpStatus.FORBIDDEN);
+        if(clientService.getAuthenticatedClient(email) != null){
+            return new ResponseEntity<>("This email is already in use", HttpStatus.FORBIDDEN);
         }
 
         Client client = new Client(firstName.substring(0,1).toUpperCase() + firstName.substring(1).toLowerCase(),
                 lastName.substring(0,1).toUpperCase() + lastName.substring(1).toLowerCase(),
                 email, passwordEncoder.encode(password));
 
-        clientRepository.save(client);
+        clientService.saveClient(client);
 
         if(client.getAccounts().isEmpty()){
 
@@ -93,9 +93,9 @@ public class ClientController {
     }
 
     @GetMapping("/current") //El authentication tiene la cookie que contiene la info de la sesión
-    public ResponseEntity<ClientDTO> getOneClient(Authentication authentication){
+    public ResponseEntity<ClientDTO> getAuthenticatedClient(Authentication authentication){
 
-        return new ResponseEntity<>(clientService.getOneClientDTO(authentication.getName()),HttpStatus.OK);
+        return new ResponseEntity<>(clientService.getAuthenticatedClientDTO(authentication.getName()),HttpStatus.OK);
     }
 
     @GetMapping("/all") //Escucha un get

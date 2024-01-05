@@ -12,11 +12,13 @@ public interface ClientService {
 
     List<Client> getAllClients();
 
-    Client getOneClient(String email);
+    Client getAuthenticatedClient(String email);
 
-    ClientDTO getOneClientDTO(String email);
+    ClientDTO getAuthenticatedClientDTO(String email);
 
     Client getOneClientById(Long id);
 
     ClientDTO getOneClientDTOById(Long id);
+
+    void saveClient(Client client);
 }

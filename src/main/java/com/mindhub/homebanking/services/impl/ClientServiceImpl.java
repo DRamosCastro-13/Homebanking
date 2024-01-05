@@ -28,14 +28,14 @@ public class ClientServiceImpl implements ClientService {
 
 
     @Override
-    public Client getOneClient(String email) {
+    public Client getAuthenticatedClient(String email) {
         return clientRepository.findByEmail(email);
     }
 
 
     @Override
-    public ClientDTO getOneClientDTO(String email) {
-        return new ClientDTO(getOneClient(email));
+    public ClientDTO getAuthenticatedClientDTO(String email) {
+        return new ClientDTO(getAuthenticatedClient(email));
     }
 
     @Override
@@ -46,6 +46,11 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public ClientDTO getOneClientDTOById(Long id) {
         return new ClientDTO(getOneClientById(id));
+    }
+
+    @Override
+    public void saveClient(Client client) {
+        clientRepository.save(client); //Devuelve el client como entity
     }
 
 
