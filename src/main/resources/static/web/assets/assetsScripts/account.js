@@ -3,24 +3,30 @@ const {createApp} = Vue
 let app = createApp({
     data(){
         return {
+            data: [],
             account: [],
             firstName : "",
             lastName : "",
             email : "",
             accounts : [],
+            id: 1,
+            transactions: []
         }
     },
     created(){
+        this.id = new URLSearchParams(window.location.search).get('id')
         this.loadData()
     },
 
     methods: {
         loadData(){
-            const url = new URLSearchParams(window.location.search)
-            axios('/api/accounts/ ' + url.get('id'))
+            const url = 
+            axios('/api/clients/current')
             .then(response =>{ 
-                this.account = response.data,
-                
+                this.data = response.data,
+                this.accounts = this.data.accounts,
+                this.account = this.accounts.find(account => account.id == this.id),
+                this.transactions = this.account.transactions
                 console.log(this.account)
             })
             .catch(error => console.log(error))

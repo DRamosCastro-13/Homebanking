@@ -1,6 +1,7 @@
 package com.mindhub.homebanking.controllers;
 
 import com.mindhub.homebanking.dto.ClientDTO;
+import com.mindhub.homebanking.dto.NewClientDTO;
 import com.mindhub.homebanking.models.Account;
 import com.mindhub.homebanking.models.Client;
 import com.mindhub.homebanking.repositories.AccountRepository;
@@ -34,29 +35,26 @@ public class ClientController {
 
     @PostMapping//Mapea métodos POST lo que esté después de @RequestParam va a ser una query param (?...) en la ruta a la que se hace la petición de tipo POST
     public ResponseEntity<?> createClient(
-            @RequestParam String firstName,
-            @RequestParam String lastName,
-            @RequestParam String email,
-            @RequestParam String password)
+            @RequestBody NewClientDTO newClient)
     {
 
-        if(firstName.isBlank() && lastName.isBlank() && email.isBlank() && password.isBlank()){
+        if(newClient.firstName().isBlank() && newClient.lastName().isBlank() && newClient.email().isBlank() && newClient.password().isBlank()){
             return new ResponseEntity<>("You must fill out the form", HttpStatus.FORBIDDEN);
         }
 
-        if(firstName.isBlank()){
+        if(newClient.firstName().isBlank()){
             return new ResponseEntity<>("You must fill your First Name", HttpStatus.FORBIDDEN);
         } //Verifica que el formulario enviado no esté vacío o con un espacio en blanco
 
-        if(lastName.isBlank()){
+        if(newClient.lastName().isBlank()){
             return new ResponseEntity<>("You must fill your Last Name", HttpStatus.FORBIDDEN);
         } //Se hace por cada parámetro para tener más control
 
-        if(email.isBlank()){
+        if(newClient.email().isBlank()){
             return new ResponseEntity<>("You must fill your Email", HttpStatus.FORBIDDEN);
         }
 
-        if(password.isBlank()){
+        if(newClient.password().isBlank()){
             return new ResponseEntity<>("You must fill the password", HttpStatus.FORBIDDEN);
         }
         //Estos errores van a llegar al catch dentro del axios para ser capturados
@@ -66,13 +64,13 @@ public class ClientController {
 //        } // este método traería TODA la info del client, el objeto completo,
 //         para hacer la verificación por esto es mejor usar un booleano definido en el clientRepository
 
-        if(clientService.getAuthenticatedClient(email) != null){
+        if(clientService.getAuthenticatedClient(newClient.email()) != null){
             return new ResponseEntity<>("This email is already in use", HttpStatus.FORBIDDEN);
         }
 
-        Client client = new Client(firstName.substring(0,1).toUpperCase() + firstName.substring(1).toLowerCase(),
-                lastName.substring(0,1).toUpperCase() + lastName.substring(1).toLowerCase(),
-                email, passwordEncoder.encode(password));
+        Client client = new Client(newClient.firstName().substring(0,1).toUpperCase() + newClient.firstName().substring(1).toLowerCase(),
+                newClient.lastName().substring(0,1).toUpperCase() + newClient.lastName().substring(1).toLowerCase(),
+                newClient.email(), passwordEncoder.encode(newClient.password()));
 
         clientService.saveClient(client);
 
