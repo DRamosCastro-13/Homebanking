@@ -31,7 +31,10 @@ let app = createApp({
             .catch(error => console.log(error))
         },
         createCard(){
-            axios.post('/api/cards/clients/current?type=' + this.type + '&color=' + this.color)
+            axios.post('/api/cards/clients/current',{
+                "type" : this.type,
+                "color" : this.color
+            })
             .then(response => {
                 Swal.fire({
                     icon: "success",

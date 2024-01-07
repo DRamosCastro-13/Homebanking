@@ -1,5 +1,6 @@
 package com.mindhub.homebanking.controllers;
 
+import com.mindhub.homebanking.dto.NewTransactionDTO;
 import com.mindhub.homebanking.models.Account;
 import com.mindhub.homebanking.models.Client;
 import com.mindhub.homebanking.models.Transaction;
@@ -7,15 +8,15 @@ import com.mindhub.homebanking.models.TransactionType;
 import com.mindhub.homebanking.repositories.AccountRepository;
 import com.mindhub.homebanking.repositories.ClientRepository;
 import com.mindhub.homebanking.repositories.TransactionRepository;
+import com.mindhub.homebanking.services.AccountService;
+import com.mindhub.homebanking.services.ClientService;
+import com.mindhub.homebanking.services.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 @RestController
@@ -23,55 +24,52 @@ import java.time.LocalDate;
 public class TransactionController {
 
     @Autowired
-    private AccountRepository accountRepository;
+    private AccountService accountService;
 
     @Autowired
-    private ClientRepository clientRepository;
+    private ClientService clientService;
 
     @Autowired
-    private TransactionRepository transactionRepository;
+    private TransactionService transactionService;
 
     @Transactional //Indica que el servlet está bajo ACID
     @PostMapping("")
     public ResponseEntity<String> newTransaction(
-            @RequestParam Double amount,
-            @RequestParam String description,
-            @RequestParam String originAccount,
-            @RequestParam String targetAccount,
+            @RequestBody NewTransactionDTO newTransaction,
             Authentication authentication
     ){
-        Client client = clientRepository.findByEmail(authentication.getName());
+        Client client = clientService.getAuthenticatedClient(authentication.getName());
 
-        if(String.valueOf(amount).isBlank() && description.isBlank() && originAccount.isBlank() && targetAccount.isBlank()){
+        if(String.valueOf(newTransaction.amount()).isBlank() && newTransaction.description().isBlank() && newTransaction.originAccount().isBlank() && newTransaction.targetAccount().isBlank()){
             return new ResponseEntity<>("You must fill out the form to complete the transaction", HttpStatus.FORBIDDEN);
         }
 
-        if(String.valueOf(amount).isBlank()){
+        if(String.valueOf(newTransaction.amount()).isBlank()){
             return new ResponseEntity<>("Specify the Amount you will transfer", HttpStatus.FORBIDDEN);
         }
 
-        if(description.isBlank()){
+        if(newTransaction.description().isBlank()){
             return new ResponseEntity<>("You must include the Description for the transaction", HttpStatus.FORBIDDEN);
         }
 
-        if(originAccount.isBlank()){
+        if(newTransaction.originAccount().isBlank()){
             return new ResponseEntity<>("You must specify the Origin Account", HttpStatus.FORBIDDEN);
         }
 
-        if(targetAccount.isBlank()){
+        if(newTransaction.targetAccount().isBlank()){
             return new ResponseEntity<>("You must specify the Target Account Number", HttpStatus.FORBIDDEN);
         }
 
-        if(originAccount.equals(targetAccount)){
+        if(newTransaction.originAccount().equals(newTransaction.targetAccount())){
             return new ResponseEntity<>("You cannot transfer money to the same account, please review the information", HttpStatus.FORBIDDEN);
         }
 
-        if(amount < 1){
+        if(newTransaction.amount() < 1){
             return new ResponseEntity<>("You cannot transfer this amount, try again", HttpStatus.FORBIDDEN);
         }
 
-        Account originTransactionAcc = accountRepository.findByNumberAndClient(originAccount, client);
-        Account targetTransactionAcc = accountRepository.findByNumber(targetAccount);
+        Account originTransactionAcc = accountService.findByNumberAndClient(newTransaction.originAccount(), client);
+        Account targetTransactionAcc = accountService.findByNumer(newTransaction.targetAccount());
 
         if(originTransactionAcc == null){
             return new ResponseEntity<>("Unable to find Origin Account, please review the information", HttpStatus.FORBIDDEN);
@@ -82,28 +80,28 @@ public class TransactionController {
         }
 
 
-        if(originTransactionAcc.getBalance() < amount){
+        if(originTransactionAcc.getBalance() < newTransaction.amount()){
             return new ResponseEntity<>("Insufficient funds to complete the transaction", HttpStatus.FORBIDDEN);
         }
 
-        Transaction transactionDebit = new Transaction(TransactionType.DEBIT, "DEBIT. " + originAccount
-                + ". " + description.substring(0,1).toUpperCase() + description.substring(1).toLowerCase(),
-                -amount, LocalDate.now());
-        Transaction transactionCredit = new Transaction(TransactionType.CREDIT, "CREDIT. " + targetAccount +
-                ". " + description.substring(0,1).toUpperCase() + description.substring(1).toLowerCase(),
-                amount, LocalDate.now());
+        Transaction transactionDebit = new Transaction(TransactionType.DEBIT, "DEBIT. " + newTransaction.originAccount()
+                + ". " + newTransaction.description().substring(0,1).toUpperCase() + newTransaction.description().substring(1).toLowerCase(),
+                -newTransaction.amount(), LocalDate.now());
+        Transaction transactionCredit = new Transaction(TransactionType.CREDIT, "CREDIT. " + newTransaction.targetAccount() +
+                ". " + newTransaction.description().substring(0,1).toUpperCase() + newTransaction.description().substring(1).toLowerCase(),
+                newTransaction.amount(), LocalDate.now());
 
-        originTransactionAcc.setBalance(originTransactionAcc.getBalance() - amount);
-        targetTransactionAcc.setBalance(targetTransactionAcc.getBalance() + amount);
+        originTransactionAcc.setBalance(originTransactionAcc.getBalance() - newTransaction.amount());
+        targetTransactionAcc.setBalance(targetTransactionAcc.getBalance() + newTransaction.amount());
 
         originTransactionAcc.addTransaction(transactionDebit);
         targetTransactionAcc.addTransaction(transactionCredit);
 
-        transactionRepository.save(transactionDebit);
-        transactionRepository.save(transactionCredit);
+        transactionService.saveTransaction(transactionDebit);
+        transactionService.saveTransaction(transactionCredit);
 
-        accountRepository.save(originTransactionAcc);
-        accountRepository.save(targetTransactionAcc);
+        accountService.saveAccount(originTransactionAcc);
+        accountService.saveAccount(targetTransactionAcc); //save update
 
         return new ResponseEntity<>("Success", HttpStatus.OK);
 

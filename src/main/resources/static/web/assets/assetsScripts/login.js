@@ -45,7 +45,12 @@ let app = createApp({
               })
         },
         register(){
-            axios.post("/api/clients?firstName=" + this.firstName + "&lastName=" + this.lastName + "&email=" + this.emailReg + "&password=" + this.passwordReg)
+            axios.post('/api/clients',{
+                "firstName" : this.firstName,
+                "lastName" : this.lastName,
+                "email": this.emailReg,
+                "password": this.passwordReg  
+            })
             .then(response => {
                 Swal.fire({
                     icon: "success",

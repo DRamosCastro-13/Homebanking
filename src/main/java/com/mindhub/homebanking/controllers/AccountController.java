@@ -6,6 +6,8 @@ import com.mindhub.homebanking.models.Account;
 import com.mindhub.homebanking.models.Client;
 import com.mindhub.homebanking.repositories.AccountRepository;
 import com.mindhub.homebanking.repositories.ClientRepository;
+import com.mindhub.homebanking.services.AccountService;
+import com.mindhub.homebanking.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,16 +23,17 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/accounts")
 public class AccountController {
     @Autowired
-    private AccountRepository accountRepository;
+    private AccountService accountService;
 
     @Autowired
-    private ClientRepository clientRepository;
+    private ClientService clientService;
+
 
     @PostMapping("/clients/current")
     public ResponseEntity<String> createAccount(
             Authentication authentication
     ){
-        Client client = clientRepository.findByEmail(authentication.getName()); //Encontrar al dueño
+        Client client = clientService.getAuthenticatedClient(authentication.getName()); //Encontrar al dueño
 
         if(client.getAccounts().size()>=3){
             return new ResponseEntity<>("Maximum accounts per client reached", HttpStatus.FORBIDDEN);
@@ -40,30 +43,27 @@ public class AccountController {
 
         do {
             number = "VIN-" + getRandomNumber(100000, 99999999);
-        } while (accountRepository.existsByNumber(number));
+        } while (accountService.existsByNumber(number));
 
         Account account = new Account(number, LocalDate.now(), 0.0);
         client.addAccount(account);
-        accountRepository.save(account);
+       accountService.saveAccount(account);
 
         return new ResponseEntity<>("Account created for " + client.getLastName() + ", "  + client.getFirstName(), HttpStatus.CREATED);
     }
 
 
     @RequestMapping("/all")
-    public Set<AccountDTO> getAllAccounts(){
-        return accountRepository.findAll()
-                .stream()
-                .map(account -> new AccountDTO(account))
-                .collect(Collectors.toSet());
+    public List<AccountDTO> getAllAccounts(){
+        return accountService.getAllAccountsDTO();
     }
 
     @RequestMapping("/{id}")
     public ResponseEntity<Object> getOneAccount(@PathVariable Long id,
                                     Authentication authentication){
-        Client client = clientRepository.findByEmail(authentication.getName());
+        Client client = clientService.getAuthenticatedClient(authentication.getName());
 
-        Account account = accountRepository.findByClientAndId(client, id);
+        Account account = accountService.findByClientAndId(client, id);
 
         if(account != null){
             return new ResponseEntity<>(new AccountDTO(account), HttpStatus.OK);

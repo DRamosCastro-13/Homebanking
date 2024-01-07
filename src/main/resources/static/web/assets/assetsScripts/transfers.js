@@ -42,7 +42,12 @@ let app = createApp({
             })
         },
         sentTransaction(){
-            axios.post('/api/transactions?amount=' + this.amount + '&description=' + this.description + '&originAccount=' + this.originAccount + '&targetAccount=' + this.targetAccount)
+            axios.post('/api/transactions', {
+                "amount" : this.amount,
+                "description" : this.description,
+                "originAccount" : this.originAccount,
+                "targetAccount" : this.targetAccount
+            })
             .then(response => {
                 Swal.fire({
                   title: "Complete transaction?",

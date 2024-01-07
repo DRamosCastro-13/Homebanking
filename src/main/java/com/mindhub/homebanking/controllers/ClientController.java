@@ -6,6 +6,7 @@ import com.mindhub.homebanking.models.Account;
 import com.mindhub.homebanking.models.Client;
 import com.mindhub.homebanking.repositories.AccountRepository;
 import com.mindhub.homebanking.repositories.ClientRepository;
+import com.mindhub.homebanking.services.AccountService;
 import com.mindhub.homebanking.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,7 +26,7 @@ import java.util.stream.Collectors;
 public class ClientController {
 
     @Autowired //Para evitar crear un constructor, similar a generar una instancia. Crea una inyección de dependdencia ya que las interfaces no se pueden instanciar
-    private AccountRepository accountRepository;
+    private AccountService accountService;
 
     @Autowired
     private ClientService clientService;
@@ -80,11 +81,11 @@ public class ClientController {
 
             do {
                 number = "VIN-" + getRandomNumber(100000, 99999999);
-            } while (accountRepository.existsByNumber(number));
+            } while (accountService.existsByNumber(number));
 
             Account account = new Account(number, LocalDate.now(), 0.0);
             client.addAccount(account);
-            accountRepository.save(account);
+            accountService.saveAccount(account);
         }
 
         return new ResponseEntity<>(HttpStatus.CREATED);

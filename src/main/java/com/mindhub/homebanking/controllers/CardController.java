@@ -1,20 +1,20 @@
 package com.mindhub.homebanking.controllers;
 
+import com.mindhub.homebanking.dto.NewCardDTO;
 import com.mindhub.homebanking.models.Card;
 import com.mindhub.homebanking.models.CardColor;
 import com.mindhub.homebanking.models.CardType;
 import com.mindhub.homebanking.models.Client;
 import com.mindhub.homebanking.repositories.CardRepository;
 import com.mindhub.homebanking.repositories.ClientRepository;
+import com.mindhub.homebanking.services.CardService;
+import com.mindhub.homebanking.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.core.Local;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 
@@ -23,35 +23,35 @@ import java.time.LocalDate;
 public class CardController {
 
     @Autowired
-    private ClientRepository clientRepository;
+    private CardService cardService;
 
     @Autowired
-    private CardRepository cardRepository;
+    private ClientService clientService;
+
 
     @PostMapping("/clients/current")
     public ResponseEntity<String> createCard(
-            @RequestParam CardType type,
-            @RequestParam CardColor color,
+            @RequestBody NewCardDTO newCard,
             Authentication authentication
 
     ){
-        Client client = clientRepository.findByEmail(authentication.getName());
+        Client client = clientService.getAuthenticatedClient(authentication.getName());
 
-        if(type.toString().isBlank() && color.toString().isBlank()){
+        if(newCard.type().toString().isBlank() && newCard.color().toString().isBlank()){
             return new ResponseEntity<>("You must select an option to create the card", HttpStatus.FORBIDDEN);
         }
 
-        if(type.toString().isBlank()){
+        if(newCard.type().toString().isBlank()){
             return new ResponseEntity<>("Please select the type of card you would like to choose", HttpStatus.FORBIDDEN);
         }
 
-        if(color.toString().isBlank()){
+        if(newCard.color().toString().isBlank()){
             return new ResponseEntity<>("Please select the color of the card you would like to choose", HttpStatus.FORBIDDEN);
         }
 
-        if(client.getCards().stream().anyMatch(card -> card.getType().equals(type) && card.getColor().equals(color))){
+        if(client.getCards().stream().anyMatch(card -> card.getType().equals(newCard.type()) && card.getColor().equals(newCard.color()))){
             return new ResponseEntity<>("You have reached the maximum number of " +
-                    color + " " + type + " cards.", HttpStatus.FORBIDDEN);
+                    newCard.color() + " " + newCard.type() + " cards.", HttpStatus.FORBIDDEN);
         }
 
         String cvv;
@@ -63,36 +63,36 @@ public class CardController {
         do {
             cardNumber1 = String.valueOf(getRandomNumber(4000, 9999));
 
-        } while (cardRepository.existsByNumber(cardNumber1));
+        } while (cardService.existsByNumber(cardNumber1));
 
         do {
             cardNumber2 = String.valueOf(getRandomNumber(1000, 9999));
 
-        } while (cardRepository.existsByNumber(cardNumber2));
+        } while (cardService.existsByNumber(cardNumber2));
 
         do {
             cardNumber3 = String.valueOf(getRandomNumber(1000, 9999));
 
-        } while (cardRepository.existsByNumber(cardNumber3));
+        } while (cardService.existsByNumber(cardNumber3));
 
         do {
             cardNumber4 = String.valueOf(getRandomNumber(1000, 9999));
 
-        } while (cardRepository.existsByNumber(cardNumber4));
+        } while (cardService.existsByNumber(cardNumber4));
 
         do {
             cvv = String.valueOf(getRandomNumber(100, 999));
 
-        } while (cardRepository.existsByNumber(cvv));
+        } while (cardService.existsByNumber(cvv));
 
 
         Card card = new Card(client.getFirstName().toUpperCase() + " " +
-                client.getLastName().toUpperCase(), type, color,
+                client.getLastName().toUpperCase(), newCard.type(), newCard.color(),
                 cardNumber1 + "-" + cardNumber2 + "-" + cardNumber3 + "-" + cardNumber4,
                 cvv, LocalDate.now().plusYears(5), LocalDate.now());
 
         client.addCard(card);
-        cardRepository.save(card);
+        cardService.saveCard(card);
 
         return new ResponseEntity<>("Card created for " + client.getLastName() + ", "  +
                 client.getFirstName(), HttpStatus.CREATED);
