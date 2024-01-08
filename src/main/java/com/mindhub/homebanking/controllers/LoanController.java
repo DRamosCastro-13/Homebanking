@@ -41,7 +41,7 @@ public class LoanController {
         Client client = clientService.getAuthenticatedClient(authentication.getName());
 
         if(client != null){
-            return new ResponseEntity<>(loanService.getAllLoansDTO(), HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>(loanService.getAllLoansDTO(), HttpStatus.OK);
         }else {
             return new ResponseEntity<>("Unable to verify client, try again.", HttpStatus.FORBIDDEN);
         }
@@ -53,6 +53,11 @@ public class LoanController {
             Authentication authentication
             ){
         Client client = clientService.getAuthenticatedClient(authentication.getName());
+
+        if(loanApplication.id().toString().isBlank() && loanApplication.amount().toString().isBlank()
+        && loanApplication.payments().toString().isBlank() && loanApplication.targetAccount().isBlank()){
+            return new ResponseEntity<>("You must fill out the form", HttpStatus.FORBIDDEN);
+        }
 
         if(loanApplication.id().toString().isBlank()){
             return new ResponseEntity<>("You must select the type of loan you wish to request", HttpStatus.FORBIDDEN);

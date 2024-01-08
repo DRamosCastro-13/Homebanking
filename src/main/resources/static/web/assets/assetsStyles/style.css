@@ -25,6 +25,35 @@ a:active {
     padding: 15px;
     width: 95%;
     margin-bottom: 8rem;
+    margin-top: 2rem;
+}
+
+.loan-form{
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 10px;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    background-color: white;
+    padding: 15px;
+    width: 95%;
+    margin-bottom: 8rem;
+    margin-top: 2rem;
+}
+
+@media only screen and (min-width: 600px) {
+    .loan-form{
+        width: 80%;
+        padding: 20px;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .loan-form{
+        width: 60%;
+        margin-top: 3rem;
+    }
 }
 
 @media only screen and (min-width: 600px) {
