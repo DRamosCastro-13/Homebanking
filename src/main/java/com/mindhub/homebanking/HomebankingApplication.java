@@ -36,6 +36,13 @@ public class HomebankingApplication {
 			Client renata = new Client("Renata","Castillo", "hola@mindhub.com", passwordEncoder.encode("10205"));
 			renata.setRole(RoleType.CLIENT);
 
+			Loan mortgage = new Loan("Mortgage Loan", 500000.0, List.of(12,24,36,48,60));
+			Loan personal = new Loan("Personal Loan", 100000.0, List.of(6,12,24));
+			Loan auto = new Loan("Auto Finance", 300000.0, List.of(6,12,24,36));
+
+			loanRepository.save(mortgage);
+			loanRepository.save(personal);
+			loanRepository.save(auto);
 
 			clientRepository.save(renata);
 			clientRepository.save(admin);
