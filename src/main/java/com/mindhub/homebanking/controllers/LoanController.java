@@ -2,12 +2,8 @@ package com.mindhub.homebanking.controllers;
 
 import com.mindhub.homebanking.dto.LoanApplicationDTO;
 import com.mindhub.homebanking.dto.LoanDTO;
-import com.mindhub.homebanking.models.Client;
-import com.mindhub.homebanking.models.Loan;
-import com.mindhub.homebanking.services.AccountService;
-import com.mindhub.homebanking.services.ClientLoanService;
-import com.mindhub.homebanking.services.ClientService;
-import com.mindhub.homebanking.services.LoanService;
+import com.mindhub.homebanking.models.*;
+import com.mindhub.homebanking.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -29,6 +26,9 @@ public class LoanController {
 
     @Autowired
     private AccountService accountService;
+
+    @Autowired
+    private TransactionService transactionService;
 
     @Autowired
     private ClientLoanService clientLoanService;
@@ -71,14 +71,16 @@ public class LoanController {
         }
 
         if(loanApplication.amount() <= 0.0){
-            return new ResponseEntity<>("Unvalid amount, please verify the information", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Invalid amount, please verify the information", HttpStatus.FORBIDDEN);
         }
 
         if(loanApplication.payments() == 0){
             return new ResponseEntity<>("You must select how you wish to defer the debt", HttpStatus.FORBIDDEN);
         }
 
-        if(loanService.findById(loanApplication.id()) == null){
+        Loan loan = loanService.findById(loanApplication.id());
+
+        if(loan == null){
             return new ResponseEntity<>("The loan you are trying to request does not exist", HttpStatus.FORBIDDEN);
         }
 
@@ -90,12 +92,28 @@ public class LoanController {
             return new ResponseEntity<>("Invalid number of payments to defer", HttpStatus.FORBIDDEN);
         }
 
-        if(accountService.findByNumberAndClient(loanApplication.targetAccount(), client) == null){
+        Account targetAccount = accountService.findByNumberAndClient(loanApplication.targetAccount(), client);
+
+        if(targetAccount == null){
             return new ResponseEntity<>("Unable to locate the account to transfer funds", HttpStatus.FORBIDDEN);
         }
 
+        ClientLoan newLoan = new ClientLoan(loanApplication.amount() * 1.2, loanApplication.payments());
+
+        Transaction credit = new Transaction(TransactionType.CREDIT, loanService.getLoanDTOById(loanApplication.id()).getName() +
+                " - LOAN APPROVED", loanApplication.amount(), LocalDate.now());
 
 
+        targetAccount.setBalance(targetAccount.getBalance() + newLoan.getAmount());
+        targetAccount.addTransaction(credit);
+        client.addClientLoan(newLoan);
+        loan.addClientLoan(newLoan);
+
+        clientLoanService.saveClientLoan(newLoan);
+        transactionService.saveTransaction(credit);
+        accountService.saveAccount(targetAccount);
+
+        return new ResponseEntity<>("Success", HttpStatus.CREATED);
 
     }
 
