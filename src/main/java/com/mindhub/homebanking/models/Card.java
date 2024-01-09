@@ -10,7 +10,9 @@ public class Card {
     private Long id;
 
     private String cardholder,number,cvv;
+    @Enumerated(EnumType.STRING)
     private CardType type;
+    @Enumerated(EnumType.STRING)
     private CardColor color;
     private LocalDate thruDate;
     private LocalDate fromDate;
