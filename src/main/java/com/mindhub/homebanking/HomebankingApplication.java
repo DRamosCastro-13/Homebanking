@@ -22,7 +22,7 @@ public class HomebankingApplication {
 
 	}
 
-	@Autowired
+	/*@Autowired
 	public PasswordEncoder passwordEncoder;
 
 	@Bean
@@ -52,7 +52,7 @@ public class HomebankingApplication {
 
 			accountRepository.save(account1);
 
-		}; //clean gradle
-	}
+		}; //clean gradle*/
+	//}
 
 }
