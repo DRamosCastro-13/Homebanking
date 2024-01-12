@@ -36,7 +36,7 @@ let app = createApp({
             )
         },
         createAccount(){
-            axios.post('/api/accounts/clients/current?')
+            axios.post('/api/accounts/clients/current')
             .then(response => {
                 console.log(response)
                 window.location.href="../pages/accounts.html"

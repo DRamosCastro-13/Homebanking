@@ -34,7 +34,7 @@ public class LoanRepositoryTest {
 
         List<Loan> loans = loanRepository.findAll();
 
-        assertThat(loans, hasItem(hasProperty("name", is("Personal Loan"))));
+        assertThat("Every loan must have a type(name)", loans, hasItem(hasProperty("name", is("Personal Loan"))));
 
     }
 

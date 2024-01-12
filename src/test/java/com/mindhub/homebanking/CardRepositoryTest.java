@@ -30,6 +30,7 @@ public class CardRepositoryTest {
     public void validCardNumber(){
         List<Card> cards = cardRepository.findAll();
 
-        assertThat(cards, hasItem(hasProperty("number", is(notNullValue()))));
+        assertThat("Every card must have a non-null card number", cards, hasItem(hasProperty("number", is(notNullValue()))));
+        assertThat("Every card's number should have a length of 19", cards, everyItem(hasProperty("number", hasLength(19))));
     }
 }

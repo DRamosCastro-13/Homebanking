@@ -31,8 +31,14 @@ public class AccountRepositoryTest {
     public void creationDate(){
         List<Account> accounts = accountRepository.findAll();
 
-        assertThat(accounts, hasItem(hasProperty("creationDate", notNullValue())));
+        assertThat("Every account must have a creation date", accounts, everyItem(hasProperty("creationDate", notNullValue())));
     }
 
+    @Test
+    public void validBalance(){
+        List<Account> accounts = accountRepository.findAll();
+
+        assertThat(accounts, everyItem(hasProperty("balance", greaterThanOrEqualTo(0.0))));
+    }
 
 }
