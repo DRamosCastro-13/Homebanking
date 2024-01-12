@@ -102,7 +102,7 @@ public class ClientController {
         return clientService.getAllClientDTO();
     }
 
-    @RequestMapping("{id}")
+    @GetMapping("{id}")
     public ClientDTO getOneClientById(@PathVariable Long id){
         return clientService.getOneClientDTOById(id);
     }

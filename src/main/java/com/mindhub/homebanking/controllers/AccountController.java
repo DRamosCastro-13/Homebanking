@@ -56,12 +56,12 @@ public class AccountController {
     }
 
 
-    @RequestMapping("/all")
+    @GetMapping("/all")
     public List<AccountDTO> getAllAccounts(){
         return accountService.getAllAccountsDTO();
     }
 
-    @RequestMapping("/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Object> getOneAccount(@PathVariable Long id,
                                     Authentication authentication){
         Client client = clientService.getAuthenticatedClient(authentication.getName());
