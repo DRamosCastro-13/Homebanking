@@ -8,6 +8,7 @@ import com.mindhub.homebanking.repositories.AccountRepository;
 import com.mindhub.homebanking.repositories.ClientRepository;
 import com.mindhub.homebanking.services.AccountService;
 import com.mindhub.homebanking.services.ClientService;
+import com.mindhub.homebanking.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,8 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import static com.mindhub.homebanking.utils.Utils.getRandomNumber;
 
 @RestController
 @RequestMapping("/api/accounts")
@@ -42,7 +45,7 @@ public class AccountController {
         String number;
 
         do {
-            number = "VIN-" + getRandomNumber(100000, 99999999);
+            number = Utils.generateAccountNumber();
         } while (accountService.existsByNumber(number));
 
         Account account = new Account(number, LocalDate.now(), 0.0);
@@ -73,8 +76,4 @@ public class AccountController {
 
     }
 
-
-    public int getRandomNumber(int min, int max) {
-        return (int) ((Math.random() * (max - min)) + min);
-    }
 }
