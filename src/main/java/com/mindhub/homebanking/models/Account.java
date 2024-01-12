@@ -37,7 +37,7 @@ public class Account {
         this.creationDate = creationDate;
         this.balance = balance;
     } // No se incluye a client porque este será incluído a través del método addAccount.
-    // El constructor no contruye relaciones
+    // El constructor no construye relaciones
     //EL id tampoco esta incluído en el constructor
 
     public Long getId() {
