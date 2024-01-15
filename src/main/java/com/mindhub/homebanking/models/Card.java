@@ -10,10 +10,13 @@ public class Card {
     private Long id;
 
     private String cardholder,number,cvv;
+    @Enumerated(EnumType.STRING)
     private CardType type;
+    @Enumerated(EnumType.STRING)
     private CardColor color;
     private LocalDate thruDate;
     private LocalDate fromDate;
+    private Boolean status;
     @ManyToOne
     private Client client;
 
@@ -96,5 +99,13 @@ public class Card {
 
     public void setClient(Client client) {
         this.client = client;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 }

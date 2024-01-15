@@ -27,18 +27,18 @@ public class HomebankingApplication {
 
 	@Bean
 	public CommandLineRunner initData(ClientRepository clientRepository, AccountRepository accountRepository, TransactionRepository transactionRepository, LoanRepository loanRepository,
-									  ClientLoanRepository clientLoanRepository, CardRepository cardRepository){
+									  ClientLoanRepository clientLoanRepository, CardRepository cardRepository) {
 		return args -> {
 
-			Client admin = new Client("Daniela","Ramos","daniela@mindhub.com", passwordEncoder.encode("098765"));
+			Client admin = new Client("Daniela", "Ramos", "daniela@mindhub.com", passwordEncoder.encode("098765"));
 			admin.setRole(RoleType.ADMIN);
 
-			Client renata = new Client("Renata","Castillo", "hola@mindhub.com", passwordEncoder.encode("10205"));
+			Client renata = new Client("Renata", "Castillo", "hola@mindhub.com", passwordEncoder.encode("10205"));
 			renata.setRole(RoleType.CLIENT);
 
-			Loan mortgage = new Loan("Mortgage Loan", 500000.0, List.of(12,24,36,48,60));
-			Loan personal = new Loan("Personal Loan", 100000.0, List.of(6,12,24));
-			Loan auto = new Loan("Auto Finance", 300000.0, List.of(6,12,24,36));
+			Loan mortgage = new Loan("Mortgage Loan", 500000.0, List.of(12, 24, 36, 48, 60));
+			Loan personal = new Loan("Personal Loan", 100000.0, List.of(6, 12, 24));
+			Loan auto = new Loan("Auto Finance", 300000.0, List.of(6, 12, 24, 36));
 
 			loanRepository.save(mortgage);
 			loanRepository.save(personal);
@@ -52,7 +52,6 @@ public class HomebankingApplication {
 
 			accountRepository.save(account1);
 
-		}; //clean gradle*/
-	//}
-
+		};
+	}*/
 }

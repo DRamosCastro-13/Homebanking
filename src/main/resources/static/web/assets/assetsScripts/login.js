@@ -26,11 +26,7 @@ let app = createApp({
                 this.clearData()
             })
             .catch(error => {
-                Swal.fire({
-                icon: "error",
-                title: "Invalid email or password",
-                text: "Please try again",
-              }),
+            this.error = error.response.data,
             console.log(error)
             })
         },

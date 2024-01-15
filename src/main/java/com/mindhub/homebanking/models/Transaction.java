@@ -10,7 +10,7 @@ public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @Enumerated(EnumType.STRING)
     private TransactionType type;
     private String description;
     private Double amount;

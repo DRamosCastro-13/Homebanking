@@ -82,7 +82,7 @@
             </div>   
         </header>
         <div class="hidden lg:flex lg:justify-between lg:px-8 lg:items-center lg:mt-6 lg:h-[14rem] lg:bg-[#004481]">
-            <h1 class=" font-bold text-2xl text-gray-200 lg:text-4xl">Welcome, {{client.firstName}}</h1>
+            <h1 class=" font-bold text-2xl text-gray-200 lg:text-5xl">Welcome, {{client.firstName}}</h1>
             <div class="flex items-center justify-around gap-10 h-[4rem] ">
                 <div class="flex flex-col items-center">
                     <a href="#">
@@ -144,36 +144,47 @@
         </div>
         <main class="flex flex-col lg:gap-8 lg:flex-row lg:px-10 flex-wrap justify-center items-center min-h-[28rem] lg:min-h-[30rem] bg-[#E4F1FF]">
             <h2 class="font-bold text-3xl text-[#004481] mt-3 lg:mt-14 lg:w-full lg:text-center lg:text-6xl">Your Products</h2>
-            <h3 class="font-semibold text-3xl lg:text-3xl text-[#004481] mt-5 lg:w-11/12 lg:text-left ">Accounts</h3>
-            <template v-for="account in accounts">
-                <a :href="'../pages/account.html?id=' + account.id" class="flex flex-col items-center lg:py-4 lg:items-start lg:px-10 p-2 w-11/12 lg:hover:scale-110 lg:w-5/12 my-3 gap-3 lg:-mt-1 mx-auto shadow-md shadow-slate-400 bg-gradient-to-r from-teal-200 to-lime-200 bg-cover bg-center rounded-lg">
-                    <h2 class="font-medium text-lg text-slate-800">Account Number: <span class="text-blue-950 font-bold text-xl">{{account.number}}</span></h2>
-                    <div>
-                        <h3 class="font-semibold text-lg text-slate-800">Balance:</h3>
-                        <h4 class="font-bold text-4xl text-blue-950">{{account.balance.toLocaleString("en-US", {style:"currency", currency:"USD"})}}</h4>
-                    </div>
-                    <h4 class="font-medium text-lg text-slate-800">Creation Date: <span class="text-blue-950 font-bold">{{account.creationDate}}</span></h4>
-                </a>
-            </template>
-            <div class="w-full flex justify-center mt-3">
-                <button v-show="accounts.length < 3" @click="createAccount()" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">Create Account</button>
-            </div>
-            <template v-if="loans.length == 0">
-                <h2 class="font-semibold text-3xl text-center lg:text-3xl text-[#004481] mt-6 lg:w-11/12 lg:text-left">Loans</h2>
-                <h3 class="w-10/12 text-center font-bold pb-8 lg:pb-20 text-2xl text-slate-900 mt-3 lg:w-full lg:text-center lg:text-4xl">Would you like to apply for a loan?</h3>
-                <button href="./loan-application.html" class="w-8/12 lg:w-5/12 px-3 py-2 mb-3 mt-3 bg-[#004481] text-white lg:text-slate-300 rounded-md text-sm shadow-sm lg:hover:text-white lg:hover:bg-[#004481]">Click here to start your application</button>
-            </template>
-            <template v-else>
-                <h2 class="font-semibold text-3xl mt-6 text-center lg:text-3xl text-[#004481] lg:w-11/12 lg:text-left">Loans</h2>
-                <div class="flex flex-wrap justify-center lg:justify-start lg:mx-10 xl:mx-12 lg:gap-10 w-full lg:mb-6">
-                    <template v-for="loan in loans">
-                        <div class="flex flex-col items-center p-2 w-11/12 lg:hover:scale-110 lg:w-[18rem] lg:py-4 my-3 lg:-mt-1 gap-3 bg-gradient-to-l from-orange-200 to-rose-200 shadow-md shadow-slate-400 rounded-lg">
-                            <h4 class="font-semibold text-2xl text-zinc-950">{{loan.name}}</h4>
-                            <p class="text-slate-600">Total Amount: <span class="font-bold text-lg text-slate-900">{{loan.amount.toLocaleString("en-US", {style:"currency", currency:"USD"})}}</span></p>
-                            <p class="text-slate-700"><span class="font-bold text-lg text-slate-900">{{loan.payments}}</span> Monthly Payments</p>
-                        </div>
+            <fieldset class="border border-blue-500 w-11/12 rounded-lg mt-5">
+                <legend class="font-semibold text-3xl lg:text-4xl text-center text-[#004481] mt-5 lg:text-left lg:ml-2">Accounts</legend>
+                <div class="flex flex-wrap flex-col lg:flex-row">
+                    <template v-for="account in accounts">
+                        <a :href="'../pages/account.html?id=' + account.id" class="flex flex-col items-center lg:py-3 lg:items-start lg:px-10 p-2 w-11/12 lg:hover:scale-110 lg:w-5/12 my-3 gap-3 lg:mt-3 mx-auto shadow-md shadow-slate-400 bg-gradient-to-r from-teal-200 to-lime-200 bg-cover bg-center rounded-lg">
+                            <h2 class="font-medium text-lg text-slate-800">Account Number: <span class="text-blue-950 font-bold text-xl">{{account.number}}</span></h2>
+                            <div>
+                                <h3 class="font-semibold text-lg text-slate-800">Balance:</h3>
+                                <h4 class="font-bold text-4xl text-blue-950">{{account.balance.toLocaleString("en-US", {style:"currency", currency:"USD"})}}</h4>
+                            </div>
+                            <h4 class="font-medium text-lg text-slate-800">Creation Date: <span class="text-blue-950 font-bold">{{account.creationDate}}</span></h4>
+                        </a>
                     </template>
-                </div>    
+                </div>
+                <div class="w-full flex justify-center my-3">
+                    <button v-show="accounts.length < 3" @click="createAccount()" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">Create Account</button>
+                </div>
+            </fieldset>
+            
+            <template v-if="loans.length == 0">
+                <fieldset class="flex flex-col border border-blue-500 w-11/12 rounded-lg mt-8 mb-10 lg:mb-16">
+                    <legend class="font-semibold text-3xl lg:text-4xl text-center text-[#004481] mt-5 lg:text-left lg:ml-2">Loans</legend>
+                    <h3 class="text-center font-bold py-4  text-2xl text-slate-900 mt-3 w-full lg:text-4xl">Would you like to apply for a loan?</h3>
+                    <a href="./loan-application.html" class="bg-transparent w-7/12 lg:w-3/12 mx-auto hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded mb-10 text-center">Click here to start your application</a>
+                </fieldset> 
+            </template>
+           
+            
+            <template v-else>
+                <fieldset class="flex flex-col border border-blue-500 w-11/12 rounded-lg mt-8 mb-10 lg:mb-16">
+                    <legend class="font-semibold text-3xl lg:text-4xl text-center text-[#004481] mt-5 lg:text-left lg:ml-2">Loans</legend>
+                    <div class="flex flex-wrap justify-center my-3 lg:justify-start lg:mx-10 xl:mx-12 lg:gap-10 w-full lg:my-5">
+                        <template v-for="loan in loans">
+                            <div class="flex flex-col items-center p-2 w-11/12 lg:hover:scale-110 lg:w-[18rem] mb-5 lg:py-4 lg:-mt-1 gap-3 bg-gradient-to-l from-orange-200 to-rose-200 shadow-md shadow-slate-400 rounded-lg">
+                                <h4 class="font-semibold text-2xl text-zinc-950">{{loan.name}}</h4>
+                                <p class="text-slate-600">Total Amount: <span class="font-bold text-lg text-slate-900">{{loan.amount.toLocaleString("en-US", {style:"currency", currency:"USD"})}}</span></p>
+                                <p class="text-slate-700"><span class="font-bold text-lg text-slate-900">{{loan.payments}}</span> Monthly Payments</p>
+                            </div>
+                        </template>
+                    </div>
+                </fieldset>    
             </template>
 
         </main>
