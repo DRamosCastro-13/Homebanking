@@ -9,6 +9,7 @@ import com.mindhub.homebanking.repositories.CardRepository;
 import com.mindhub.homebanking.repositories.ClientRepository;
 import com.mindhub.homebanking.services.CardService;
 import com.mindhub.homebanking.services.ClientService;
+import com.mindhub.homebanking.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.core.Local;
 import org.springframework.http.HttpStatus;
@@ -55,41 +56,22 @@ public class CardController {
         }
 
         String cvv;
-        String cardNumber1;
-        String cardNumber2;
-        String cardNumber3;
-        String cardNumber4;
+        String cardNumber;
 
         do {
-            cardNumber1 = String.valueOf(getRandomNumber(4000, 9999));
+            cardNumber = Utils.generateCardNumber();
 
-        } while (cardService.existsByNumber(cardNumber1));
-
-        do {
-            cardNumber2 = String.valueOf(getRandomNumber(1000, 9999));
-
-        } while (cardService.existsByNumber(cardNumber2));
+        } while (cardService.existsByNumber(cardNumber));
 
         do {
-            cardNumber3 = String.valueOf(getRandomNumber(1000, 9999));
-
-        } while (cardService.existsByNumber(cardNumber3));
-
-        do {
-            cardNumber4 = String.valueOf(getRandomNumber(1000, 9999));
-
-        } while (cardService.existsByNumber(cardNumber4));
-
-        do {
-            cvv = String.valueOf(getRandomNumber(100, 999));
+            cvv = Utils.generateCvv();
 
         } while (cardService.existsByNumber(cvv));
 
 
         Card card = new Card(client.getFirstName().toUpperCase() + " " +
                 client.getLastName().toUpperCase(), newCard.type(), newCard.color(),
-                cardNumber1 + "-" + cardNumber2 + "-" + cardNumber3 + "-" + cardNumber4,
-                cvv, LocalDate.now().plusYears(5), LocalDate.now());
+                cardNumber, cvv, LocalDate.now().plusYears(5), LocalDate.now());
 
         client.addCard(card);
         cardService.saveCard(card);
