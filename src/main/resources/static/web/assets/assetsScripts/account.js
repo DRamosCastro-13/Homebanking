@@ -21,13 +21,13 @@ let app = createApp({
     methods: {
         loadData(){
             const url = 
-            axios('/api/clients/current')
+            axios.get('/api/clients/current')
             .then(response =>{ 
                 this.data = response.data,
                 this.accounts = this.data.accounts,
                 this.account = this.accounts.find(account => account.id == this.id),
                 this.transactions = this.account.transactions
-                console.log(this.account)
+                console.log(this.data)
             })
             .catch(error => console.log(error))
         },
