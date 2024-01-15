@@ -5,12 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../assets/asstetsImg/Screenshot_2023-12-09_at_5.18.16_PM-removebg-preview.png" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" type="text/css" href="../assets/assetsStyles/style.css">
+    <link rel="stylesheet" type="text/css" href="../assets/assetsStyles/accountDetalis.css">
     <title>Account Details | ANB</title>
 </head>
 <body>
-    <header class="flex flex-col justify-around items-center lg:flex-row lg:justify-between z-10 h-[10rem] lg:h-[4rem] bg-[#004481] lg:fixed lg:w-full lg:top-0" id="header">
-        <a href="../../index.html"><img class="bg-cover justify-start pt-5 lg:pt-0 w-[10rem] sm:w-[15rem] lg:w-[10rem] lg:ml-5" src="../assets/asstetsImg/Logo with bg.png" alt="logo"></a>
+    <header class="flex flex-col shadow-xl justify-around items-center lg:flex-row lg:justify-between z-40 h-[10rem] lg:h-[4rem] bg-[#004481] lg:fixed lg:w-full lg:top-0" id="header">
+        <div class="lg:flex items-center ml-8 hidden gap-3 w-[14rem] justify-around">
+            <ul class="nav-menu">
+                <li class="nav-item border-t-2 border-t-[#A5D6FF] group hover:bg-blue-900">
+                    <a href="../../index.html" class="nav-link w-full group-hover:text-white">Home</a>
+                </li>
+                <li class="nav-item group hover:bg-blue-900">
+                    <a href="./accounts.html" class="nav-link group-hover:text-white">Account Overview</a>
+                </li>
+                <li class="nav-item group hover:bg-blue-900">
+                    <a href="./cards.html" class="nav-link group-hover:text-white">Cards</a>
+                </li>
+                <li class="nav-item group hover:bg-blue-900">
+                    <a href="./loan-application.html" class="nav-link group-hover:text-white">Loans</a>
+                </li>
+                <li class="nav-item group hover:bg-blue-900">
+                    <a href="#" class="nav-link group-hover:text-white">Transfers</a>
+                </li>
+                <li class="nav-item group hover:bg-blue-900">
+                    <a href="#" class="nav-link group-hover:text-white">Help</a>
+                </li>
+                <li class="nav-item h-[100dvh]">
+                    <a href="#" class="nav-link"></a>
+                </li>
+            </ul>
+            <div>
+                <div class="hamburger" @click="showMenu = !showMenu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+            <a href="../../index.html"><img class="bg-cover justify-start pt-5 lg:pt-0 w-[10rem] sm:w-[15rem] lg:w-[10rem] lg:ml-5" src="../assets/asstetsImg/Logo with bg.png" alt="logo"></a>
+        </div>
+        <a href="../../index.html"><img class="bg-cover justify-start pt-5 lg:hidden w-[10rem] sm:w-[15rem] lg:w-[10rem] lg:ml-5" src="../assets/asstetsImg/Logo with bg.png" alt="logo"></a>
         <div class="flex flex-wrap items-center lg:w-[14rem] lg:justify-around">
             <a href="#" class="hidden lg:flex">
                 <svg fill="#ffffff" width="32px" height="32px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" stroke-width="16.384">
@@ -49,13 +82,13 @@
                     </g>
                     
                     </svg>
-                <p class=" lg:text-xl font-semibold text-gray-300 group-hover:text-white lg:mr-8" href="../index.html">Log Out</p>
+                <p class=" lg:text-xl font-semibold text-gray-300 group-hover:text-white lg:mr-8" @click="logOut()">Log Out</p>
             </a>
         </div>
     </header>
     <div id="app">
-        <main class="flex flex-col gap-2 items-center lg:flex-row flex-wrap lg:justify-around min-h-fit lg:min-h-[47rem] bg-[#E4F1FF]">
-            <div class="flex flex-col items-center gap-3 lg:w-5/12">
+        <main class="flex flex-col gap-2 items-center lg:flex-row flex-wrap lg:justify-around min-h-fit lg:min-h-[90dvh] bg-[#E4F1FF]">
+            <div class="flex flex-col items-center gap-3 lg:w-5/12 lg:h-[90dvh] lg:pt-[16dvh]">
                 <div class="flex flex-col flex-wrap gap-3 w-10/12 my-2 border-solid border-b pb-3 border-slate-600"> 
                     <div class="flex justify-start w-3/12">
                         <a href="accounts.html" class="text-[#004481] mb-2 active:text-blue-900 text-md lg:text-lg justify-start border-solid border-b-2 border-blue-900"> &lt; Return</a>
@@ -117,8 +150,9 @@
             </div>
         </main>
         <footer>
-            <div class="hidden lg:flex lg:items-center lg:justify-center bg-white h-[4rem] border-t border-slate-700">
+            <div class="hidden lg:flex lg:flex-col lg:items-center lg:justify-center lg:gap-1 bg-white h-[4rem] border-t border-slate-700">
                 <p class="text-lg text-gray-500">Assurance National Bank © 2023 - All Rights Reserved</p>
+                <p class="text-xs text-gray-500">Created By: Daniela Ramos-Castro</p>
             </div>
             <div class="lg:hidden flex items-center justify-around bg-white h-[4rem] border-t border-slate-700 ">
                 <div class="flex flex-col items-center">
@@ -180,6 +214,7 @@
             </div>
         </footer>
     </div>  
+    <script src="../assets/assetsScripts/index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="../assets/assetsScripts/account.js"></script>

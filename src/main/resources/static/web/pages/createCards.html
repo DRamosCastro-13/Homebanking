@@ -6,11 +6,44 @@
     <link rel="icon" href="../assets/asstetsImg/Screenshot_2023-12-09_at_5.18.16_PM-removebg-preview.png" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet" type="text/css" href="../assets/assetsStyles/styleCards.css">
+    <link rel="stylesheet" type="text/css" href="../assets/assetsStyles/createCards.css">
     <title>New Card | ANB</title>
 </head>
-<header class="flex flex-col justify-around items-center lg:flex-row lg:justify-between z-10 h-[10rem] lg:h-[4rem] bg-[#004481] lg:fixed lg:w-full lg:top-0" id="header">
-    <a href="../../index.html"><img class="bg-cover justify-start pt-5 lg:pt-0 w-[10rem] sm:w-[15rem] lg:w-[10rem] lg:ml-5" src="../assets/asstetsImg/Logo with bg.png" alt="logo"></a>
+<header class="flex flex-col shadow-xl justify-around items-center lg:flex-row lg:justify-between z-40 h-[10rem] lg:h-[4rem] bg-[#004481] lg:fixed lg:w-full lg:top-0" id="header">
+    <div class="lg:flex items-center ml-8 hidden gap-3 w-[14rem] justify-around">
+        <ul class="nav-menu">
+            <li class="nav-item border-t-2 border-t-[#A5D6FF] group hover:bg-blue-900">
+                <a href="../../index.html" class="nav-link w-full group-hover:text-white">Home</a>
+            </li>
+            <li class="nav-item group hover:bg-blue-900">
+                <a href="./accounts.html" class="nav-link group-hover:text-white">Account Overview</a>
+            </li>
+            <li class="nav-item group hover:bg-blue-900">
+                <a href="./cards.html" class="nav-link group-hover:text-white">Cards</a>
+            </li>
+            <li class="nav-item group hover:bg-blue-900">
+                <a href="./loan-application.html" class="nav-link group-hover:text-white">Loans</a>
+            </li>
+            <li class="nav-item group hover:bg-blue-900">
+                <a href="./transfers.html" class="nav-link group-hover:text-white">Transfers</a>
+            </li>
+            <li class="nav-item group hover:bg-blue-900">
+                <a href="#" class="nav-link group-hover:text-white">Help</a>
+            </li>
+            <li class="nav-item h-[100dvh]">
+                <a href="#" class="nav-link"></a>
+            </li>
+        </ul>
+        <div>
+            <div class="hamburger" @click="showMenu = !showMenu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+        <a href="../../index.html"><img class="bg-cover justify-start pt-5 lg:pt-0 w-[10rem] sm:w-[15rem] lg:w-[10rem] lg:ml-5" src="../assets/asstetsImg/Logo with bg.png" alt="logo"></a>
+    </div>
+    <a href="../../index.html"><img class="bg-cover justify-start pt-5 lg:hidden w-[10rem] sm:w-[15rem] lg:w-[10rem] lg:ml-5" src="../assets/asstetsImg/Logo with bg.png" alt="logo"></a>
     <div class="flex flex-wrap items-center lg:w-[14rem] lg:justify-around">
         <a href="#" class="hidden lg:flex">
             <svg fill="#ffffff" width="32px" height="32px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" stroke-width="16.384">
@@ -54,15 +87,15 @@
     </div>
 </header>
 <div id="app">
-    <main  class="flex flex-col items-center lg:flex-row flex-wrap lg:justify-around min-h-screen lg:min-h-[45rem] bg-[#E4F1FF] space-y-2">
-        <div class="flex flex-col items-start gap-3 w-11/12 sm:7/12 my-2 lg:2/12 "> 
+    <main  class="flex flex-col items-center lg:flex-row flex-wrap lg:justify-around min-h-screen lg:min-h-[90dvh] bg-[#E4F1FF] space-y-2">
+        <div class="flex flex-col items-start gap-3 w-11/12 sm:7/12 my-2 lg:2/12 lg:pt-10"> 
             <div class="flex justify-start w-3/12 lg:ml-7 xl:ml-20">
                 <a href="./cards.html" class="text-[#004481] mb-2 active:text-[#004481] text-md lg:text-lg justify-start border-solid border-b-2 border-[#004481]"> &lt; Return</a>
             </div>
             <h1 class="font-bold text-3xl text-[#004481] lg:mt-7 w-full text-center lg:text-5xl">Your New Card</h1>
         </div>
-        <form @submit.prevent="createCard()" class="w-10/12 flex flex-col gap-3 lg:w-4/12">
-            <div class="w-full text-center md:text-start mt-5">
+        <form @submit.prevent="createCard()" class="cards-form">
+            <div class="w-full text-center md:text-start">
                 <label class="text-[#004481] font-semibold text-2xl text-center">Select a card type</label>
             </div>
                 <select class="w-full rounded-md py-1 px-3" name="type" id="type" v-model="type">
@@ -86,8 +119,9 @@
         </form>
     </main>
     <footer>
-        <div class="hidden lg:flex lg:items-center lg:justify-center bg-white h-[4rem] border-t border-slate-700">
+        <div class="hidden lg:flex lg:flex-col lg:items-center lg:justify-center lg:gap-1 bg-white h-[4rem] border-t border-slate-700">
             <p class="text-lg text-gray-500">Assurance National Bank © 2023 - All Rights Reserved</p>
+            <p class="text-xs text-gray-500">Created By: Daniela Ramos-Castro</p>
         </div>
         <div class="lg:hidden flex items-center justify-around bg-white h-[4rem] border-t border-slate-700 ">
             <div class="flex flex-col items-center">
@@ -119,7 +153,7 @@
                 <p class="text-xs text-blue-900">Cards</p>
             </div>
             <div class="flex flex-col items-center">
-                <a href="#">
+                <a href="./loan-application.html">
                     <svg width="32px" height="32px" viewBox="0 0 512 512" id="Layer_1" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000">
 
                         <g id="SVGRepo_bgCarrier" stroke-width="0"/>
@@ -149,6 +183,7 @@
         </div>
     </footer>
 </div>
+<script src="../assets/assetsScripts/index.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 <script src="../assets/assetsScripts/createCards.js"></script>

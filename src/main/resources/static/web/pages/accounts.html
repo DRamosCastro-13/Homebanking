@@ -160,7 +160,8 @@
             </div>
             <template v-if="loans.length == 0">
                 <h2 class="font-semibold text-3xl text-center lg:text-3xl text-[#004481] mt-6 lg:w-11/12 lg:text-left">Loans</h2>
-                <a href="./loan-application.html" class="w-10/12 text-center font-bold pb-8 lg:pb-20 text-2xl text-slate-900 mt-3 lg:w-full lg:text-center lg:text-4xl">Would you like to apply for a loan?</a>
+                <h3 class="w-10/12 text-center font-bold pb-8 lg:pb-20 text-2xl text-slate-900 mt-3 lg:w-full lg:text-center lg:text-4xl">Would you like to apply for a loan?</h3>
+                <button href="./loan-application.html" class="w-8/12 lg:w-5/12 px-3 py-2 mb-3 mt-3 bg-[#004481] text-white lg:text-slate-300 rounded-md text-sm shadow-sm lg:hover:text-white lg:hover:bg-[#004481]">Click here to start your application</button>
             </template>
             <template v-else>
                 <h2 class="font-semibold text-3xl mt-6 text-center lg:text-3xl text-[#004481] lg:w-11/12 lg:text-left">Loans</h2>
@@ -177,8 +178,9 @@
 
         </main>
         <footer>
-            <div class="hidden lg:flex lg:items-center lg:justify-center bg-white h-[4rem] border-t border-slate-700">
+            <div class="hidden lg:flex lg:flex-col lg:items-center lg:justify-center lg:gap-1 bg-white h-[4rem] border-t border-slate-700">
                 <p class="text-lg text-gray-500">Assurance National Bank © 2023 - All Rights Reserved</p>
+                <p class="text-xs text-gray-500">Created By: Daniela Ramos-Castro</p>
             </div>
             <div class="lg:hidden flex items-center justify-around bg-white h-[4rem] border-t border-slate-700 ">
                 <div class="flex flex-col items-center">

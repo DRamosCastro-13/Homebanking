@@ -6,16 +6,49 @@
     <link rel="icon" href="../assets/asstetsImg/Screenshot_2023-12-09_at_5.18.16_PM-removebg-preview.png" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet" type="text/css" href="../assets/assetsStyles/style.css">
+    <link rel="stylesheet" type="text/css" href="../assets/assetsStyles/loanApplication.css">
     <title>Loan Application | ANB</title>
 </head>
 <body>
-    <header class="flex flex-col justify-around items-center lg:flex-row lg:justify-between z-40 h-[10rem] lg:h-[4rem] bg-[#004481] lg:fixed lg:w-full lg:top-0" id="header">
-        <a href="../../index.html"><img class="bg-cover justify-start pt-5 lg:pt-0 w-[10rem] sm:w-[15rem] lg:w-[10rem] lg:ml-5" src="../assets/asstetsImg/Logo with bg.png" alt="logo"></a>
+    <header class="flex flex-col shadow-xl justify-around items-center lg:flex-row lg:justify-between z-40 h-[10rem] lg:h-[4rem] bg-[#004481] lg:fixed lg:w-full lg:top-0" id="header">
+        <div class="lg:flex items-center ml-8 hidden gap-3 w-[14rem] justify-around">
+            <ul class="nav-menu">
+                <li class="nav-item border-t-2 border-t-[#A5D6FF] group hover:bg-blue-900">
+                    <a href="../../index.html" class="nav-link w-full group-hover:text-white">Home</a>
+                </li>
+                <li class="nav-item group hover:bg-blue-900">
+                    <a href="./accounts.html" class="nav-link group-hover:text-white">Account Overview</a>
+                </li>
+                <li class="nav-item group hover:bg-blue-900">
+                    <a href="./cards.html" class="nav-link group-hover:text-white">Cards</a>
+                </li>
+                <li class="nav-item group hover:bg-blue-900">
+                    <a href="./loan-application.html" class="nav-link group-hover:text-white">Loans</a>
+                </li>
+                <li class="nav-item group hover:bg-blue-900">
+                    <a href="./transfers.html" class="nav-link group-hover:text-white">Transfers</a>
+                </li>
+                <li class="nav-item group hover:bg-blue-900">
+                    <a href="#" class="nav-link group-hover:text-white">Help</a>
+                </li>
+                <li class="nav-item h-[100dvh]">
+                    <a href="#" class="nav-link"></a>
+                </li>
+            </ul>
+            <div>
+                <div class="hamburger" @click="showMenu = !showMenu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+            <a href="../../index.html"><img class="bg-cover justify-start pt-5 lg:pt-0 w-[10rem] sm:w-[15rem] lg:w-[10rem] lg:ml-5" src="../assets/asstetsImg/Logo with bg.png" alt="logo"></a>
+        </div>
+        <a href="../../index.html"><img class="bg-cover justify-start pt-5 lg:hidden w-[10rem] sm:w-[15rem] lg:w-[10rem] lg:ml-5" src="../assets/asstetsImg/Logo with bg.png" alt="logo"></a>
         <div class="flex flex-wrap items-center lg:w-[14rem] lg:justify-around">
             <a href="#" class="hidden lg:flex">
                 <svg fill="#ffffff" width="32px" height="32px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff" stroke-width="16.384">
-
+    
                     <g id="SVGRepo_bgCarrier" stroke-width="0"/>
                     
                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
@@ -32,7 +65,7 @@
             </a>
             <a href="../../index.html" class="group flex gap-2 items-center">
                 <svg width="38px" height="38px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" fill="#687482" stroke="#687482">
-
+    
                     <g id="SVGRepo_bgCarrier" stroke-width="0"/>
                     
                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
@@ -55,12 +88,14 @@
         </div>
     </header>
     <div id="app">
-        <main class="flex flex-col items-center gap-3 flex-wrap min-h-screen lg:min-h-[45rem] bg-[#E4F1FF]">
-            <div class="items-start w-11/12 my-2 top-0 lg:my-20">
-                <a href="./accounts.html" class="text-[#004481] mb-2 active:text-[#004481] text-md lg:text-lg justify-start border-solid border-b-2 border-[#004481]"> &lt; Return</a>
+        <main class="flex flex-col items-center gap-3 flex-wrap min-h-screen lg:min-h-[90dvh] bg-[#E4F1FF]">
+            <div class="flex flex-col items-start gap-3 w-11/12 sm:7/12 my-2 lg:2/12 lg:pt-24"> 
+                <div class="flex justify-start w-3/12 lg:ml-7 xl:ml-20">
+                    <a href="./accounts.html" class="text-[#004481] mb-2 active:text-[#004481] text-md lg:text-lg justify-start border-solid border-b-2 border-[#004481]"> &lt; Return</a>
+                </div>
+                <h1 class="font-bold text-3xl text-[#004481] lg:mt-7 w-full text-center lg:text-5xl">Loan Application</h1>
             </div>
-            <h1 class="text-center w-11/12 font-bold text-3xl text-[#004481] lg:text-5xl">Loan Application</h1>
-            <p class="w-11/12 md:text-xl lg:mt-5">Review our different loans and choose the one that best meets your needs. Fill out the form to complete you application.</p>
+            <p class="w-11/12 md:text-xl lg:mt-5 text-center">Review our different loans and choose the one that best meets your needs. Fill out the form to complete you application.</p>
             <div class="flex flex-col flex-wrap items-center lg:flex-row  justify-around lg:gap-10 lg:mt-5">
                 <template v-for="availableLoan in availableLoans">
                     <div class="flex flex-col items-center p-2 w-9/12 lg:w-[21rem] lg:py-4 my-3 lg:-mt-1 gap-3 bg-gradient-to-l from-orange-200 to-rose-200 shadow-md shadow-slate-400 rounded-lg">
@@ -70,7 +105,7 @@
                     </div>
                 </template>
             </div>
-                <form @submit.prevent="createLoan()" class="loan-form">
+                <form @submit.prevent="createLoan()" class="loans-form">
                     <label for="targetAcc" class="text-sm md:text-base text-zinc-800 font-semibold mt-3">Select Target Account</label>
                     <select name="targetAcc"  class="w-full mb-2 bg-blue-300/30 p-1 rounded-md" v-model="targetAccount">
                         <option value="" disabled selected>Select Account</option>
@@ -173,7 +208,7 @@
                             
                         </svg>
                     </a>
-                    <p class="text-xs text-bliue-900">Loans</p>
+                    <p class="text-xs text-blue-900">Loans</p>
                 </div>
                 <div class="flex flex-col items-center">
                     <a href="./transfers.html">
@@ -192,6 +227,7 @@
             </div>
         </footer>
     </div>
+    <script src="../assets/assetsScripts/index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="../assets/assetsScripts/loan-application.js"></script>
