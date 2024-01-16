@@ -116,6 +116,7 @@
                         <th class="py-1 sm:px-2 lg:px-5 sm:text-left">Description</th>
                         <th class="py-1 sm:px-2 lg:px-3 sm:text-left">Date</th>
                         <th class="py-1 sm:px-2 lg:px-3 sm:text-left">Amount</th>
+                        <th class="py-1 sm:px-2 lg:px-3 sm:text-left">Balance</th>
                     </tr>
                     <template v-for="transaction in account.transactions">
                         <tr class="border-solid border-b-2 hover:bg-slate-200 border-gray-400 w-full">
@@ -144,6 +145,7 @@
                             <td class="py-1 sm:px-2 lg:px-5">{{transaction.description}}</td>
                             <td class="py-1 sm:px-2 lg:px-3">{{transaction.date}}</td>
                             <td class="py-1 sm:px-2 lg:px-3">{{transaction.amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}}</td>
+                            <td class="py-1 sm:px-2 lg:px-3">{{transaction.transactionBalance.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}}</td>
                         </tr>
                     </template>
                 </table>

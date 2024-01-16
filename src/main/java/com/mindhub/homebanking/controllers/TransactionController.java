@@ -86,10 +86,10 @@ public class TransactionController {
 
         Transaction transactionDebit = new Transaction(TransactionType.DEBIT, "DEBIT. " + newTransaction.originAccount()
                 + ". " + newTransaction.description().substring(0,1).toUpperCase() + newTransaction.description().substring(1).toLowerCase(),
-                -newTransaction.amount(), LocalDate.now());
+                -newTransaction.amount(), LocalDate.now(), originTransactionAcc.getBalance() - newTransaction.amount());
         Transaction transactionCredit = new Transaction(TransactionType.CREDIT, "CREDIT. " + newTransaction.targetAccount() +
                 ". " + newTransaction.description().substring(0,1).toUpperCase() + newTransaction.description().substring(1).toLowerCase(),
-                newTransaction.amount(), LocalDate.now());
+                newTransaction.amount(), LocalDate.now(), targetTransactionAcc.getBalance() + newTransaction.amount());
 
         originTransactionAcc.setBalance(originTransactionAcc.getBalance() - newTransaction.amount());
         targetTransactionAcc.setBalance(targetTransactionAcc.getBalance() + newTransaction.amount());

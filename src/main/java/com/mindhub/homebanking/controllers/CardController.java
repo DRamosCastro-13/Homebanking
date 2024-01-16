@@ -10,8 +10,10 @@ import com.mindhub.homebanking.repositories.ClientRepository;
 import com.mindhub.homebanking.services.CardService;
 import com.mindhub.homebanking.services.ClientService;
 import com.mindhub.homebanking.utils.Utils;
+import org.hibernate.annotations.SQLDelete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.core.Local;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -56,7 +58,6 @@ public class CardController {
         }
 
 
-
         String cvv;
         String cardNumber;
 
@@ -83,8 +84,30 @@ public class CardController {
 
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteCard(@PathVariable Long id,
+                                             Authentication authentication){
 
-    public int getRandomNumber(int min, int max) {
-        return (int) ((Math.random() * (max - min)) + min);
+        if(id == null){
+            return new ResponseEntity<>("Invalid Card ID", HttpStatus.FORBIDDEN);
+        }
+
+        Client client = clientService.getAuthenticatedClient(authentication.getName());
+        Card card = cardService.findByClientAndId(client, id);
+
+        if(card == null){
+            return new ResponseEntity<>("Card not found", HttpStatus.NOT_FOUND);
+        }
+
+        if(!card.getClient().equals(client)){
+            return new ResponseEntity<>("Card does not match owner", HttpStatus.FORBIDDEN);
+        }
+
+        card.setDeleted(true);
+        cardService.saveCard(card);
+
+        return new ResponseEntity<>("Card deleted successfully", HttpStatus.OK);
+
     }
+
 }

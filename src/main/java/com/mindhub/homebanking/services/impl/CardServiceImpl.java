@@ -1,6 +1,7 @@
 package com.mindhub.homebanking.services.impl;
 
 import com.mindhub.homebanking.models.Card;
+import com.mindhub.homebanking.models.Client;
 import com.mindhub.homebanking.repositories.CardRepository;
 import com.mindhub.homebanking.services.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,5 +21,10 @@ public class CardServiceImpl implements CardService {
     @Override
     public void saveCard(Card card) {
         cardRepository.save(card);
+    }
+
+    @Override
+    public Card findByClientAndId(Client client, Long id) {
+        return cardRepository.findByClientAndId(client, id);
     }
 }

@@ -30,6 +30,7 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/api/transactions").hasAuthority("CLIENT")
                 .requestMatchers(HttpMethod.POST, "/api/cards/clients/current").hasAuthority("CLIENT")
                 .requestMatchers(HttpMethod.POST, "/api/loans").hasAuthority("CLIENT")
+                .requestMatchers(HttpMethod.DELETE, "/api/cards/{id}").hasAuthority("CLIENT")
                 .requestMatchers("/api/clients", "/h2-console/**", "/web/**", "/rest/**").hasAuthority("ADMIN")
                 .anyRequest().denyAll()
         );

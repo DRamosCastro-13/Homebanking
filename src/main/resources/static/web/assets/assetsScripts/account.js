@@ -27,7 +27,7 @@ let app = createApp({
                 this.accounts = this.data.accounts,
                 this.account = this.accounts.find(account => account.id == this.id),
                 this.transactions = this.account.transactions
-                console.log(this.data)
+                console.log(this.transactions)
             })
             .catch(error => console.log(error))
         },

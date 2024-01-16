@@ -1,9 +1,15 @@
 package com.mindhub.homebanking.models;
 
 import jakarta.persistence.*;
+import jakarta.persistence.Table;
+import org.hibernate.annotations.*;
 
 import java.time.LocalDate;
 @Entity
+@Table(name = "card")
+@SQLDelete(sql = "UPDATE card SET deleted = true WHERE id = ?") //Permite que cada que vez que se reciba una query de delete, el repositorio haga un update en vez de un hard delete.
+@FilterDef(name = "deletedCardFilter", parameters = @ParamDef(name = "isDeleted", type = boolean.class))
+@Filter(name = "deletedCardFilter", condition = "deleted = :isDeleted")
 public class Card {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,7 +22,7 @@ public class Card {
     private CardColor color;
     private LocalDate thruDate;
     private LocalDate fromDate;
-    private Boolean status;
+    private Boolean deleted = false;
     @ManyToOne
     private Client client;
 
@@ -101,11 +107,11 @@ public class Card {
         this.client = client;
     }
 
-    public Boolean getStatus() {
-        return status;
+    public Boolean getDeleted() {
+        return deleted;
     }
 
-    public void setStatus(Boolean status) {
-        this.status = status;
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
     }
 }

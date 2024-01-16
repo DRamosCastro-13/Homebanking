@@ -15,17 +15,19 @@ public class Transaction {
     private String description;
     private Double amount;
     private LocalDate date;
+    private Double transactionBalance;
     @ManyToOne
     private Account account;
 
     public Transaction() {
     }
 
-    public Transaction(TransactionType type, String description, Double amount, LocalDate date) {
+    public Transaction(TransactionType type, String description, Double amount, LocalDate date, Double transactionBalance) {
         this.type = type;
         this.description = description;
         this.amount = amount;
         this.date = date;
+        this.transactionBalance = transactionBalance;
     }
 
     public Long getId() {
@@ -63,6 +65,14 @@ public class Transaction {
 
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    public Double getTransactionBalance() {
+        return transactionBalance;
+    }
+
+    public void setTransactionBalance(Double transactionBalance) {
+        this.transactionBalance = transactionBalance;
     }
 
     @JsonIgnore
