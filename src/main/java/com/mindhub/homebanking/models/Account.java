@@ -32,6 +32,8 @@ public class Account {
     private Boolean active = true;
 
     private Double balance;
+    @Enumerated(EnumType.STRING)
+    private AccountType type;
 
     @ManyToOne
     private Client client;
@@ -42,8 +44,9 @@ public class Account {
 
     }
 
-    public Account(String number, LocalDate creationDate, Double balance) {
+    public Account(String number, AccountType type, LocalDate creationDate, Double balance) {
         this.number = number;
+        this.type = type;
         this.creationDate = creationDate;
         this.balance = balance;
     } // No se incluye a client porque este será incluído a través del método addAccount.
@@ -60,6 +63,14 @@ public class Account {
 
     public void setNumber(String number) {
         this.number = number;
+    }
+
+    public AccountType getType() {
+        return type;
+    }
+
+    public void setType(AccountType type) {
+        this.type = type;
     }
 
     public LocalDate getCreationDate() {
@@ -108,6 +119,7 @@ public class Account {
         return "Account{" +
                 "id=" + id +
                 ", number='" + number + '\'' +
+                ", type=" + type +
                 ", creationDate=" + creationDate +
                 ", balance=" + balance +
                 ", client=" + client +

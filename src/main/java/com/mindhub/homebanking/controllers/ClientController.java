@@ -3,6 +3,7 @@ package com.mindhub.homebanking.controllers;
 import com.mindhub.homebanking.dto.ClientDTO;
 import com.mindhub.homebanking.dto.NewClientDTO;
 import com.mindhub.homebanking.models.Account;
+import com.mindhub.homebanking.models.AccountType;
 import com.mindhub.homebanking.models.Client;
 import com.mindhub.homebanking.repositories.AccountRepository;
 import com.mindhub.homebanking.repositories.ClientRepository;
@@ -83,7 +84,7 @@ public class ClientController {
                 number = "VIN-" + getRandomNumber(100000, 99999999);
             } while (accountService.existsByNumber(number));
 
-            Account account = new Account(number, LocalDate.now(), 0.0);
+            Account account = new Account(number, AccountType.CHECKING, LocalDate.now(), 0.0);
             client.addAccount(account);
             accountService.saveAccount(account);
         }

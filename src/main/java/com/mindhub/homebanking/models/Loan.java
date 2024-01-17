@@ -1,6 +1,7 @@
 package com.mindhub.homebanking.models;
 
 import jakarta.persistence.*;
+import org.springframework.core.SpringVersion;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -18,14 +19,16 @@ public class Loan {
     private Set<ClientLoan> clientLoans = new HashSet<>();
     @ElementCollection
     private List<Integer> payments = new ArrayList<>();
+    private double interest;
 
     public Loan() {
     }
 
-    public Loan(String name, Double maxAmount, List<Integer> payments) {
+    public Loan(String name, Double maxAmount, List<Integer> payments, double interest) {
         this.name = name;
         this.maxAmount = maxAmount;
         this.payments = payments;
+        this.interest = interest;
     }
 
     public Long getId() {
@@ -54,6 +57,14 @@ public class Loan {
 
     public void setPayments(List<Integer> payments) {
         this.payments = payments;
+    }
+
+    public double getInterest() {
+        return interest;
+    }
+
+    public void setInterest(double interest) {
+        this.interest = interest;
     }
 
     public Set<ClientLoan> getClientLoans() {

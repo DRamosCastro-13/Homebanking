@@ -12,12 +12,15 @@ public class LoanDTO {
 
     private List<Integer> payments;
 
+    private double interest;
+
     private Double maxAmount;
 
     public LoanDTO(Loan loan){
         id = loan.getId();
         name = loan.getName();
         payments = loan.getPayments();
+        interest = loan.getInterest();
         maxAmount = loan.getMaxAmount();
     }
 
@@ -31,6 +34,10 @@ public class LoanDTO {
 
     public List<Integer> getPayments() {
         return payments;
+    }
+
+    public double getInterest() {
+        return interest;
     }
 
     public Double getMaxAmount() {

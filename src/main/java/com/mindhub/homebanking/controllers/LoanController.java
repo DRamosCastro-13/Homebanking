@@ -103,7 +103,7 @@ public class LoanController {
             return new ResponseEntity<>("Unable to locate the account to transfer funds", HttpStatus.FORBIDDEN);
         }
 
-        ClientLoan newLoan = new ClientLoan(loanApplication.amount() * 1.2, loanApplication.payments());
+        ClientLoan newLoan = new ClientLoan((loanApplication.amount() * loan.getInterest()) + loanApplication.amount(), loanApplication.payments());
 
         Transaction credit = new Transaction(TransactionType.CREDIT, loanService.getLoanDTOById(loanApplication.id()).getName() +
                 " - LOAN APPROVED", loanApplication.amount(), LocalDate.now(), targetAccount.getBalance() + newLoan.getAmount());

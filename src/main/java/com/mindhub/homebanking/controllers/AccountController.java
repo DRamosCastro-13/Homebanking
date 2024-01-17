@@ -3,6 +3,7 @@ package com.mindhub.homebanking.controllers;
 import com.mindhub.homebanking.dto.AccountDTO;
 import com.mindhub.homebanking.dto.ClientDTO;
 import com.mindhub.homebanking.models.Account;
+import com.mindhub.homebanking.models.AccountType;
 import com.mindhub.homebanking.models.Client;
 import com.mindhub.homebanking.repositories.AccountRepository;
 import com.mindhub.homebanking.repositories.ClientRepository;
@@ -34,6 +35,7 @@ public class AccountController {
 
     @PostMapping("/clients/current")
     public ResponseEntity<String> createAccount(
+            @RequestParam AccountType type,
             Authentication authentication
     ){
         Client client = clientService.getAuthenticatedClient(authentication.getName()); //Encontrar al dueño
@@ -48,9 +50,9 @@ public class AccountController {
             number = Utils.generateAccountNumber();
         } while (accountService.existsByNumber(number));
 
-        Account account = new Account(number, LocalDate.now(), 0.0);
+        Account account = new Account(number, type, LocalDate.now(), 0.0);
         client.addAccount(account);
-       accountService.saveAccount(account);
+        accountService.saveAccount(account);
 
         return new ResponseEntity<>("Account created for " + client.getLastName() + ", "  + client.getFirstName(), HttpStatus.CREATED);
     }
