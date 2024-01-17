@@ -10,6 +10,11 @@ let app = createApp({
             email : "",
             accounts : [],
             loans : [],
+            accountId : null,
+            showAccountSelectionModal: false,
+            selectedAccountId: null,
+            isModalVisible: false
+            
         }
     },
     created(){
@@ -48,7 +53,35 @@ let app = createApp({
                     window.location.reload();
                 }, 3000);
             })
-        }
+        },
+        openAccountSelectionModal() {
+            this.showAccountSelectionModal = true;
+          },
+        onToggle() {
+            this.isModalVisible = true;
+        },
+        deleteAccount(){
+            axios.delete(`/api/accounts/${this.accountId}`)
+            .then(response => {
+                
+            })
+        },
+        confirmDeleteCard() {
+            Swal.fire({
+              title: "Confirm Deletion",
+              text: "Are you sure you want to delete this card? This action cannot be undone.",
+              icon: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#d33",
+              cancelButtonColor: "#3085d6",
+              confirmButtonText: "Delete Card"
+            }).then((result) => {
+              if (result.isConfirmed) {
+                this.deleteCard();
+              }
+            });
+          },
+
     }
 }).mount('#app')
 
