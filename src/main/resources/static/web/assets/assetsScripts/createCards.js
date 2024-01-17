@@ -37,13 +37,15 @@ let app = createApp({
             })
             .then(response => {
                 Swal.fire({
-                    icon: "success",
-                    title: "Card created successfully",
-                    showConfirmButton: false,
-                    timer: 4000
-                }),
-                console.log(response),
-                window.location.href="../pages/cards.html"
+                    title: "Success",
+                    text: "Transaction Completed",
+                    icon: "success"
+                });
+
+                setTimeout(() => {
+                    window.location.href="../pages/cards.html"
+                }, 2000);
+                
             })
             .catch(error => {
                 console.log(error)

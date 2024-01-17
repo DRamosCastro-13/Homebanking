@@ -26,7 +26,7 @@ let app = createApp({
                 this.data = response.data,
                 this.accounts = this.data.accounts,
                 this.account = this.accounts.find(account => account.id == this.id),
-                this.transactions = this.account.transactions
+                this.transactions = this.account.transactions.sort((a,b) => b.id - a.id),
                 console.log(this.transactions)
             })
             .catch(error => console.log(error))

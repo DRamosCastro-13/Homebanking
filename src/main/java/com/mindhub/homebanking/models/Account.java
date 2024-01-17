@@ -2,6 +2,10 @@ package com.mindhub.homebanking.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Filter;
+import org.hibernate.annotations.FilterDef;
+import org.hibernate.annotations.ParamDef;
+import org.hibernate.annotations.SQLDelete;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -11,6 +15,10 @@ import java.util.Set;
 
 
 @Entity
+@Table(name = "account")
+@SQLDelete(sql = "UPDATE account SET active = false WHERE id = ?")
+@FilterDef(name = "activeAccountFilter", parameters = @ParamDef(name = "isActive", type = boolean.class))
+@Filter(name = "activeAccountFilter", condition = "active = :isActive")
 public class Account {
 
     @Id
@@ -20,6 +28,8 @@ public class Account {
     private String number;
 
     private LocalDate creationDate;
+
+    private Boolean active = true;
 
     private Double balance;
 
@@ -72,6 +82,14 @@ public class Account {
         return transactions;
     }
 
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
     @JsonIgnore
     public Client getClient() {
         return client;
@@ -93,7 +111,7 @@ public class Account {
                 ", creationDate=" + creationDate +
                 ", balance=" + balance +
                 ", client=" + client +
-
+                ", active=" + active +
                 '}';
     }
 }

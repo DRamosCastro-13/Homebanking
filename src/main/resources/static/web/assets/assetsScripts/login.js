@@ -49,14 +49,15 @@ let app = createApp({
             })
             .then(response => {
                 Swal.fire({
-                    icon: "success",
-                    title: "Registered successfully",
-                    showConfirmButton: false,
-                    timer: 4000
-                }),
-                console.log(response)
-                this.login(this.emailReg, this.passwordReg)
-                this.clearData()
+                    title: "Success",
+                    text: "Transaction Completed",
+                    icon: "success"
+                });
+
+                setTimeout(() => {
+                    this.login(this.emailReg, this.passwordReg)
+                }, 2000);
+
             })
             .catch(
                 error => {

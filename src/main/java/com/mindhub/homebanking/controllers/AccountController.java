@@ -76,4 +76,32 @@ public class AccountController {
 
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteAccount(@PathVariable Long id,
+                                                Authentication authentication){
+        if(id == null){
+            return new ResponseEntity<>("Invalid account ID", HttpStatus.NOT_FOUND);
+        }
+
+        Client client = clientService.getAuthenticatedClient(authentication.getName());
+        Account account = accountService.findByClientAndId(client, id);
+
+        if(account == null){
+            return new ResponseEntity<>("Account not found", HttpStatus.NOT_FOUND);
+        }
+
+        if(account.getBalance() != 0){
+            return new ResponseEntity<>("You cannot delete an account that has a remaining balance", HttpStatus.CONFLICT);
+        }
+
+        if (!account.getClient().equals(client)){
+            return new ResponseEntity<>("Account does not match owner", HttpStatus.FORBIDDEN);
+        }
+
+        account.setActive(false);
+        accountService.saveAccount(account);
+
+        return new ResponseEntity<>("Account deleted succesfully", HttpStatus.OK);
+    }
+
 }

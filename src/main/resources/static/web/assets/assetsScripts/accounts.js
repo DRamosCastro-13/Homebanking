@@ -38,8 +38,15 @@ let app = createApp({
         createAccount(){
             axios.post('/api/accounts/clients/current')
             .then(response => {
-                console.log(response)
-                window.location.href="../pages/accounts.html"
+                Swal.fire({
+                    title: "Success",
+                    text: "Transaction Completed",
+                    icon: "success"
+                });
+
+                setTimeout(() => {
+                    window.location.reload();
+                }, 3000);
             })
         }
     }

@@ -71,10 +71,14 @@ let app = createApp({
                 }).then((result) => {
                   if (result.isConfirmed) {
                     Swal.fire({
-                      title: "Success",
-                      text: "Transaction Completed",
-                      icon: "success"
+                        title: "Success",
+                        text: "Transaction Completed",
+                        icon: "success"
                     });
+
+                    setTimeout(() => {
+                        window.location.href="../pages/accounts.html"
+                    }, 2000);
                   } 
                 }, this.clearData()
                 )

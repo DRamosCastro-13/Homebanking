@@ -16,6 +16,9 @@ public class AccountDTO {
     private LocalDate creationDate;
 
     private Double balance;
+
+    private Boolean active;
+
     private Set<TransactionDTO> transactions;
 
     public AccountDTO(Account account){
@@ -24,6 +27,7 @@ public class AccountDTO {
         creationDate = account.getCreationDate();
         balance = account.getBalance();
         transactions = account.getTransactions().stream().map(transaction -> new TransactionDTO(transaction)).collect(Collectors.toSet());
+        active = account.getActive();
     }
 
     public Long getId() {
@@ -41,6 +45,8 @@ public class AccountDTO {
     public Double getBalance() {
         return balance;
     }
+
+    public Boolean getActive(){return active;}
 
     public Set<TransactionDTO> getTransactions() {
         return transactions;

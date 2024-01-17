@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../assets/asstetsImg/Screenshot_2023-12-09_at_5.18.16_PM-removebg-preview.png" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" type="text/css" href="../assets/assetsStyles/styleCards.css">
     <title>Your Cards | ANB</title>
 </head>
@@ -87,8 +88,8 @@
         </div>
     </header>
     <div id="app">
-        <main  class="flex flex-col items-center lg:flex-row flex-wrap lg:justify-around min-h-screen lg:min-h-[90dvh] bg-[#E4F1FF]">
-            <div v-if="cards.length==0" class="flex flex-col items-start gap-3 w-11/12 sm:7/12 my-2 lg:2/12 lg:-mt-40 lg:pt-8"> 
+        <main  class="flex flex-col items-center lg:flex-row flex-wrap lg:justify-around lg:items-start min-h-screen lg:min-h-[90dvh] bg-[#E4F1FF]">
+            <div v-if="cards.length === 0 || activeCards().length === 0" class="flex flex-col items-start gap-3 w-11/12 sm:7/12 my-2 lg:2/12 lg:pt-24"> 
                 <div class="flex justify-start w-3/12 lg:ml-7 xl:ml-20">
                     <a href="./accounts.html" class="text-[#004481] mb-2 active:text-[#004481] text-md lg:text-lg justify-start border-solid border-b-2 border-[#004481]"> &lt; Return</a>
                 </div>
@@ -98,7 +99,7 @@
                 </div>
                 <p class="text-center text-gray-500 text-xl w-full mt-8">It looks like you don't have any cards yet...</p>
             </div>
-            <div v-if="cards.length > 0" class="flex flex-col items-start gap-3 w-11/12 sm:7/12 my-2 lg:2/12 mt-16 pt-4 lg:pt-8"> 
+            <div v-else class="flex flex-col items-start gap-3 w-11/12 sm:7/12 my-2 lg:2/12 lg:pt-24"> 
                 <div class="flex justify-start w-3/12 lg:ml-7 xl:ml-20">
                     <a href="./accounts.html" class="text-[#004481] mb-2 active:text-[#004481] text-md lg:text-lg justify-start border-solid border-b-2 border-[#004481]"> &lt; Return</a>
                 </div>
@@ -107,8 +108,8 @@
                     <button class="lg:ml-7 xl:ml-20 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" @click="createCard()">Create New Card</button>
                 </div>
             </div>
-            <template v-for="card in cards">    
-                <div v-if="card.color=='GOLD'">
+            <template v-for="card in cards">
+                <div v-if="!card.deleted && card.color=='GOLD'">
                     <div class="group my-4 h-80 sm:h-85 w-8/12">
                         <div class="relative z-10 md:my-4 h-[250px] w-[315px] rounded-xl shadow-xl transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] sm:h-[250px] sm:w-[400px]">
                           <div class="absolute inset-0 rounded-xl [backface-visibility:hidden]">
@@ -153,7 +154,7 @@
                         </div>
                       </div>
                 </div>
-                <div v-else-if="card.color=='TITANIUM'">
+                <div v-else-if="!card.deleted && card.color=='TITANIUM'">
                     <div class="group my-4 h-80 sm:h-85 w-8/12">
                         <div class="relative z-10 md:my-4 h-[250px] w-[315px] rounded-xl shadow-xl transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] sm:h-[250px] sm:w-[400px]">
                           <div class="absolute inset-0 rounded-xl [backface-visibility:hidden]">
@@ -198,8 +199,8 @@
                         </div>
                     </div>
                 </div>
-                <div v-else-if="card.color=='SILVER'">
-                    <div class="group my-4 h-80 sm:h-85 lg:h-96 w-8/12">
+                <div v-else-if="!card.deleted && card.color=='SILVER'">
+                    <div class="group my-4 h-80 sm:h-85 w-8/12">
                         <div class="relative z-10 md:my-4 h-[250px] w-[315px] rounded-xl shadow-xl transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] sm:h-[250px] sm:w-[400px]">
                           <div class="absolute inset-0 rounded-xl [backface-visibility:hidden]">
                             <div class="h-full w-full rounded-xl object-cover shadow-xl bg-gradient-to-l from-zinc-400 via-stone-600 to-black [backface-visibility:hidden]">
@@ -242,9 +243,20 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                        
-            </template>    
+                </div>         
+            </template>
+            <div v-if="activeCards().length > 0" class="flex flex-col items-center justify-center w-11/12 sm:7/12 lg:2/12">
+                <form @submit.prevent="deleteCard()" class="cards-form">
+                    <label for="cardId" class="text-lg text-zinc-800 font-semibold mb-3" id="label">Select Card</label>
+                    <select name="cardId" class="w-full mb-6 bg-blue-900/25 p-1 rounded-md" v-model="cardId">
+                        <option value="" disabled selected>Select a card to delete</option>
+                        <option v-for="card in activeCards()" :key="card.id" :value="card.id">{{ card.number }}</option>
+                    </select>
+                    <button type="submit" class="w-full lg:w-5/12 bg-transparent justify-center hover:bg-red-600 text-red-600 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded">
+                        Delete Card
+                    </button>
+                </form>
+            </div>
         </main>
         <footer>
             <div class="hidden lg:flex lg:flex-col lg:items-center lg:justify-center lg:gap-1 bg-white h-[4rem] border-t border-slate-700">

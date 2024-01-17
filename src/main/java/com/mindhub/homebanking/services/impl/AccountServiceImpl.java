@@ -43,7 +43,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public Account findByNumer(String number) {
+    public Account findByNumber(String number) {
         return accountRepository.findByNumber(number);
     }
 

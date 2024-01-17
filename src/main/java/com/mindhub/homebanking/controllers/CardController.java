@@ -89,7 +89,7 @@ public class CardController {
                                              Authentication authentication){
 
         if(id == null){
-            return new ResponseEntity<>("Invalid Card ID", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Invalid Card ID", HttpStatus.NOT_FOUND);
         }
 
         Client client = clientService.getAuthenticatedClient(authentication.getName());

@@ -69,7 +69,7 @@ public class TransactionController {
         }
 
         Account originTransactionAcc = accountService.findByNumberAndClient(newTransaction.originAccount(), client);
-        Account targetTransactionAcc = accountService.findByNumer(newTransaction.targetAccount());
+        Account targetTransactionAcc = accountService.findByNumber(newTransaction.targetAccount());
 
         if(originTransactionAcc == null){
             return new ResponseEntity<>("Unable to find Origin Account, please review the information", HttpStatus.FORBIDDEN);

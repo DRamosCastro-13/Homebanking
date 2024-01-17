@@ -17,7 +17,7 @@ public interface AccountService {
 
     Account findByNumberAndClient(String number, Client client);
 
-    Account findByNumer(String number);
+    Account findByNumber(String number);
 
     void saveAccount(Account account);
 }

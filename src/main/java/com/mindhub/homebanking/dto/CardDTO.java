@@ -13,6 +13,7 @@ public class CardDTO {
     private CardColor color;
     private LocalDate thruDate;
     private LocalDate fromDate;
+    private Boolean deleted;
     public CardDTO(Card card){
         id = card.getId();
         cardholder = card.getCardholder();
@@ -22,6 +23,7 @@ public class CardDTO {
         color = card.getColor();
         thruDate = card.getThruDate();
         fromDate = card.getFromDate();
+        deleted = card.getDeleted();
     }
 
     public Long getId() {
@@ -54,5 +56,9 @@ public class CardDTO {
 
     public LocalDate getFromDate() {
         return fromDate;
+    }
+
+    public Boolean getDeleted() {
+        return deleted;
     }
 }
