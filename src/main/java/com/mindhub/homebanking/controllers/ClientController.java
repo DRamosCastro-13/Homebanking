@@ -9,6 +9,8 @@ import com.mindhub.homebanking.repositories.AccountRepository;
 import com.mindhub.homebanking.repositories.ClientRepository;
 import com.mindhub.homebanking.services.AccountService;
 import com.mindhub.homebanking.services.ClientService;
+import com.mindhub.homebanking.utils.Utils;
+import jdk.jshell.execution.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,7 +37,7 @@ public class ClientController {
     @Autowired //public?
     public PasswordEncoder passwordEncoder;
 
-    @PostMapping//Mapea métodos POST lo que esté después de @RequestParam va a ser una query param (?...) en la ruta a la que se hace la petición de tipo POST
+    @PostMapping//Mapea métodos POST lo que esté después de @RequestParam va a ser una query param en la ruta a la que se hace la petición de tipo POST
     public ResponseEntity<?> createClient(
             @RequestBody NewClientDTO newClient)
     {
@@ -66,7 +68,7 @@ public class ClientController {
 //        } // este método traería TODA la info del client, el objeto completo,
 //         para hacer la verificación por esto es mejor usar un booleano definido en el clientRepository
 
-        if(clientService.getAuthenticatedClient(newClient.email()) != null){
+        if(clientService.existsByEmail(newClient.email())){
             return new ResponseEntity<>("This email is already in use", HttpStatus.FORBIDDEN);
         }
 
@@ -81,7 +83,7 @@ public class ClientController {
             String number;
 
             do {
-                number = "VIN-" + getRandomNumber(100000, 99999999);
+                number = Utils.generateAccountNumber();
             } while (accountService.existsByNumber(number));
 
             Account account = new Account(number, AccountType.CHECKING, LocalDate.now(), 0.0);

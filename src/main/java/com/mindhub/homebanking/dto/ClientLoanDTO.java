@@ -9,11 +9,14 @@ public class ClientLoanDTO {
     private Double amount;
     private Integer payments;
 
+    private double interest;
+
     public ClientLoanDTO(ClientLoan clientLoan){
         id = clientLoan.getId();
         loanId = clientLoan.getLoan().getId();
         name = clientLoan.getLoan().getName();
         amount = clientLoan.getAmount();
+        interest = clientLoan.getLoan().getInterest();
         payments = clientLoan.getPayments();
     }
 
@@ -37,5 +40,7 @@ public class ClientLoanDTO {
         return payments;
     }
 
-
+    public double getInterest() {
+        return interest;
+    }
 }

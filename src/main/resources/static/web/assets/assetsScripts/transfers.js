@@ -9,7 +9,7 @@ let app = createApp({
             lastName : "",
             email : "",
             accounts : [],
-            amount : '',
+            amount : "",
             description : '',
             originAccount : '',
             targetAccount : '',
@@ -34,44 +34,43 @@ let app = createApp({
             })
             .catch(error => console.log(error))
         },
-        getBalance(account){
-            axios('/api/clients/current')
-            .then(response => {
-                selectedAccount = this.accounts.find(item => item.id == account)
-                console.log(response)
-            })
+        getBalance(accountNumber) {
+            const selectedAccount = this.accounts.find(account => account.number === accountNumber);
+            return selectedAccount ? selectedAccount.balance : "Unable to retrieve account balance.";
         },
-        sentTransaction(){
-            axios.post('/api/transactions', {
-                "amount" : this.amount,
-                "description" : this.description,
-                "originAccount" : this.originAccount,
-                "targetAccount" : this.targetAccount
-            })
-            .then(response => {
-                Swal.fire({
-                  title: "Complete transaction?",
-                  text: "You won't be able to revert this!",
-                  icon: "warning",
-                  showCancelButton: true,
-                  confirmButtonColor: "#3085d6",
-                  cancelButtonColor: "#d33",
-                  confirmButtonText: "Proceed"
-                }).then((result) => {
-                  if (result.isConfirmed) {
-                    Swal.fire({
-                      title: "Success",
-                      text: "Transaction Completed",
-                      icon: "success"
-                    });
-                  } 
-                }, this.clearData()
-                )
-                console.log(response)
-            })
-            .catch(error => {
-                this.error = error.response.data}
-            )
+        sentTransaction() {
+            const confirmationMessage = `Are you sure you want to transfer $${this.amount} to ${this.targetAccount}?`;
+        
+            Swal.fire({
+                title: "Complete transaction?",
+                text: confirmationMessage,
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Proceed"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    axios.post('/api/transactions', {
+                        "amount": this.amount,
+                        "description": this.description,
+                        "originAccount": this.originAccount,
+                        "targetAccount": this.targetAccount
+                    })
+                        .then(response => {
+                            Swal.fire({
+                                title: "Success",
+                                text: "Transaction Completed",
+                                icon: "success"
+                            });
+                            this.clearData();
+                            console.log(response);
+                        })
+                        .catch(error => {
+                            this.error = error.response.data;
+                        });
+                }
+            });
         },
         logOut(){
             axios('/api/logout')

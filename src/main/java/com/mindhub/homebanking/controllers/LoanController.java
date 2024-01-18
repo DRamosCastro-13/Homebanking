@@ -106,10 +106,10 @@ public class LoanController {
         ClientLoan newLoan = new ClientLoan((loanApplication.amount() * loan.getInterest()) + loanApplication.amount(), loanApplication.payments());
 
         Transaction credit = new Transaction(TransactionType.CREDIT, loanService.getLoanDTOById(loanApplication.id()).getName() +
-                " - LOAN APPROVED", loanApplication.amount(), LocalDate.now(), targetAccount.getBalance() + newLoan.getAmount());
+                " - LOAN APPROVED", loanApplication.amount(), LocalDate.now(), targetAccount.getBalance() + loanApplication.amount());
 
 
-        targetAccount.setBalance(targetAccount.getBalance() + newLoan.getAmount());
+        targetAccount.setBalance(targetAccount.getBalance() + loanApplication.amount());
         targetAccount.addTransaction(credit);
         client.addClientLoan(newLoan);
         loan.addClientLoan(newLoan);

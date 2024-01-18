@@ -9,7 +9,8 @@ let app = createApp({
             lastName : "",
             email : "",
             cards : [],
-            cardId : null
+            cardId : null,
+            thruDate : '',
            
         }
     },
@@ -36,7 +37,7 @@ let app = createApp({
             axios.delete(`/api/cards/${this.cardId}`)
                 .then(response => {
                     Swal.fire({
-                        title: "Complete transaction?",
+                        title: "Delete Card?",
                         text: "You won't be able to revert this!",
                         icon: "warning",
                         showCancelButton: true,
@@ -65,6 +66,13 @@ let app = createApp({
             .then(
                 window.location.href = "../index.html"
             )
+        },
+        isCardExpired(){
+            if(this.thruDate < new Date()){
+                return true
+            }
+
+            console.log(new Date())
         },
         createCard(){
             window.location.href="../pages/createCards.html"

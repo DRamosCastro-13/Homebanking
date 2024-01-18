@@ -39,6 +39,11 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
+    public Boolean existsByEmail(String email) {
+        return clientRepository.existsByEmail(email);
+    }
+
+    @Override
     public Client getOneClientById(Long id) {
         return clientRepository.findById(id).orElse(null);
     }

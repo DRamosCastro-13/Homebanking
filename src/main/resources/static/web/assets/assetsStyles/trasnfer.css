@@ -44,12 +44,18 @@
     justify-content: center;
     justify-items: center;
     background-color: white;
-    padding: 15px;
-    width: 95%;
+    padding: 2rem;
+    width: 65%;
     margin-bottom: 8rem;
     margin-top: 2rem;
 }
 
+@media screen and (max-width: 768px) {
+    .transfer-form{
+        width: 90%;
+    }
+    
+}
 
 @media screen and (min-width: 1024px) {
     .hamburger{

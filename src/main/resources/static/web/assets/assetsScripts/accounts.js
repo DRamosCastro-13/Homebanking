@@ -45,7 +45,7 @@ let app = createApp({
             .then(response => {
                 Swal.fire({
                     title: "Success",
-                    text: "Transaction Completed",
+                    text: "Account created successfully",
                     icon: "success"
                 });
 
@@ -69,7 +69,7 @@ let app = createApp({
         confirmDeleteCard() {
             Swal.fire({
               title: "Confirm Deletion",
-              text: "Are you sure you want to delete this card? This action cannot be undone.",
+              text: "Are you sure you want to delete this account? This action cannot be undone.",
               icon: "warning",
               showCancelButton: true,
               confirmButtonColor: "#d33",

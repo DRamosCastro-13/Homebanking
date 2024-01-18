@@ -87,13 +87,14 @@
         </div>
     </header>
     <div id="app">
-        <main class="flex flex-col gap-2 items-center lg:flex-row flex-wrap lg:justify-around min-h-fit lg:min-h-[90dvh] bg-[#E4F1FF]">
-            <div class="flex flex-col items-center gap-3 lg:w-5/12 lg:h-[90dvh] lg:pt-[16dvh]">
-                <div class="flex flex-col flex-wrap gap-3 w-10/12 my-2 border-solid border-b pb-3 border-slate-600"> 
+        <main class="flex w-full flex-col gap-2 items-center lg:flex-row flex-wrap lg:justify-around min-h-[90dvh] bg-[#E4F1FF]">
+            <div class="flex w-full flex-col items-center gap-3 lg:w-5/12 lg:h-[90dvh] lg:pt-[16dvh]">
+                <div class="flex flex-col flex-wrap gap-3 w-10/12 my-2 border-solid border-b pb-6 border-slate-600"> 
                     <div class="flex justify-start w-3/12">
                         <a href="accounts.html" class="text-[#004481] mb-2 active:text-blue-900 text-md lg:text-lg justify-start border-solid border-b-2 border-blue-900"> &lt; Return</a>
                     </div>
                     <h1 class="font-semibold text-xl text-slate-900">Your Account</h1>
+                    <h2 class="text-sm text-slate-900">{{account.type}}</h2>
                     <h2 class="text-2xl text-slate-900">Account Number</h2>
                     <p class="font-semibold text-3xl text-[#004481]">{{account.number}}</p>
                 </div>
@@ -108,7 +109,7 @@
                     </div>
                 </template> 
             </div>
-            <div class="w-11/12 sm:w-10/12 lg:w-5/12 flex flex-col mb-5 gap-2"> 
+            <div class="w-11/12 sm:w-10/12 lg:w-5/12 flex flex-col mb-5 mt-6 gap-2"> 
                 <h3 class="text-xl mt-2 mb-1 font-bold text-[#004481]">Your Transactions</h3> 
                 <table class="border-solid border-b-2  border-gray-400">
                     <tr class="border-solid border-b-2  border-gray-400">

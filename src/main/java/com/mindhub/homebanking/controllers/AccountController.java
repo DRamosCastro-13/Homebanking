@@ -35,7 +35,7 @@ public class AccountController {
 
     @PostMapping("/clients/current")
     public ResponseEntity<String> createAccount(
-            @RequestParam AccountType type,
+            //@RequestParam AccountType type,
             Authentication authentication
     ){
         Client client = clientService.getAuthenticatedClient(authentication.getName()); //Encontrar al dueño
@@ -50,7 +50,7 @@ public class AccountController {
             number = Utils.generateAccountNumber();
         } while (accountService.existsByNumber(number));
 
-        Account account = new Account(number, type, LocalDate.now(), 0.0);
+        Account account = new Account(number, AccountType.CHECKING, LocalDate.now(), 0.0);
         client.addAccount(account);
         accountService.saveAccount(account);
 
@@ -98,6 +98,10 @@ public class AccountController {
 
         if (!account.getClient().equals(client)){
             return new ResponseEntity<>("Account does not match owner", HttpStatus.FORBIDDEN);
+        }
+
+        if(client.getAccounts().stream().filter(Account::getActive).toList().size() == 1){
+            return new ResponseEntity<>("You cannot delete your only account", HttpStatus.FORBIDDEN);
         }
 
         account.setActive(false);

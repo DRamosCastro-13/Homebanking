@@ -16,6 +16,8 @@ public interface ClientService {
 
     ClientDTO getAuthenticatedClientDTO(String email);
 
+    Boolean existsByEmail(String email);
+
     Client getOneClientById(Long id);
 
     ClientDTO getOneClientDTOById(Long id);

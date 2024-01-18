@@ -151,6 +151,7 @@
                     <template v-for="account in accounts">
                         <a :href="'../pages/account.html?id=' + account.id" class="flex flex-col items-center lg:py-3 lg:items-start lg:px-10 p-2 w-11/12 lg:hover:scale-110 lg:w-5/12 my-3 gap-3 lg:mt-3 mx-auto shadow-md shadow-slate-400 bg-gradient-to-r from-teal-200 to-lime-200 bg-cover bg-center rounded-lg">
                             <h2 class="font-medium text-lg text-slate-800">Account Number: <span class="text-blue-950 font-bold text-xl">{{account.number}}</span></h2>
+                            <h3 class="font-semibold text-sm text-slate-800">{{account.type}}</h3>
                             <div>
                                 <h3 class="font-semibold text-lg text-slate-800">Balance:</h3>
                                 <h4 class="font-bold text-4xl text-blue-950">{{account.balance.toLocaleString("en-US", {style:"currency", currency:"USD"})}}</h4>
@@ -207,6 +208,7 @@
                             <div class="flex flex-col items-center p-2 w-11/12 lg:hover:scale-110 lg:w-[18rem] mb-5 lg:py-4 lg:-mt-1 gap-3 bg-gradient-to-l from-orange-200 to-rose-200 shadow-md shadow-slate-400 rounded-lg">
                                 <h4 class="font-semibold text-2xl text-zinc-950">{{loan.name}}</h4>
                                 <p class="text-slate-600">Total Amount: <span class="font-bold text-lg text-slate-900">{{loan.amount.toLocaleString("en-US", {style:"currency", currency:"USD"})}}</span></p>
+                                <p class="text-slate-700">Interest Rate: <span class="font-bold text-lg text-slate-900">{{loan.interest * 100}}%</span></p>
                                 <p class="text-slate-700"><span class="font-bold text-lg text-slate-900">{{loan.payments}}</span> Monthly Payments</p>
                             </div>
                         </template>
