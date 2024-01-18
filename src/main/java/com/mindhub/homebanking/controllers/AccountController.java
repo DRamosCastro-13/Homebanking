@@ -35,12 +35,12 @@ public class AccountController {
 
     @PostMapping("/clients/current")
     public ResponseEntity<String> createAccount(
-            //@RequestParam AccountType type,
+            @RequestParam AccountType type,
             Authentication authentication
     ){
         Client client = clientService.getAuthenticatedClient(authentication.getName()); //Encontrar al dueño
 
-        if(client.getAccounts().size()>=3){
+        if(client.getAccounts().stream().filter(Account::getActive).toList().size()>=3){
             return new ResponseEntity<>("Maximum accounts per client reached", HttpStatus.FORBIDDEN);
         }
 
@@ -50,7 +50,7 @@ public class AccountController {
             number = Utils.generateAccountNumber();
         } while (accountService.existsByNumber(number));
 
-        Account account = new Account(number, AccountType.CHECKING, LocalDate.now(), 0.0);
+        Account account = new Account(number, type, LocalDate.now(), 0.0);
         client.addAccount(account);
         accountService.saveAccount(account);
 

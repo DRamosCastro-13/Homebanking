@@ -11,10 +11,11 @@ let app = createApp({
             accounts : [],
             loans : [],
             accountId : null,
-            showAccountSelectionModal: false,
-            selectedAccountId: null,
-            isModalVisible: false
-            
+            error : "",
+            selectedAccount: '',
+            isModalVisible: false,
+            currentPopupModal: null,
+            accountType: ''
         }
     },
     created(){
@@ -32,7 +33,10 @@ let app = createApp({
                 this.loans = response.data.loans,
                 console.log(this.loans)
             })
-            .catch(error => console.log(error))
+            .catch(error => {
+                this.error = error.response.data
+                console.log(error)
+            })
         },
         logOut(){
             axios('/api/logout')
@@ -41,7 +45,7 @@ let app = createApp({
             )
         },
         createAccount(){
-            axios.post('/api/accounts/clients/current')
+            axios.post(`/api/accounts/clients/current?type=${this.accountType}`)
             .then(response => {
                 Swal.fire({
                     title: "Success",
@@ -50,8 +54,17 @@ let app = createApp({
                 });
 
                 setTimeout(() => {
-                    window.location.reload();
-                }, 3000);
+                    window.location.href = "../pages/accounts.html";
+                }, 2000);
+            }).catch(error => {
+                this.error = "";
+        
+                if (!this.accountType) {
+                    this.error = "Please select an account type.";
+                    return;
+                }
+
+                this.error = error.response.data
             })
         },
         openAccountSelectionModal() {
@@ -61,26 +74,59 @@ let app = createApp({
             this.isModalVisible = true;
         },
         deleteAccount(){
-            axios.delete(`/api/accounts/${this.accountId}`)
+            axios.delete(`/api/accounts/${this.selectedAccount}`)
             .then(response => {
-                
+                Swal.fire({
+                    title: "Success",
+                    text: "Transaction Completed",
+                    icon: "success"
+                });
+
+                setTimeout(() => {
+                    window.location.href = "../pages/accounts.html";
+                }, 2000);
+            }).catch(error => {
+                this.error = "";
+        
+                if (!this.selectedAccount) {
+                    this.error = "Please select an account to delete.";
+                    return;
+                }
+
+                this.error = error.response.data
             })
         },
-        confirmDeleteCard() {
+        confirmDeleteAccount() {
             Swal.fire({
-              title: "Confirm Deletion",
-              text: "Are you sure you want to delete this account? This action cannot be undone.",
-              icon: "warning",
-              showCancelButton: true,
-              confirmButtonColor: "#d33",
-              cancelButtonColor: "#3085d6",
-              confirmButtonText: "Delete Card"
+                title: "Confirm Deletion",
+                html: `
+                    <p>Are you sure you want to delete an account? This action cannot be undone.</p>
+                    <label for="accountSelect">Select Account:</label>
+                    <select id="accountSelect" class="swal2-input" v-model="selectedAccount">
+                        <option v-for="account in accounts" :value="account.id">{{ account.number }}</option>
+                    </select>
+                `,
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#3085d6",
+                confirmButtonText: "Delete Account"
             }).then((result) => {
-              if (result.isConfirmed) {
-                this.deleteCard();
-              }
+                if (result.isConfirmed) {
+                    this.deleteAccount();
+        
+                    Swal.fire({
+                        title: "Success",
+                        text: "Account deleted successfully",
+                        icon: "success"
+                    });
+        
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 2000);
+                }
             });
-          },
+        },
 
     }
 }).mount('#app')
