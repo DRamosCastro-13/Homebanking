@@ -11,6 +11,7 @@ let app = createApp({
             cards : [],
             cardId : null,
             thruDate : '',
+            date: new Date().toISOString().split('T')[0],
            
         }
     },
@@ -27,6 +28,7 @@ let app = createApp({
                 this.client = response.data,
                 this.cards = response.data.cards,
                 console.log(this.cards)
+                console.log(this.date)
             })
             .catch(error => console.log(error))
         },
@@ -67,12 +69,15 @@ let app = createApp({
                 window.location.href = "../index.html"
             )
         },
-        isCardExpired(){
-            if(this.thruDate < new Date()){
-                return true
+        isCardExpired(card){
+            if (card && card.thruDate) {
+                const cardThruDate = new Date(card.thruDate);
+                const currentDate = new Date(this.date);
+        
+                return cardThruDate < currentDate;
             }
-
-            console.log(new Date())
+        
+            return false;
         },
         createCard(){
             window.location.href="../pages/createCards.html"

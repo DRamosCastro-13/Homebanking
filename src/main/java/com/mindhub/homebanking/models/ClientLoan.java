@@ -8,6 +8,7 @@ public class ClientLoan {
     private Long id;
     private Double amount;
     private Integer payments;
+    private int paymentsMade = 0;
     @ManyToOne
     private Client client;
     @ManyToOne
@@ -16,9 +17,10 @@ public class ClientLoan {
     public ClientLoan() {
     }
 
-    public ClientLoan(Double amount, Integer payments) {
+    public ClientLoan(Double amount, Integer payments, int paymentsMade) {
         this.amount = amount;
         this.payments = payments;
+        this.paymentsMade = paymentsMade;
     }
 
     public Long getId() {
@@ -58,4 +60,11 @@ public class ClientLoan {
         this.loan = loan;
     }
 
+    public int getPaymentsMade() {
+        return paymentsMade;
+    }
+
+    public void setPaymentsMade(int paymentsMade) {
+        this.paymentsMade = paymentsMade;
+    }
 }

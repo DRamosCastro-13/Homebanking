@@ -11,7 +11,7 @@ let app = createApp({
             accounts : [],
             availableLoans : [],
             id: 1,
-            loanId : '',
+            name : '',
             amount : '',
             payments : '',
             targetAccount : '',
@@ -55,7 +55,7 @@ let app = createApp({
         createLoan() {
             this.error = "";
         
-            if (!this.targetAccount || !this.loanId || !this.amount || !this.payments) {
+            if (!this.targetAccount || !this.name || !this.amount || !this.payments) {
                 this.error = "Please fill in all required fields.";
                 return;
             }
@@ -73,7 +73,7 @@ let app = createApp({
             }).then((result) => {
                 if (result.isConfirmed) {
                     axios.post('/api/loans', {
-                        "id": this.loanId,
+                        "name": this.name,
                         "amount": this.amount,
                         "payments": this.payments,
                         "targetAccount": this.targetAccount

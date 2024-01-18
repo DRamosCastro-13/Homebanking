@@ -2,6 +2,7 @@ package com.mindhub.homebanking;
 
 import com.mindhub.homebanking.models.*;
 import com.mindhub.homebanking.repositories.*;
+import com.mindhub.homebanking.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -48,9 +49,16 @@ public class HomebankingApplication {
 			clientRepository.save(admin);
 
 			Account account1 = new Account("VIN-42114463", AccountType.CHECKING, LocalDate.now(), 2000.0);
+			Card card1 = new Card("RENATA CASTILLO", CardType.CREDIT, CardColor.SILVER, Utils.generateCardNumber(), Utils.generateCvv(), LocalDate.now().minusDays(2), LocalDate.now().minusYears(5));
+			Card card2 = new Card("RENATA CASTILLO", CardType.DEBIT, CardColor.SILVER, Utils.generateCardNumber(), Utils.generateCvv(), LocalDate.now().plusYears(5), LocalDate.now());
+
 			renata.addAccount(account1);
+			renata.addCard(card1);
+			renata.addCard(card2);
 
 			accountRepository.save(account1);
+			cardRepository.save(card1);
+			cardRepository.save(card2);
 
 		};
 	}*/

@@ -30,6 +30,7 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/api/transactions").hasAuthority("CLIENT")
                 .requestMatchers(HttpMethod.POST, "/api/cards/clients/current").hasAuthority("CLIENT")
                 .requestMatchers(HttpMethod.POST, "/api/loans").hasAuthority("CLIENT")
+                .requestMatchers(HttpMethod.POST,"/api/loans/payment").hasAuthority("CLIENT")
                 .requestMatchers(HttpMethod.DELETE, "/api/cards/{id}").hasAuthority("CLIENT")
                 .requestMatchers(HttpMethod.DELETE, "/api/accounts/{id}").hasAuthority("CLIENT")
                 .requestMatchers("/api/clients", "/h2-console/**", "/web/**", "/rest/**").hasAuthority("ADMIN")
@@ -48,7 +49,7 @@ public class SecurityConfig {
                         .loginProcessingUrl("/api/login")//Endpoint donde se envía la petición
                         .usernameParameter("email")//Parámetros que se enviarán a la petición
                         .passwordParameter("password")
-                        .failureHandler((request, response, exception) -> response.sendError(403))//Manejo para inicios de sesión fallidos por datos incorrectos
+                        .failureHandler((request, response, exception) -> response.sendError(403, "error de security config"))//Manejo para inicios de sesión fallidos por datos incorrectos
                         .successHandler((request, response, authentication) -> clearAuthenticationAttributes(request))//Manejor para inicio de sesión exitoso
                         .permitAll()
         );

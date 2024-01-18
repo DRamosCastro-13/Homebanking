@@ -52,7 +52,7 @@ public class CardController {
             return new ResponseEntity<>("Please select the color of the card you would like to choose", HttpStatus.FORBIDDEN);
         }
 
-        if(client.getCards().stream().anyMatch(card -> card.getType().equals(newCard.type()) && card.getColor().equals(newCard.color()))){
+        if(client.getCards().stream().filter(card -> !card.getDeleted()).anyMatch(card -> card.getType().equals(newCard.type()) && card.getColor().equals(newCard.color()))){
             return new ResponseEntity<>("You have reached the maximum number of " +
                     newCard.color() + " " + newCard.type() + " cards.", HttpStatus.FORBIDDEN);
         }

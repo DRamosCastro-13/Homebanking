@@ -115,6 +115,7 @@
                           <div class="absolute inset-0 rounded-xl [backface-visibility:hidden]">
                             <div class="h-full w-full rounded-xl object-cover shadow-xl bg-gradient-to-l from-orange-500 via-stone-700 to-zinc-900 [backface-visibility:hidden]">
                                <h3 class="text-white uppercase top-[30px] left-[25px] relative w-5">{{card.type}}</h3>
+                               <h4 v-if="isCardExpired(card)" class="text-red-500 uppercase top-[30px] right-[25px] relative w-5">*Expired</h4>
                                <svg class="z-20 absolute top-[30px] right-[25px]" width="40" height="40" viewbox="0 0 17.5 16.2">
                                     <path d="M3.2 0l5.4 5.6L14.3 0l3.2 3v9L13 16.2V7.8l-4.4 4.1L4.5 8v8.2L0 12V3l3.2-3z" fill="white"></path>
                                </svg>
@@ -160,6 +161,7 @@
                           <div class="absolute inset-0 rounded-xl [backface-visibility:hidden]">
                             <div class="h-full w-full rounded-xl object-cover shadow-xl bg-gradient-to-l from-sky-300 via-stone-600 to-black [backface-visibility:hidden]">
                                <h3 class="text-white uppercase top-[30px] left-[25px] relative w-5">{{card.type}}</h3>
+                               <h4 v-if="isCardExpired(card)" class="text-red-500 uppercase top-[30px] right-[25px] relative w-5">*Expired</h4>
                                <svg class="z-20 absolute top-[30px] right-[25px]" width="40" height="40" viewbox="0 0 17.5 16.2">
                                     <path d="M3.2 0l5.4 5.6L14.3 0l3.2 3v9L13 16.2V7.8l-4.4 4.1L4.5 8v8.2L0 12V3l3.2-3z" fill="white"></path>
                                </svg>
@@ -205,6 +207,7 @@
                           <div class="absolute inset-0 rounded-xl [backface-visibility:hidden]">
                             <div class="h-full w-full rounded-xl object-cover shadow-xl bg-gradient-to-l from-zinc-400 via-stone-600 to-black [backface-visibility:hidden]">
                                <h3 class="text-white uppercase top-[30px] left-[25px] relative w-5">{{card.type}}</h3>
+                               <h4 v-if="isCardExpired(card)" class="text-red-500 uppercase top-[30px] left-[25px] relative w-5">*Expired</h4>
                                <svg class="z-20 absolute top-[30px] right-[25px]" width="40" height="40" viewbox="0 0 17.5 16.2">
                                     <path d="M3.2 0l5.4 5.6L14.3 0l3.2 3v9L13 16.2V7.8l-4.4 4.1L4.5 8v8.2L0 12V3l3.2-3z" fill="white"></path>
                                </svg>

@@ -27,6 +27,16 @@ public class LoanServiceImpl implements LoanService {
     }
 
     @Override
+    public Loan findByName(String name) {
+        return loanRepository.findByName(name);
+    }
+
+    @Override
+    public LoanDTO getLoanDTOByName(String name) {
+        return new LoanDTO(findByName(name));
+    }
+
+    @Override
     public Loan findById(Long id) {
         return loanRepository.findById(id).orElse(null);
     }

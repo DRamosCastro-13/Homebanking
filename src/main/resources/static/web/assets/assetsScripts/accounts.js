@@ -95,38 +95,7 @@ let app = createApp({
 
                 this.error = error.response.data
             })
-        },
-        confirmDeleteAccount() {
-            Swal.fire({
-                title: "Confirm Deletion",
-                html: `
-                    <p>Are you sure you want to delete an account? This action cannot be undone.</p>
-                    <label for="accountSelect">Select Account:</label>
-                    <select id="accountSelect" class="swal2-input" v-model="selectedAccount">
-                        <option v-for="account in accounts" :value="account.id">{{ account.number }}</option>
-                    </select>
-                `,
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#d33",
-                cancelButtonColor: "#3085d6",
-                confirmButtonText: "Delete Account"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    this.deleteAccount();
-        
-                    Swal.fire({
-                        title: "Success",
-                        text: "Account deleted successfully",
-                        icon: "success"
-                    });
-        
-                    setTimeout(() => {
-                        window.location.reload();
-                    }, 2000);
-                }
-            });
-        },
+        }
 
     }
 }).mount('#app')
