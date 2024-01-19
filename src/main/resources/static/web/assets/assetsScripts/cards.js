@@ -51,7 +51,7 @@ let app = createApp({
                             
                             Swal.fire({
                                 title: "Success",
-                                text: "Transaction Completed",
+                                text: "Card deleted successfully",
                                 icon: "success"
                             });
         

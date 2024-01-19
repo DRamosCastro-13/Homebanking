@@ -76,7 +76,7 @@ let app = createApp({
             }).then((result) => {
                 if (result.isConfirmed) {
                     axios.post('/api/loans', {
-                        "name": this.selectedLoanType.name,
+                        "name": this.selectedLoanType,
                         "amount": this.amount,
                         "payments": this.payments,
                         "targetAccount": this.targetAccount
@@ -99,6 +99,9 @@ let app = createApp({
                             console.log(error);
                         });
                 }
+            }).catch(error => {
+                this.error = error.response.data;
+                console.log(error);
             });
         },
         clearErrors() {
