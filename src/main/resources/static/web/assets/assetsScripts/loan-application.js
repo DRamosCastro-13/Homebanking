@@ -10,12 +10,13 @@ let app = createApp({
             email : "",
             accounts : [],
             availableLoans : [],
-            id: 1,
+            selectedLoanType : '',
             name : '',
             amount : '',
             payments : '',
             targetAccount : '',
-            error : ""
+            error : "",
+            selectedAccount: '',
         }
     },
     created(){
@@ -47,7 +48,7 @@ let app = createApp({
         getBalance(account){
             axios('/api/clients/current')
             .then(response => {
-                selectedAccount = this.accounts.find(item => item.id == account)
+                this.selectedAccount = this.accounts.find(item => item.id == account)
                 console.log(response)
             })
             .catch(error => console.log(error))
@@ -113,6 +114,31 @@ let app = createApp({
             this.originAccount = '',
             this.targetAccount = '',
             this.error = ''
+        }
+    },
+
+    computed: {
+        formattedMaxAmount() {
+            if (this.selectedLoanType) {
+                const maxAmount = this.selectedLoanType.maxAmount || 0;
+    
+                return maxAmount.toLocaleString("en-US", {
+                    style: "currency",
+                    currency: "USD"
+                });
+            }
+    
+            return null;
+        },
+        estimatedTotal() {
+            if (this.selectedLoanType) {
+                return (this.amount * (1 + this.selectedLoanType.interest)).toLocaleString("en-US", {
+                    style: "currency",
+                    currency: "USD"
+                });
+            }
+    
+            return null;
         }
     }
 }).mount('#app')

@@ -147,7 +147,7 @@
             <h2 class="font-bold text-3xl text-[#004481] mt-3 lg:mt-14 lg:w-full lg:text-center lg:text-6xl">Your Products</h2>
             <fieldset class="border  border-blue-500 w-11/12 rounded-lg mt-5">
                 <legend class="font-semibold text-3xl lg:text-4xl text-center text-[#004481] mt-5 lg:text-left lg:ml-2">Accounts</legend>
-                <div class="flex flex-wrap flex-col lg:flex-row">
+                <div class="flex flex-wrap flex-col lg:flex-row lg:justify-between">
                     <template v-for="account in accounts">
                         <a :href="'../pages/account.html?id=' + account.id" class="flex flex-col items-center lg:py-3 lg:items-start lg:px-10 p-2 w-11/12 lg:hover:scale-110 lg:w-5/12 my-3 gap-3 lg:mt-3 mx-auto shadow-md shadow-slate-400 bg-gradient-to-r from-teal-200 to-lime-200 bg-cover bg-center rounded-lg">
                             <h2 class="font-medium text-lg text-slate-800">Account Number: <span class="text-blue-950 font-bold text-xl">{{account.number}}</span></h2>
@@ -160,9 +160,9 @@
                         </a>
                     </template>
                 </div>
-                <div class="w-full lg:pb-5 md:flex-row flex gap-4 md:justify-around flex-col items-center justify-center my-3">
-                    <a v-show="accounts.length < 3" href="./createAcc.html" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">Create Account</a>
-                    <a v-show="accounts.length > 0" href="./confirmDeleteAcc.html" class="bg-transparent hover:bg-red-600 text-red-600 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded">Delete Account</a>
+                <div class="w-full lg:pb-5 md:flex-row flex gap-4 md:justify-around flex-col items-center justify-center mt-3 mb-10">
+                    <a v-show="accounts.length < 3" href="./createAcc.html" class="bg-transparent w-7/12 md:w-5/12 lg:w-3/12 text-center  hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">Create Account</a>
+                    <a v-show="accounts.length > 0" href="./confirmDeleteAcc.html" class="bg-transparent w-7/12 md:w-5/12 lg:w-3/12 text-center hover:bg-red-600 text-red-600 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded">Delete Account</a>
                 </div>
             </fieldset>
 
@@ -178,16 +178,17 @@
             <template v-else>
                 <fieldset class="flex flex-col border border-blue-500 w-11/12 rounded-lg mt-8 mb-10 lg:mb-16">
                     <legend class="font-semibold text-3xl lg:text-4xl text-center text-[#004481] mt-5 lg:text-left lg:ml-2">Loans</legend>
-                    <div class="flex flex-wrap justify-center my-3 lg:justify-start lg:mx-10 xl:mx-12 lg:gap-10 w-full lg:my-5">
+                    <div class="flex flex-wrap justify-center my-3 lg:justify-around lg:gap-8 lg:w-10/12 lg:place-self-center w-full lg:my-5">
                         <template v-for="loan in loans">
                             <div class="flex flex-col items-center p-2 w-11/12 lg:hover:scale-110 lg:w-[18rem] mb-5 lg:py-4 lg:-mt-1 gap-3 bg-gradient-to-l from-orange-200 to-rose-200 shadow-md shadow-slate-400 rounded-lg">
                                 <h4 class="font-semibold text-2xl text-zinc-950">{{loan.name}}</h4>
                                 <p class="text-slate-600">Total Amount: <span class="font-bold text-lg text-slate-900">{{loan.amount.toLocaleString("en-US", {style:"currency", currency:"USD"})}}</span></p>
                                 <p class="text-slate-700">Interest Rate: <span class="font-bold text-lg text-slate-900">{{loan.interest * 100}}%</span></p>
-                                <p class="text-slate-700"><span class="font-bold text-lg text-slate-900">{{loan.payments}}</span> Monthly Payments</p>
+                                <p class="text-slate-700">Payments Made: <span class="font-bold text-lg text-slate-900"> {{loan.paymentsMade}}/{{loan.payments}}</span></p>
                             </div>
                         </template>
                     </div>
+                    <a href="./loanPayment.html" class="bg-transparent w-7/12 lg:w-3/12 mx-auto hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded mb-10 text-center">Make a payment</a>
                 </fieldset>    
             </template>
 
