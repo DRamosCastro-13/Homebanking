@@ -23,7 +23,7 @@ public class HomebankingApplication {
 
 	}
 
-	/*@Autowired
+	@Autowired
 	public PasswordEncoder passwordEncoder;
 
 	@Bean
@@ -31,7 +31,7 @@ public class HomebankingApplication {
 									  ClientLoanRepository clientLoanRepository, CardRepository cardRepository) {
 		return args -> {
 
-			Client admin = new Client("Daniela", "Ramos", "daniela@mindhub.com", passwordEncoder.encode("098765"));
+			Client admin = new Client("Daniela", "Ramos", "daniela@adminanb.com", passwordEncoder.encode("098765"));
 			admin.setRole(RoleType.ADMIN);
 
 			Client renata = new Client("Renata", "Castillo", "hola@mindhub.com", passwordEncoder.encode("10205"));
@@ -61,5 +61,5 @@ public class HomebankingApplication {
 			cardRepository.save(card2);
 
 		};
-	}*/
+	}
 }

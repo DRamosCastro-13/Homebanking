@@ -77,12 +77,69 @@
                 </div>
             </nav>
         </header>
-        <main>
-            <section class="bg-white h-[40dvh]"></section>
-            <section class="bg-[#c4e0ff] h-[40dvh]"></section>
-            <section class="bg-white h-[40dvh]"></section>
-            <section class="bg-[#004481] h-[40dvh]"></section>
+        <main class="flex flex-col lg:gap-8 lg:flex-row lg:px-10 flex-wrap justify-center items-center min-h-[100dvh] lg:min-h-[80dvh]">
+            <section class="bg-white h-[40vh] flex items-center justify-center pt-3 lg:pt-32">
+                <div class="text-center flex flex-col gap-4 w-11/12">
+                    <h1 class="text-3xl lg:text-5xl font-bold text-[#004481] mb-4">Welcome to Assurance National Bank</h1>
+                    <p class="text-lg lg:text-xl text-gray-600">Your trusted partner in banking solutions</p>
+                    <a href="./web/pages/login.html" class="bg-[#004481] text-white px-6 py-2 mt-6 rounded-md">Get Started</a>
+                </div>
+            </section>
+            <section class="bg-[#c4e0ff] h-[40vh] flex items-center justify-center">
+                <div class="text-center flex flex-col gap-4 w-11/12">
+                    <h2 class="text-3xl lg:text-5xl font-bold text-[#004481] mb-4">Discover Our Services</h2>
+                    <p class="text-lg lg:text-xl text-gray-600">Explore a range of banking and financial services designed for you.</p>
+                    <!-- Add cards or icons for different services -->
+                </div>
+            </section>
+            <section class="bg-white h-[40vh] flex items-center justify-center">
+                <div class="text-center flex flex-col gap-4 w-11/12">
+                    <h2 class="text-3xl lg:text-5xl font-bold text-[#004481] mb-4">Find a Branch Near You</h2>
+                    <p class="text-lg lg:text-xl text-gray-600">Locate our branches and ATMs for convenient access to your accounts.</p>
+                    <!-- Add a map or a list of branch locations -->
+                </div>
+            </section>
+            <section class="bg-[#004581da] h-[40vh] flex items-center justify-center">
+                <div class="text-center flex flex-col gap-4 w-11/12">
+                    <h2 class="text-3xl lg:text-5xl font-bold text-white mb-4">Stay Connected with Mobile Banking</h2>
+                    <p class="text-lg lg:text-xl text-gray-300">Manage your accounts on the go with our mobile banking app.</p>
+                    <a href="#" class="border-2 border-white text-white px-6 py-2 mt-6 rounded-md">Download Now</a>
+                </div>
+            </section>
         </main>
+        <footer class="bg-[#004481] text-white py-10">
+            <div class="flex flex-col lg:flex-row justify-around items-center lg:container lg:mx-auto">
+                <div class="lg:w-1/4 mb-8 lg:mb-0">
+                    <h3 class="text-lg lg:text-xl font-semibold mb-4">Follow Us</h3>
+                    <!-- Add social media icons and links -->
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-white hover:text-gray-300">
+                            <!-- Add social media icon (e.g., Twitter) -->
+                        </a>
+                        <a href="#" class="text-white hover:text-gray-300">
+                            <!-- Add social media icon (e.g., Facebook) -->
+                        </a>
+                        <a href="#" class="text-white hover:text-gray-300">
+                            <!-- Add social media icon (e.g., LinkedIn) -->
+                        </a>
+                    </div>
+                </div>
+                <div class="lg:w-1/4 mb-8 lg:mb-0">
+                    <h3 class="text-lg lg:text-xl font-semibold mb-4">Contact Us</h3>
+                    <p class="text-gray-300">123 Main Street, Cityville</p>
+                    <p class="text-gray-300">Phone: (123) 456-7890</p>
+                    <p class="text-gray-300">Email: info@anb.com</p>
+                </div>
+                <div class="lg:w-1/4 mb-8 lg:mb-0">
+                    <h3 class="text-lg lg:text-xl font-semibold mb-4">Branches</h3>
+                    <!-- Add addresses and contact info for branches -->
+                </div>
+                <div class="lg:w-1/4">
+                    <h3 class="text-lg lg:text-xl font-semibold mb-4">FAQ</h3>
+                    <!-- Add FAQ links or content -->
+                </div>
+            </div>
+        </footer>
 
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

@@ -13,6 +13,8 @@ public interface LoanService {
 
     Loan findByName(String name);
 
+    Boolean existsByName(String name);
+
     LoanDTO getLoanDTOByName(String name);
 
     Loan findById(Long id);

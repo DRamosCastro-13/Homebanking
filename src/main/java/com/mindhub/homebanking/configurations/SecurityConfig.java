@@ -25,15 +25,20 @@ public class SecurityConfig {
                 .requestMatchers("/index.html", "/web/assets/**", "/web/pages/login.html", "/web/assets/assetsScripts/login.js" ).permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/login").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/clients").permitAll()
-                .requestMatchers("/api/clients/current", "/api/accounts/clients/current", "/web/pages/*", "/api/accounts/{id}", "/api/loans").hasAuthority("CLIENT")
                 .requestMatchers(HttpMethod.POST, "/api/accounts/clients/current").hasAuthority("CLIENT")
                 .requestMatchers(HttpMethod.POST, "/api/transactions").hasAuthority("CLIENT")
                 .requestMatchers(HttpMethod.POST, "/api/cards/clients/current").hasAuthority("CLIENT")
                 .requestMatchers(HttpMethod.POST, "/api/loans").hasAuthority("CLIENT")
+                .requestMatchers(HttpMethod.POST, "/api/loans/create").hasAuthority("ADMIN")
                 .requestMatchers(HttpMethod.POST,"/api/loans/payment").hasAuthority("CLIENT")
                 .requestMatchers(HttpMethod.DELETE, "/api/cards/{id}").hasAuthority("CLIENT")
                 .requestMatchers(HttpMethod.DELETE, "/api/accounts/{id}").hasAuthority("CLIENT")
-                .requestMatchers("/api/clients", "/h2-console/**", "/web/**", "/rest/**").hasAuthority("ADMIN")
+                .requestMatchers(HttpMethod.GET,"/api/clients/current", "/api/accounts/clients/current", "/web/pages/*",
+                        "/api/accounts/{id}").hasAuthority("CLIENT")
+                .requestMatchers(HttpMethod.GET,"/api/loans/availableLoans").hasAnyAuthority("CLIENT","ADMIN")
+                .requestMatchers(HttpMethod.GET,"/api/clients", "/api/clients/current/admin", "/h2-console/**", "/web/**",
+                        "/rest/**").hasAuthority("ADMIN")
+                .requestMatchers("/index.html", "/web/assets/**", "/web/pages/login.html", "/web/assets/assetsScripts/login.js" ).permitAll()
                 .anyRequest().denyAll()
         );
 
@@ -49,7 +54,7 @@ public class SecurityConfig {
                         .loginProcessingUrl("/api/login")//Endpoint donde se envía la petición
                         .usernameParameter("email")//Parámetros que se enviarán a la petición
                         .passwordParameter("password")
-                        .failureHandler((request, response, exception) -> response.sendError(403, "error de security config"))//Manejo para inicios de sesión fallidos por datos incorrectos
+                        .failureHandler((request, response, exception) -> response.sendError(403, "Security config error"))//Manejo para inicios de sesión fallidos por datos incorrectos
                         .successHandler((request, response, authentication) -> clearAuthenticationAttributes(request))//Manejor para inicio de sesión exitoso
                         .permitAll()
         );

@@ -22,8 +22,14 @@ let app = createApp({
             axios.post("/api/login?email=" + email + "&password=" + password)
             .then(response => {
                 console.log(response)
-                window.location.href = "/web/pages/accounts.html"
-                this.clearData()
+
+                if (email.includes("@adminanb.com")) {
+                    window.location.href = "/web/admin/managerOverview.html";
+                } else {
+                    window.location.href = "/web/pages/accounts.html";
+                }
+    
+                this.clearData();
             })
             .catch(error => {
             this.error = error.response.data,

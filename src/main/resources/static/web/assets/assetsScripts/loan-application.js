@@ -10,7 +10,7 @@ let app = createApp({
             email : "",
             accounts : [],
             availableLoans : [],
-            selectedLoanType : '',
+            selectedLoanType : null,
             name : '',
             amount : '',
             payments : '',
@@ -37,7 +37,7 @@ let app = createApp({
             .catch(error => console.log(error))
         },
         loadLoan(){
-            axios('/api/loans')
+            axios('/api/loans/availableLoans')
             .then(response =>{
                 this.data = response,
                 this.availableLoans = response.data,
@@ -55,16 +55,18 @@ let app = createApp({
         },
         createLoan() {
             this.error = "";
-        
-            if (!this.targetAccount || !this.name || !this.amount || !this.payments) {
+         
+            if (!this.targetAccount || !this.selectedLoanType || !this.amount || !this.payments) {
                 this.error = "Please fill in all required fields.";
                 return;
             }
+
+            console.log(this.selectedLoanType)
         
-            const confirmationMessage = `Are you sure you want to create a loan of ${this.amount.toLocaleString("en-US", { style: "currency", currency: "USD" })} with ${this.payments} payments to ${this.targetAccount}?`;
+            const confirmationMessage = `Are you sure you want to apply for a loan of ${this.amount.toLocaleString("en-US", { style: "currency", currency: "USD" })} with ${this.payments} payments to ${this.targetAccount}?`;
         
             Swal.fire({
-                title: "Complete transaction?",
+                title: "Complete application?",
                 text: confirmationMessage,
                 icon: "warning",
                 showCancelButton: true,
@@ -74,7 +76,7 @@ let app = createApp({
             }).then((result) => {
                 if (result.isConfirmed) {
                     axios.post('/api/loans', {
-                        "name": this.name,
+                        "name": this.selectedLoanType.name,
                         "amount": this.amount,
                         "payments": this.payments,
                         "targetAccount": this.targetAccount
@@ -82,7 +84,7 @@ let app = createApp({
                         .then(response => {
                             Swal.fire({
                                 title: "Success",
-                                text: "Loan Transaction Completed",
+                                text: "Loan Approved",
                                 icon: "success"
                             });
         

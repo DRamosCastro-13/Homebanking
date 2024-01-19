@@ -1,10 +1,12 @@
 package com.mindhub.homebanking.controllers;
 
+import com.mindhub.homebanking.dto.AdminDTO;
 import com.mindhub.homebanking.dto.ClientDTO;
 import com.mindhub.homebanking.dto.NewClientDTO;
 import com.mindhub.homebanking.models.Account;
 import com.mindhub.homebanking.models.AccountType;
 import com.mindhub.homebanking.models.Client;
+import com.mindhub.homebanking.models.RoleType;
 import com.mindhub.homebanking.repositories.AccountRepository;
 import com.mindhub.homebanking.repositories.ClientRepository;
 import com.mindhub.homebanking.services.AccountService;
@@ -76,9 +78,11 @@ public class ClientController {
                 newClient.lastName().substring(0,1).toUpperCase() + newClient.lastName().substring(1).toLowerCase(),
                 newClient.email(), passwordEncoder.encode(newClient.password()));
 
+        client.setRole(client.getEmail().contains("@adminanb.com") ? RoleType.ADMIN : RoleType.CLIENT);
+
         clientService.saveClient(client);
 
-        if(client.getAccounts().isEmpty()){
+        if(client.getRole().equals(RoleType.CLIENT)){
 
             String number;
 
@@ -98,6 +102,12 @@ public class ClientController {
     public ResponseEntity<ClientDTO> getAuthenticatedClient(Authentication authentication){
 
         return new ResponseEntity<>(clientService.getAuthenticatedClientDTO(authentication.getName()),HttpStatus.OK);
+    }
+
+    @GetMapping("/current/admin")
+    public ResponseEntity<AdminDTO> getAdmin(Authentication authentication){
+
+        return new ResponseEntity<>(clientService.getAdminDTO(authentication.getName()), HttpStatus.OK);
     }
 
     @GetMapping("/all") //Escucha un get

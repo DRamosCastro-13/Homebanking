@@ -32,6 +32,11 @@ public class LoanServiceImpl implements LoanService {
     }
 
     @Override
+    public Boolean existsByName(String name) {
+        return loanRepository.existsByName(name);
+    }
+
+    @Override
     public LoanDTO getLoanDTOByName(String name) {
         return new LoanDTO(findByName(name));
     }

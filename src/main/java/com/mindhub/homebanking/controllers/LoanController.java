@@ -3,6 +3,7 @@ package com.mindhub.homebanking.controllers;
 import com.mindhub.homebanking.dto.LoanApplicationDTO;
 import com.mindhub.homebanking.dto.LoanDTO;
 import com.mindhub.homebanking.dto.LoanPaymentDTO;
+import com.mindhub.homebanking.dto.NewLoanDTO;
 import com.mindhub.homebanking.models.*;
 import com.mindhub.homebanking.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping ("/api/loans")
@@ -35,7 +38,7 @@ public class LoanController {
     private ClientLoanService clientLoanService;
 
 
-    @GetMapping
+    @GetMapping("/availableLoans")
     public ResponseEntity<?> availableLoans(
             Authentication authentication
     ) {
@@ -180,6 +183,57 @@ public class LoanController {
         clientLoanService.saveClientLoan(clientLoan);
 
         return new ResponseEntity<>("Payment Successful", HttpStatus.OK);
+    }
+
+
+    @PostMapping("/create")
+    public ResponseEntity<Object> createALoan(
+            @RequestBody NewLoanDTO newLoan,
+            Authentication authentication
+            ){
+        Client client = clientService.getAuthenticatedClient(authentication.getName());
+
+        if(client == null){
+            return new ResponseEntity<>("Unable to verify Admin", HttpStatus.FORBIDDEN);
+        }
+
+        if(client.getRole() != RoleType.ADMIN){
+            return new ResponseEntity<>("You don't have enough credentials to make this request", HttpStatus.FORBIDDEN);
+        }
+
+        if(newLoan.name().isBlank() || newLoan.interest().toString().isBlank() || newLoan.maxAmount().toString().isBlank() || newLoan.payments().toString().isBlank()){
+            return new ResponseEntity<>("You must fill out the form and complete all fields", HttpStatus.FORBIDDEN);
+        }
+
+        if(newLoan.maxAmount() < 10000){
+            return new ResponseEntity<>("The minimum max amount to create a loan is $10,000.00", HttpStatus.FORBIDDEN);
+        }
+
+        if(newLoan.maxAmount() > 1000000){
+            return new ResponseEntity<>("The maximum amount for a new loan can not be more than $1,000,000.0", HttpStatus.FORBIDDEN);
+        }
+
+        if(newLoan.interest() < 0.1){
+            return new ResponseEntity<>("The minimum interest rate is 10%", HttpStatus.FORBIDDEN);
+        }
+
+        if(newLoan.interest() > 0.3){
+            return new ResponseEntity<>("The maximum interest rate is 30%", HttpStatus.FORBIDDEN);
+        }
+
+        Boolean loan = loanService.existsByName(newLoan.name());
+
+        if(loan){
+            return new ResponseEntity<>("This loan already exists", HttpStatus.FORBIDDEN);
+        }
+
+        Loan newLoanCreation = new Loan(newLoan.name(), newLoan.maxAmount(),
+                newLoan.payments(), newLoan.interest());
+
+        loanService.saveLoan(newLoanCreation);
+
+        return new ResponseEntity<>(newLoanCreation.getName() + " Created Successfully", HttpStatus.CREATED);
+
     }
 
 }

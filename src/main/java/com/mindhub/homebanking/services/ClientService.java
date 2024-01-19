@@ -1,5 +1,6 @@
 package com.mindhub.homebanking.services;
 
+import com.mindhub.homebanking.dto.AdminDTO;
 import com.mindhub.homebanking.dto.ClientDTO;
 import com.mindhub.homebanking.models.Client;
 
@@ -15,6 +16,7 @@ public interface ClientService {
     Client getAuthenticatedClient(String email);
 
     ClientDTO getAuthenticatedClientDTO(String email);
+    AdminDTO getAdminDTO(String email);
 
     Boolean existsByEmail(String email);
 

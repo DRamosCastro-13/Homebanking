@@ -1,10 +1,14 @@
 package com.mindhub.homebanking.services.impl;
 
+import com.mindhub.homebanking.dto.AdminDTO;
 import com.mindhub.homebanking.dto.ClientDTO;
 import com.mindhub.homebanking.models.Client;
+import com.mindhub.homebanking.models.RoleType;
 import com.mindhub.homebanking.repositories.ClientRepository;
 import com.mindhub.homebanking.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,6 +40,14 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public ClientDTO getAuthenticatedClientDTO(String email) {
         return new ClientDTO(getAuthenticatedClient(email));
+    }
+
+    @Override
+    public AdminDTO getAdminDTO(String email) {
+        if(getAuthenticatedClient(email).getRole() == RoleType.ADMIN){
+            return new AdminDTO(getAuthenticatedClient(email));
+        }
+        return null;
     }
 
     @Override

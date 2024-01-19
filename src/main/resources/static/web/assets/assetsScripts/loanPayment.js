@@ -41,7 +41,7 @@ let app = createApp({
             .catch(error => console.log(error))
         },
         loadLoan(){
-            axios('/api/loans')
+            axios('/api/loans/availableLoans')
             .then(response =>{
                 this.data = response,
                 this.availableLoans = response.data,
