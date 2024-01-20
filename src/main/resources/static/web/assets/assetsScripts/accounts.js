@@ -78,7 +78,7 @@ let app = createApp({
             .then(response => {
                 Swal.fire({
                     title: "Success",
-                    text: "Transaction Completed",
+                    text: "Account deleted successfully",
                     icon: "success"
                 });
 

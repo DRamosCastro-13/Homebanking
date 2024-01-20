@@ -5,13 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../web/assets/asstetsImg/Screenshot_2023-12-09_at_5.18.16_PM-removebg-preview.png" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" type="text/css" href="web/assets/assetsStyles/index.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" type="text/css" href="/web/assets/assetsStyles/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <title>Home | ANB</title>
 </head>
 <body>
     <div id="app">
         <header>
-            <nav class="flex flex-row justify-around items-center px-[24px] lg:flex-row z-10 h-[4rem] lg:h-[5rem] bg-[#004481] lg:fixed lg:w-full lg:top-0">
+            <nav class="flex flex-row px-7 md:px-10 justify-around items-center lg:flex-row z-10 h-[4rem] lg:h-[5rem] bg-[#004481] fixed w-full top-0">
                 <a href="./web/pages/login.html" class="group flex flex-col lg:hidden">
                     <svg width="28px" height="28px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" fill="#ffffff" stroke="#ffffff">
 
@@ -28,12 +30,12 @@
                     </svg>
                     <p class="text-white text-[10px] pt-1 group-hover:text-neutral-300">Login</p>
                 </a>
-                <a href="../index.html">
-                    <img class="bg-cover justify-start lg:pt-0 w-[8rem] md:w-[10rem] lg:w-[11rem]" src="./web/assets/asstetsImg/Logo with bg.png" alt="logo">
+                <a href="../index.html" class="mx-auto lg:mx-0">
+                    <img class="bg-cover lg:pt-0 w-[8rem] md:w-[10rem] lg:w-[11rem]" src="./web/assets/asstetsImg/Logo with bg.png" alt="logo">
                 </a>
                 <div class="hidded lg:flex gap-8">
                     <a href="#" class="hidden lg:flex text-white text-xl px-1 border-b-8 bottom-0 pb-3">Retail</a>
-                    <a href="#" class="hidden lg:flex text-white text-xl px-3">Business</a>
+                    <a href="#" class="hidden lg:flex text-white text-xl px-3" @click="alert()">Business</a>
                 </div>
                 <div class="lg:flex lg:gap-10">
                     <a href="./web/pages/login.html" class="hidden group lg:flex flex-col lg:justify-center lg:bg-teal-600 lg:px-6  lg:text-white">Access</a>
@@ -41,29 +43,29 @@
                         <li class="nav-item border-t-2 border-t-[#A5D6FF]">
                             <a href="./web/pages/login.html" class="nav-link">Login | Register</a>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">About Us</a>
+                        <li class="nav-item" >
+                            <a href="#" class="nav-link" @click="alert()">About Us</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">Find a Branch | ATM</a>
+                            <a href="#branch" class="nav-link">Find a Branch | ATM</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">Mobile Banking App</a>
+                            <a href="#mobile" class="nav-link">Mobile Banking App</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">Contact Us</a>
+                            <a href="#contact" class="nav-link">Contact Us</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">Security Information</a>
+                            <a href="#" class="nav-link" @click="alert()">Security Information</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">Joing Our Community</a>
+                            <a href="#" class="nav-link" @click="alert()">Joing Our Community</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">FAQ</a>
+                            <a href="#" class="nav-link" @click="alert()">FAQ</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">Help</a>
+                            <a href="#" class="nav-link" @click="alert()">Help</a>
                         </li>
                     </ul>
                     <div>
@@ -77,29 +79,29 @@
                 </div>
             </nav>
         </header>
-        <main class="flex flex-col lg:gap-8 lg:flex-row lg:px-10 flex-wrap justify-center items-center min-h-[100dvh] lg:min-h-[80dvh]">
-            <section class="bg-white h-[40vh] flex items-center justify-center pt-3 lg:pt-32">
+        <main class="flex flex-col pt-5 lg:gap-8 lg:flex-row lg:px-10 flex-wrap justify-center items-center min-h-[100dvh] lg:min-h-[80dvh]">
+            <section class="bg-white h-[50dvh] flex items-center justify-center pt-3 lg:pt-32">
                 <div class="text-center flex flex-col gap-4 w-11/12">
                     <h1 class="text-3xl lg:text-5xl font-bold text-[#004481] mb-4">Welcome to Assurance National Bank</h1>
                     <p class="text-lg lg:text-xl text-gray-600">Your trusted partner in banking solutions</p>
                     <a href="./web/pages/login.html" class="bg-[#004481] text-white px-6 py-2 mt-6 rounded-md">Get Started</a>
                 </div>
             </section>
-            <section class="bg-[#c4e0ff] h-[40vh] flex items-center justify-center">
+            <section class="bg-[#c4e0ff] h-[50dvh] flex items-center justify-center">
                 <div class="text-center flex flex-col gap-4 w-11/12">
                     <h2 class="text-3xl lg:text-5xl font-bold text-[#004481] mb-4">Discover Our Services</h2>
                     <p class="text-lg lg:text-xl text-gray-600">Explore a range of banking and financial services designed for you.</p>
                     <!-- Add cards or icons for different services -->
                 </div>
             </section>
-            <section class="bg-white h-[40vh] flex items-center justify-center">
+            <section class="bg-white h-[50dvh] flex items-center justify-center" id="branch">
                 <div class="text-center flex flex-col gap-4 w-11/12">
                     <h2 class="text-3xl lg:text-5xl font-bold text-[#004481] mb-4">Find a Branch Near You</h2>
                     <p class="text-lg lg:text-xl text-gray-600">Locate our branches and ATMs for convenient access to your accounts.</p>
                     <!-- Add a map or a list of branch locations -->
                 </div>
             </section>
-            <section class="bg-[#004581da] h-[40vh] flex items-center justify-center">
+            <section class="bg-[#004581da] h-[50dvh] flex items-center justify-center" id="mobile">
                 <div class="text-center flex flex-col gap-4 w-11/12">
                     <h2 class="text-3xl lg:text-5xl font-bold text-white mb-4">Stay Connected with Mobile Banking</h2>
                     <p class="text-lg lg:text-xl text-gray-300">Manage your accounts on the go with our mobile banking app.</p>
@@ -107,7 +109,7 @@
                 </div>
             </section>
         </main>
-        <footer class="bg-[#004481] text-white py-10">
+        <footer class="bg-[#004481] text-white py-10" id="contact">
             <div class="flex flex-col lg:flex-row justify-around items-center lg:container lg:mx-auto">
                 <div class="lg:w-1/4 mb-8 lg:mb-0">
                     <h3 class="text-lg lg:text-xl font-semibold mb-4">Follow Us</h3>
@@ -142,10 +144,8 @@
         </footer>
 
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./web/assets/assetsScripts/index.js"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="web/assets/assetsScripts/index.js"></script>
-    <script type="module" src="../web/assets/assetsStyles/tailwind.config.extension.js"></script>
-    <script type="module" src="../web/assets/assetsStyles/tailwind.config.js"></script>
+    <script src="/web/assets/assetsScripts/sweetAlert.js"></script>
 </body>
 </html>

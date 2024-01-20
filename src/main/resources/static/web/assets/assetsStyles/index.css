@@ -58,9 +58,9 @@
         top: 62px;
         gap: 0;
         flex-direction: column;
-        background-color: rgba(0, 57, 133, 0.894);
+        background-color: rgba(0, 58, 133, 0.968);
         width: 100%;
-        text-align: start;
+        text-align: center;
         transition: 0.3s;
     }
 
@@ -98,7 +98,7 @@
         top: 75px;
         gap: 0;
         flex-direction: column;
-        background-color: rgba(0, 57, 133, 0.894);
+        background-color: rgba(0, 58, 133, 0.968);
         width: 100%;
         text-align: start;
         transition: 0.3s;

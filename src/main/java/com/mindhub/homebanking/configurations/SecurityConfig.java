@@ -38,7 +38,6 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.GET,"/api/loans/availableLoans").hasAnyAuthority("CLIENT","ADMIN")
                 .requestMatchers(HttpMethod.GET,"/api/clients", "/api/clients/current/admin", "/h2-console/**", "/web/**",
                         "/rest/**").hasAuthority("ADMIN")
-                .requestMatchers("/index.html", "/web/assets/**", "/web/pages/login.html", "/web/assets/assetsScripts/login.js" ).permitAll()
                 .anyRequest().denyAll()
         );
 
