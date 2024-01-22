@@ -79,8 +79,8 @@ public class LoanController {
             return new ResponseEntity<>("You must specify the account number to transfer the funds", HttpStatus.FORBIDDEN);
         }
 
-        if(loanApplication.amount() <= 0.0){
-            return new ResponseEntity<>("Invalid amount, please verify the information", HttpStatus.FORBIDDEN);
+        if(loanApplication.amount() < 10000){
+            return new ResponseEntity<>("The minimum amount for a loan is $10,000", HttpStatus.FORBIDDEN);
         }
 
         if(loanApplication.payments() == 0){
@@ -152,8 +152,8 @@ public class LoanController {
             return new ResponseEntity<>("You must fill out the form to make the payment", HttpStatus.FORBIDDEN);
         }
 
-        if (loanPayment.amount() <= 0) {
-            return new ResponseEntity<>("Invalid amount, please review the information", HttpStatus.FORBIDDEN);
+        if (loanPayment.amount() < 1000) {
+            return new ResponseEntity<>("The minimum amount for a payment is $1,000", HttpStatus.FORBIDDEN);
         }
 
         if (clientLoan.getAmount() < loanPayment.amount()) {
