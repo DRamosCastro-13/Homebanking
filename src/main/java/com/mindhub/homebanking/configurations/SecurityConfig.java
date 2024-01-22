@@ -6,6 +6,8 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -22,7 +24,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         //se configuran los filtros para definir quién tiene acceso a qué
         http.authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/index.html", "/web/assets/**", "/web/pages/login.html", "/web/assets/assetsScripts/login.js" ).permitAll()
+                .requestMatchers("/index.html", "/index1.css", "/index1.js", "/sweetAlert1.js" ,"/web/assets/asstetsImg/**", "/web/login/**" ).permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/login").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/clients").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/accounts/clients/current").hasAuthority("CLIENT")
@@ -33,7 +35,7 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.POST,"/api/loans/payment").hasAuthority("CLIENT")
                 .requestMatchers(HttpMethod.DELETE, "/api/cards/{id}").hasAuthority("CLIENT")
                 .requestMatchers(HttpMethod.DELETE, "/api/accounts/{id}").hasAuthority("CLIENT")
-                .requestMatchers(HttpMethod.GET,"/api/clients/current", "/api/accounts/clients/current", "/web/pages/*",
+                .requestMatchers(HttpMethod.GET,"/api/clients/current", "/api/accounts/clients/current", "/web/pages/*", "/web/assets/assetsScripts/**", "/web/assets/assetsStyles/**",
                         "/api/accounts/{id}").hasAuthority("CLIENT")
                 .requestMatchers(HttpMethod.GET,"/api/loans/availableLoans").hasAnyAuthority("CLIENT","ADMIN")
                 .requestMatchers(HttpMethod.GET,"/api/clients", "/api/clients/current/admin", "/h2-console/**", "/web/**",
@@ -59,7 +61,7 @@ public class SecurityConfig {
         );
 
         http.exceptionHandling(exceptionHandlingConfigurer -> exceptionHandlingConfigurer
-                .authenticationEntryPoint((request, response, authException) -> response.sendRedirect("/index.html")));
+                .authenticationEntryPoint((request, response, authException) -> response.sendError(403,"Unauthorized")));
         //Respuesta si un usuario intenta acceder sin haberse autenticado (no tiene autorización)
         //o intenta acceder a un recurso al cual no tiene autorización
 

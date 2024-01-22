@@ -39,14 +39,22 @@ let app = createApp({
         loginEvent(){
             this.login(this.email, this.password)
         },
-        errorAlert(error){
-            Swal.fire({
-                icon: "error",
-                title: error.response.data,
-                text: "Please try again",
-              })
-        },
+        validatePassword(password) {
+            const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+      
+            return passwordRegex.test(password);
+          },
+      
         register(){
+            if(!this.firstName || !this.lastName || !this.emailReg || !this.passwordReg){
+                this.error = "Please fill in all fields";
+                return;
+            }
+
+            if (!this.validatePassword(this.passwordReg)) {
+                this.error = "Password must have at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character.";
+                return;
+              }
             axios.post('/api/clients',{
                 "firstName" : this.firstName,
                 "lastName" : this.lastName,
