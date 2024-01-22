@@ -23,7 +23,7 @@ public class HomebankingApplication {
 
 	}
 
-	@Autowired
+	/*@Autowired
 	public PasswordEncoder passwordEncoder;
 
 	@Bean
@@ -61,5 +61,5 @@ public class HomebankingApplication {
 			cardRepository.save(card2);
 
 		};
-	}
+	}*/
 }
