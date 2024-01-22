@@ -100,13 +100,13 @@
                 <div class="flex flex-wrap justify-around mb-3"> 
                     <label for="transferType" class="text-lg mb-2 text-zinc-800 font-semibold w-full">Select Transfer Destination</label>
                     <div> 
-                        <input type="radio" name="transferType" value="owned" v-model="transferType"/>
-                        <label class="text-sm md:text-base mb-2 ml-1">Owned Account</label>
+                        <input type="radio" id="owned" name="transferType" value="owned" v-model="transferType"/>
+                        <label for="owned" class="text-sm md:text-base mb-2 ml-1">Owned Account</label>
                     </div>
 
                     <div>
-                        <input type="radio" name="transferType" value="third" v-model="transferType"/>
-                        <label class="text-sm ml-1 md:text-base">Third Party Account</label>
+                        <input type="radio" id="third" name="transferType" value="third" v-model="transferType"/>
+                        <label for="third" class="text-sm ml-1 md:text-base">Third Party Account</label>
                     </div>
                 </div>
                 <div class="w-full flex flex-col gap-3" v-if="transferType == 'owned'">

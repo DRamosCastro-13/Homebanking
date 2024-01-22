@@ -77,11 +77,6 @@ let app = createApp({
                 error => {
                 console.log(error)
                 this.error = error.response.data
-                Swal.fire({
-                    icon: "error",
-                    title: error.response.data,
-                    text: "Please try again",
-                })
             })
         },
         clearData(){
