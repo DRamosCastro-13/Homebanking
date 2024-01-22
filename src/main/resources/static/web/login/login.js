@@ -10,6 +10,7 @@ let app = createApp({
             passwordReg : "",
             password : "",
             error : "",
+            errorReg : "",
         }
     },
     created(){
@@ -19,6 +20,10 @@ let app = createApp({
 
     methods: {
         login(email, password){
+            if(!email || !password){
+                this.error = "Please fill in all fields";
+                return;
+            }
             axios.post("/api/login?email=" + email + "&password=" + password)
             .then(response => {
                 console.log(response)
@@ -47,7 +52,7 @@ let app = createApp({
       
         register(){
             if(!this.firstName || !this.lastName || !this.emailReg || !this.passwordReg){
-                this.error = "Please fill in all fields";
+                this.errorReg = "Please fill in all fields";
                 return;
             }
 
@@ -76,7 +81,7 @@ let app = createApp({
             .catch(
                 error => {
                 console.log(error)
-                this.error = error.response.data
+                this.errorReg = error.response.data
             })
         },
         clearData(){
