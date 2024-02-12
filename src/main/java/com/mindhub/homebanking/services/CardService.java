@@ -7,6 +7,8 @@ public interface CardService {
 
     boolean existsByNumber(String number);
 
+    Card findByNumber(String number);
+
     void saveCard(Card card);
 
     Card findByClientAndId(Client client, Long id);

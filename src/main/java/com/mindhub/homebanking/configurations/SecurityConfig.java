@@ -3,6 +3,7 @@ package com.mindhub.homebanking.configurations;
 import com.mindhub.homebanking.models.RoleType;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import org.apache.catalina.filters.CorsFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -15,6 +16,8 @@ import org.springframework.security.config.annotation.web.configurers.HeadersCon
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 @EnableWebSecurity
@@ -32,6 +35,7 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/api/cards/clients/current").hasAuthority("CLIENT")
                 .requestMatchers(HttpMethod.POST, "/api/loans").hasAuthority("CLIENT")
                 .requestMatchers(HttpMethod.POST, "/api/loans/create").hasAuthority("ADMIN")
+                .requestMatchers(HttpMethod.POST, "/api/cards/payments").permitAll()
                 .requestMatchers(HttpMethod.POST,"/api/loans/payment").hasAuthority("CLIENT")
                 .requestMatchers(HttpMethod.DELETE, "/api/cards/{id}").hasAuthority("CLIENT")
                 .requestMatchers(HttpMethod.DELETE, "/api/accounts/{id}").hasAuthority("CLIENT")
@@ -51,7 +55,7 @@ public class SecurityConfig {
         //Permite el acceso a recursos de APIs externas, en este caso H2-Console
 
         http.formLogin( formLogin ->
-                formLogin.loginPage("/web/pages/login.html")//La página donde se hace el login
+                formLogin.loginPage("/login.html")//La página donde se hace el login
                         .loginProcessingUrl("/api/login")//Endpoint donde se envía la petición
                         .usernameParameter("email")//Parámetros que se enviarán a la petición
                         .passwordParameter("password")
