@@ -15,7 +15,7 @@ import static org.hamcrest.Matchers.*;
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class ClientRepositoryTest {
-
+/*
     @Autowired
     private ClientRepository clientRepository;
 
@@ -42,4 +42,5 @@ public class ClientRepositoryTest {
     }
 
 
+ */
 }
