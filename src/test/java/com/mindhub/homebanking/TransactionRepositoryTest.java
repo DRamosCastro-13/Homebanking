@@ -23,7 +23,7 @@ public class TransactionRepositoryTest {
         List<Transaction> transactions = transactionRepository.findAll();
 
         assertThat(transactions, is(not(empty())));
-    }*/
+    }
 
     @Test
     public void hasType() {
@@ -32,7 +32,7 @@ public class TransactionRepositoryTest {
         assertThat("Every transaction must have a non-null type", transactions, everyItem(hasProperty("type", is(notNullValue()))));
     }
 
-    /*@Test
+   @Test
     public void hasDescription(){
         List<Transaction> transactions = transactionRepository.findAll();
 

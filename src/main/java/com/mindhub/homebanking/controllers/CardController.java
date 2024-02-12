@@ -1,6 +1,5 @@
 package com.mindhub.homebanking.controllers;
 
-import com.mindhub.homebanking.dto.CardPaymentDTO;
 import com.mindhub.homebanking.dto.NewCardDTO;
 import com.mindhub.homebanking.models.*;
 import com.mindhub.homebanking.repositories.CardRepository;
@@ -88,7 +87,7 @@ public class CardController {
 
     }
 
-    @CrossOrigin(origins = "*")
+    /*@CrossOrigin(origins = "*")
     @PostMapping("/payments")
     @Transactional
     public ResponseEntity<String> cardPayment(
@@ -127,7 +126,7 @@ public class CardController {
 
 
         return new ResponseEntity<>("Successful Payment", HttpStatus.CREATED);
-    }
+    }*/
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteCard(@PathVariable Long id,
